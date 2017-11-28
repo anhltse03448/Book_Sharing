@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Text,
-        Image
+        Image,
+        View
 } from 'react-native'
 import {
   Button,
@@ -8,40 +9,77 @@ import {
   Content,
   Icon
 } from 'native-base'
+
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 
 // Styles
+import LinearGradient from 'react-native-linear-gradient'
 import styles from './Styles/LoginScreenStyle'
 
 class LoginScreen extends Component {
   render () {
     return (
       <Container>
-        <Content>
+        <Content contentContainerStyle={{
+          marginTop: 64,
+          alignItems: 'center'
+        }}>
+          <Image
+            source={require('../Images/LoginBg.png')}
+            style={{
+              position: 'absolute',
+              marginTop: -400
+            }}
+          />
           <Image
             style={{
-              alignSelf: 'center'
+              alignSelf: 'center',
+              marginBottom: 40
             }}
             source={require('../Images/Icons/Icon.png')}
           />
-          <Text>
-              BookSharing
-          </Text>
-          <Text>
-            Social App
-          </Text>
-          <Text>
-            Sign Up or Login With
-          </Text>
-          <Button iconLeft>
-            <Icon name='sc-facebook' />
-            <Text>Connect with Facebook</Text>
-          </Button>
-          <Button>
-            <Text>Connecy with Google</Text>
-          </Button>
+          <LinearGradient colors={['#5074af', '#415887']}
+            style={styles.buttonLinearGradient}>
+            <Button iconLeft transparent style={styles.facebookButton}
+              onPress={this.signInWithFacebook}>
+              <LinearGradient colors={['#355088', '#4f72ad']}
+                style={styles.socialIcon}>
+                <Image source={require('../Images/icon_facebook.png')}
+                  style={styles.socialImage} resizeMode='contain' />
+              </LinearGradient>
+              <Text style={styles.buttonText}>Connect with Facebook</Text>
+            </Button>
+          </LinearGradient>
+          <LinearGradient colors={['#df4a32', '#e02f2f']}
+            style={styles.buttonLinearGradient}>
+            <Button iconLeft transparent style={styles.googleButton}
+              onPress={this.signInWithGoogle}>
+              <LinearGradient colors={['#c32c2b', '#df4932']}
+                style={styles.socialIcon}>
+                <Image source={require('../Images/icon_google.png')}
+                  style={styles.socialImage} resizeMode='contain' />
+              </LinearGradient>
+              <Text style={styles.buttonText}>Connect with Google</Text>
+            </Button>
+          </LinearGradient>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              marginTop: 20
+            }}
+          >
+            <Icon
+              name='ios-information-circle-outline'
+              style={{
+                fontSize: 27,
+                marginRight: 10
+              }}
+            />
+            <Text>We don't post anything to Facebook or Google</Text>
+          </View>
         </Content>
       </Container>
     )
