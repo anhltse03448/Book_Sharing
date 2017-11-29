@@ -57,18 +57,19 @@ class MainScreen extends Component {
   getContent (type) {
     switch (type) {
       case 'HOME':
-        return <NewfeedScreen />
+        return <NewfeedScreen navigation={this.props.navigation} />
       case 'SEARCH':
-        return <SearchScreen />
+        return <SearchScreen navigation={this.props.navigation} />
       case 'SELL':
-        return <SellScreen />
+        return <SellScreen navigation={this.props.navigation} />
       case 'NOTIFICATION':
-        return <NotificationScreen />
+        return <NotificationScreen navigation={this.props.navigation} />
       default:
-        return <UserSettingScreen />
+        return <UserSettingScreen navigation={this.props.navigation} />
     }
   }
   render () {
+    console.log(this.props.navigation)
     let content = this.getContent(this.state.selectedTab)
     return (
       <Container>
@@ -81,7 +82,7 @@ class MainScreen extends Component {
                 style={this.getStyleIcon('HOME')} />
               <Text
                 style={this.getStyleText('HOME')}
-              > Home </Text>
+              > Trang chủ </Text>
             </Button>
             <Button vertical
               onPress={() => this.onPress('SEARCH')}>
@@ -89,7 +90,7 @@ class MainScreen extends Component {
                 style={this.getStyleIcon('SEARCH')} />
               <Text
                 style={this.getStyleText('SEARCH')}
-              > Search </Text>
+              > Tìm Kiếm </Text>
             </Button>
             <Button vertical rounded
               onPress={() => this.onPress('SELL')}>
@@ -99,7 +100,7 @@ class MainScreen extends Component {
               />
               <Text
                 style={this.getStyleText('SELL')}
-              > Sell </Text>
+              > Bán </Text>
             </Button>
             <Button vertical
               onPress={() => this.onPress('NOTIFICATION')}>
@@ -107,7 +108,7 @@ class MainScreen extends Component {
                 style={this.getStyleIcon('NOTIFICATION')} />
               <Text
                 style={this.getStyleText('NOTIFICATION')}
-              > Notify </Text>
+              > Thông báo </Text>
             </Button>
             <Button vertical
               onPress={() => this.onPress('PERSON')}>
@@ -115,7 +116,7 @@ class MainScreen extends Component {
                 style={this.getStyleIcon('PERSON')} />
               <Text
                 style={this.getStyleText('PERSON')}
-              > User </Text>
+              > Cá nhân </Text>
             </Button>
           </FooterTab>
         </Footer>

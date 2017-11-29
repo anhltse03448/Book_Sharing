@@ -20,11 +20,9 @@ class InterestSelectScreen extends Component {
         <Header>
           <Text>Hello</Text>
         </Header>
-        <Content>          
-        </Content>
-        <Footer>
-        </Footer>
-      </Container> 
+        <Content />
+        <Footer />
+      </Container>
     )
   }
 }

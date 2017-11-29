@@ -4,7 +4,8 @@ import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import RootContainer from './RootContainer'
 import createStore from '../Redux'
-
+import { StyleProvider } from 'native-base'
+import getTheme from '../../native-base-theme/components'
 // create our store
 const store = createStore()
 
@@ -21,7 +22,9 @@ class App extends Component {
   render () {
     return (
       <Provider store={store}>
-        <RootContainer />
+        <StyleProvider style={getTheme()}>
+          <RootContainer />
+        </StyleProvider>
       </Provider>
     )
   }

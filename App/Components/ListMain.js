@@ -6,17 +6,6 @@ import {
   FlatList
 } from 'react-native'
 export default class ListMain extends Component {
-  // // Prop type warnings
-  // static propTypes = {
-  //   someProperty: PropTypes.object,
-  //   someSetting: PropTypes.bool.isRequired,
-  // }
-  //
-  // // Defaults for props
-  // static defaultProps = {
-  //   someSetting: false
-  // }
-
   renderItem (item) {
     return (
       <ItemMain />
@@ -26,10 +15,8 @@ export default class ListMain extends Component {
   render () {
     return (
       <FlatList horizontal
-        style={{
-          flex: 1,
-          backgroundColor: 'white'
-        }}
+        showsHorizontalScrollIndicator={false}
+        style={styles.flatList}
         data={[{key: 'a', section: 'Viễn tưởng'}, {key: 'b', section: 'Khoa học'}]}
         renderItem={({item}) => this.renderItem(item)}
       />

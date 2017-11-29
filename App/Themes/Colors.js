@@ -22,7 +22,12 @@ const colors = {
   border: '#483F53',
   banner: '#5F3E63',
   text: '#E0D7E5',
-  mainColor: '#2a7cf5'
+  mainColor: '#0D9F67',
+  textMainColor: '#666666',
+  textSecondColor: '#919191',
+  textPriceMaxColor: '#0D9F67',
+  textPriceMinColor: '#4A90E2',
+  seperatorColor: '#C7C7C7'
 }
 
 export default colors
