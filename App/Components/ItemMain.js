@@ -9,12 +9,14 @@ import styles from './Styles/ItemMainStyle'
 import { Colors } from '../Themes/index'
 
 export default class ItemMain extends Component {
+  onPressItem (item) {
+    this.props.onPressItem(item)
+  }
   render () {
+    const item = {c: 'A'}
     return (
       <TouchableOpacity
-        onPress={() => {
-          
-        }}
+        onPress={() => this.onPressItem(item)}
       >
         <View style={styles.container}
         >

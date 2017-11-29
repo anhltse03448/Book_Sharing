@@ -8,7 +8,7 @@ import {
 export default class ListMain extends Component {
   renderItem (item) {
     return (
-      <ItemMain />
+      <ItemMain onPressItem={() => this.props.onPressItem(item)} />
     )
   }
 

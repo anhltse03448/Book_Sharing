@@ -24,18 +24,18 @@ import BookContent from '../Components/BookContent'
 import BookCommentScreen from './BookCommentScreen'
 import ListBookSellerScreen from './ListBookSellerScreen'
 import CommentBox from '../Components/CommentBox'
-
+import Navigation from '../Components/Navigation'
 class BookDetailScreen extends Component {
+  constructor (props) {
+    super(props)
+    let book = this.props.navigation
+    console.log('Book: ', book)
+  }
   render () {
     return (
       <Container>
-        <Header>
-          <Body>
-            <Title>
-              Book
-            </Title>
-          </Body>
-        </Header>
+        <Navigation onPressBack={() => this.props.navigation.goBack()}
+          title='Thiết lập cá nhân' />
         <Content>
           <BookContent />
           <Card>
