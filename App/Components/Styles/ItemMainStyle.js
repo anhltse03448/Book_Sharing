@@ -3,25 +3,36 @@ import Colors from '../../Themes/Colors'
 
 export default StyleSheet.create({
   container: {
-    width: 170,
-    alignItems: 'flex-start',
-    padding: 10
+    width: 180,
+    alignItems: 'center',
+    borderRadius: 5
   },
   image: {
     width: 170,
-    height: 180,
-    marginBottom: 12
+    height: 170,
+    marginBottom: 8
   },
   title: {
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: '400',
     marginTop: 4,
+    marginBottom: 4,
     color: Colors.textMainColor
   },
-  price: {
-    fontSize: 14,
+  priceMax: {
+    fontSize: 15,
     fontWeight: '400',
     marginTop: 4,
-    color: Colors.textPriceColor
+    color: Colors.textPriceMaxColor
+  },
+  priceMin: {
+    fontSize: 15,
+    fontWeight: '400',
+    marginTop: 4,
+    color: Colors.textPriceMinColor
+  },
+  viewText: {
+    paddingLeft: 8,
+    paddingRight: 8
   }
 })

@@ -3,13 +3,14 @@ import React, { Component } from 'react'
 // import { Images } from '../Themes'
 import LoginScreen from './LoginScreen'
 import MainScreen from './MainScreen'
+import BookDetailScreen from './BookDetailScreen'
 // Styles
 // import styles from './Styles/LaunchScreenStyles'
 
 export default class LaunchScreen extends Component {
   render () {
     return (
-      <MainScreen />
+      <BookDetailScreen />
     )
   }
 }

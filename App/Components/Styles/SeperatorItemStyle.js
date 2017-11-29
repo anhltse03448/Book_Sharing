@@ -1,11 +1,10 @@
 import { StyleSheet } from 'react-native'
+import colors from '../../Themes/Colors'
 
 export default StyleSheet.create({
   container: {
-    flex: 1
-  },
-  flatList: {
     flex: 1,
-    paddingLeft: 8
+    height: 1,
+    backgroundColor: colors.seperatorColor
   }
 })

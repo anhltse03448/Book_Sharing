@@ -81,7 +81,7 @@ class MainScreen extends Component {
                 style={this.getStyleIcon('HOME')} />
               <Text
                 style={this.getStyleText('HOME')}
-              > Home </Text>
+              > Trang chủ </Text>
             </Button>
             <Button vertical
               onPress={() => this.onPress('SEARCH')}>
@@ -89,7 +89,7 @@ class MainScreen extends Component {
                 style={this.getStyleIcon('SEARCH')} />
               <Text
                 style={this.getStyleText('SEARCH')}
-              > Search </Text>
+              > Tìm Kiếm </Text>
             </Button>
             <Button vertical rounded
               onPress={() => this.onPress('SELL')}>
@@ -99,7 +99,7 @@ class MainScreen extends Component {
               />
               <Text
                 style={this.getStyleText('SELL')}
-              > Sell </Text>
+              > Bán </Text>
             </Button>
             <Button vertical
               onPress={() => this.onPress('NOTIFICATION')}>
@@ -107,7 +107,7 @@ class MainScreen extends Component {
                 style={this.getStyleIcon('NOTIFICATION')} />
               <Text
                 style={this.getStyleText('NOTIFICATION')}
-              > Notify </Text>
+              > Thông báo </Text>
             </Button>
             <Button vertical
               onPress={() => this.onPress('PERSON')}>
@@ -115,7 +115,7 @@ class MainScreen extends Component {
                 style={this.getStyleIcon('PERSON')} />
               <Text
                 style={this.getStyleText('PERSON')}
-              > User </Text>
+              > Cá nhân </Text>
             </Button>
           </FooterTab>
         </Footer>

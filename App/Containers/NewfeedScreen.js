@@ -13,7 +13,9 @@ import {
   Text,
   Button,
   View,
-  Header
+  Header,
+  Body,
+  Title
 } from 'native-base'
 import styles from './Styles/NewfeedScreenStyle'
 import ListMain from '../Components/ListMain'
@@ -41,7 +43,9 @@ class NewfeedScreen extends Component {
     return (
       <Container>
         <Header>
-          <Text>Testing</Text>
+          <Body>
+            <Title>Cá nhân</Title>
+          </Body>
         </Header>
         <Content contentContainerStyle={{
           flex: 1

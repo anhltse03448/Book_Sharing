@@ -17,8 +17,9 @@ import {
   ListItem,
   List
 } from 'native-base'
+import Trend from '../Components/Trend'
 
-class SearchScreen extends Component {
+class SearchScreen extends Component {  
   render () {
     return (
       <Container>
@@ -32,15 +33,35 @@ class SearchScreen extends Component {
             <Text>Search</Text>
           </Button>
         </Header>
-        <Content>
+        <Content style={{          
+        }}>
           <List>
-            <ListItem>
-              <Icon />
-              <Text>Bạn bè xung quanh</Text>
+            <ListItem
+              onPress={() => {
+
+              }}
+            >
+              <Icon
+                style={styles.icon}
+                name='ios-navigate-outline'
+              />
+              <Text
+                style={styles.text}
+              >Bạn bè xung quanh</Text>
             </ListItem>
-            <ListItem>
-              <Text>Xu hướng tìm kiếm</Text>
+            <ListItem
+              style={styles.list}
+              onPress={() => {
+                
+              }}>
+              <Icon
+                style={styles.icon}
+                name='ios-trending-up' />
+              <Text
+                style={styles.text}
+              >Xu hướng tìm kiếm</Text>
             </ListItem>
+            <Trend />
           </List>
         </Content>
       </Container>
