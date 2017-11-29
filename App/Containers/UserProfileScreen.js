@@ -10,6 +10,7 @@ import {
   Body,
   Title
 } from 'native-base'
+import Navigation from '../Components/Navigation'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 
@@ -20,17 +21,8 @@ class UserProfileScreen extends Component {
   render () {
     return (
       <Container>
-        <Header>
-          <Left>
-            <Button transparent onPress={() => this.props.navigation.goBack()}>
-              <Icon name='arrow-back' />
-            </Button>
-          </Left>
-          <Body>
-            <Title>Thiết lập cá nhân</Title>
-          </Body>
-          <Right />
-        </Header>
+        <Navigation onPressBack={() => this.props.navigation.goBack()}
+          title='Thiết lập cá nhân' />
       </Container>
     )
   }

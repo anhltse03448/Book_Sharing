@@ -15,22 +15,13 @@ import {
 
 // Styles
 // import styles from './Styles/PersonalSettingScreenStyle'
-
+import Navigation from '../Components/Navigation'
 class PersonalSettingScreen extends Component {
   render () {
     return (
       <Container>
-        <Header>
-          <Left>
-            <Button transparent onPress={() => this.props.navigation.goBack()}>
-              <Icon name='arrow-back' />
-            </Button>
-          </Left>
-          <Body>
-            <Title>Thiết lập cá nhân</Title>
-          </Body>
-          <Right />
-        </Header>
+        <Navigation onPressBack={() => this.props.navigation.goBack()}
+          title='Thiết lập cá nhân' />
       </Container>
     )
   }

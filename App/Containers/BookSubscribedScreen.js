@@ -15,22 +15,13 @@ import {
 
 // Styles
 // import styles from './Styles/BookSubscribedScreenStyle'
-
+import Navigation from '../Components/Navigation'
 class BookSubscribedScreen extends Component {
   render () {
     return (
       <Container>
-        <Header>
-          <Left>
-            <Button transparent onPress={() => this.props.navigation.goBack()}>
-              <Icon name='arrow-back' />
-            </Button>
-          </Left>
-          <Body>
-            <Title>Sách đang theo dõi</Title>
-          </Body>
-          <Right />
-        </Header>
+        <Navigation onPressBack={() => this.props.navigation.goBack()}
+          title='Sách đang theo dõi' />
       </Container>
     )
   }

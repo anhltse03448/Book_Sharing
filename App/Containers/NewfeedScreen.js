@@ -21,6 +21,14 @@ import styles from './Styles/NewfeedScreenStyle'
 import ListMain from '../Components/ListMain'
 
 class NewfeedScreen extends Component {
+  constructor (props) {
+    super(props)
+    this.onPressItem = this.onPressItem.bind(this)
+  }
+  onPressItem (item) {
+    console.log('Press at newFeeds: ', item)
+    this.props.navigation.navigate('BookDetailScreen', {book: item})
+  }
   renderItem (item) {
     return (
       <View>
@@ -35,7 +43,7 @@ class NewfeedScreen extends Component {
             </Text>
           </Button>
         </View>
-        <ListMain />
+        <ListMain onPressItem={this.onPressItem} />
       </View>
     )
   }
