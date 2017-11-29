@@ -24,7 +24,7 @@ export default class ListItem extends Component {
 
   render () {
     return (
-      <NBListItem icon>
+      <NBListItem icon onPress={this.props.onPress}>
         <Left>
           <Icon
             style={this.props.textColor && {color: this.props.textColor}}

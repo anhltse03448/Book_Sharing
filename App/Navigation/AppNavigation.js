@@ -1,4 +1,9 @@
 import { StackNavigator } from 'react-navigation'
+import RatingSettingScreen from '../Containers/RatingSettingScreen'
+import InterestedCategoryScreen from '../Containers/InterestedCategoryScreen'
+import BookSubscribedScreen from '../Containers/BookSubscribedScreen'
+import PersonalSettingScreen from '../Containers/PersonalSettingScreen'
+import UserProfileScreen from '../Containers/UserProfileScreen'
 import UserSettingScreen from '../Containers/UserSettingScreen'
 import NotificationScreen from '../Containers/NotificationScreen'
 import SellScreen from '../Containers/SellScreen'
@@ -13,6 +18,11 @@ import styles from './Styles/NavigationStyles'
 
 // Manifest of possible screens
 const PrimaryNav = StackNavigator({
+  RatingSettingScreen: { screen: RatingSettingScreen },
+  InterestedCategoryScreen: { screen: InterestedCategoryScreen },
+  BookSubscribedScreen: { screen: BookSubscribedScreen },
+  PersonalSettingScreen: { screen: PersonalSettingScreen },
+  UserProfileScreen: { screen: UserProfileScreen },
   UserSettingScreen: { screen: UserSettingScreen },
   NotificationScreen: { screen: NotificationScreen },
   SellScreen: { screen: SellScreen },

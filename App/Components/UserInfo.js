@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, TouchableHighlight } from 'react-native'
 import { Icon } from 'native-base'
 import styles from './Styles/UserInfoStyle'
 
@@ -18,19 +18,21 @@ export default class UserInfo extends Component {
 
   render () {
     return (
-      <View style={styles.container}>
-        <Image
-          style={styles.imageContainer}
-          source={require('../Images/LoginBg.png')}
-        />
-        <View style={styles.info}>
-          <Text style={styles.infoPrimary}>Xin chào , Tuấn Anh Lê</Text>
-          <Text style={styles.infoSecondary}>anhltse.fpt@gmail.com</Text>
+      <TouchableHighlight onPress={this.props.onPress}>
+        <View style={styles.container}>
+          <Image
+            style={styles.imageContainer}
+            source={require('../Images/LoginBg.png')}
+          />
+          <View style={styles.info}>
+            <Text style={styles.infoPrimary}>Xin chào , Tuấn Anh Lê</Text>
+            <Text style={styles.infoSecondary}>anhltse.fpt@gmail.com</Text>
+          </View>
+          <View style={styles.forward}>
+            <Icon ios='ios-arrow-forward-outline' android='md-arrow-forward' />
+          </View>
         </View>
-        <View style={styles.forward}>
-          <Icon ios='ios-arrow-forward-outline' android='md-arrow-forward' />
-        </View>
-      </View>
+      </TouchableHighlight>
     )
   }
 }

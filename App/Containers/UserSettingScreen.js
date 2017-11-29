@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import {
   View,
   Image,
-  Text as RNText
+  Text as RNText,
+  TouchableHighlight
 } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
@@ -15,15 +16,14 @@ import {
   Header,
   Body,
   Title,
-  Text
 } from 'native-base'
 import styles from './Styles/UserSettingScreenStyle'
 import UserInfo from '../Components/UserInfo'
-
 import ListItem from '../Components/ListItem'
 
 class UserSettingScreen extends Component {
   render () {
+    const { navigation } = this.props
     return (
       <Container>
         <Header>
@@ -32,9 +32,10 @@ class UserSettingScreen extends Component {
           </Body>
         </Header>
         <Content>
-          <UserInfo />
+          <UserInfo onPress={() => navigation.navigate('UserProfileScreen')} />
           <List style={styles.listWrapper}>
             <ListItem
+              onPress={() => navigation.navigate('BookSubscribedScreen')}
               ios='ios-bookmarks-outline'
               android='md-bookmarks'
               text='Sách đang theo dõi'
@@ -42,6 +43,7 @@ class UserSettingScreen extends Component {
               hasSubPage
             />
             <ListItem
+              onPress={() => navigation.navigate('InterestedCategoryScreen')}
               ios='ios-cafe-outline'
               android='md-cafe'
               text='Danh mục quan tâm'
@@ -51,6 +53,7 @@ class UserSettingScreen extends Component {
           </List>
           <List style={styles.listWrapper}>
             <ListItem
+              onPress={() => navigation.navigate('RatingSettingScreen')}
               ios='ios-star-outline'
               android='md-star'
               text='Đánh giá'
@@ -60,6 +63,7 @@ class UserSettingScreen extends Component {
           </List>
           <List style={styles.listWrapper}>
             <ListItem
+              onPress={() => navigation.navigate('PersonalSettingScreen')}
               ios='ios-settings-outline'
               android='md-settings'
               text='Thiết lập cá nhân'

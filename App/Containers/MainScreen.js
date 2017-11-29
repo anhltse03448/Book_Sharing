@@ -65,10 +65,11 @@ class MainScreen extends Component {
       case 'NOTIFICATION':
         return <NotificationScreen />
       default:
-        return <UserSettingScreen />
+        return <UserSettingScreen navigation={this.props.navigation} />
     }
   }
   render () {
+    console.log(this.props.navigation)
     let content = this.getContent(this.state.selectedTab)
     return (
       <Container>
