@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native'
+import { ApplicationStyles } from '../../Themes/'
 
 export default StyleSheet.create({
-  listWrapper: {
-    marginTop: 20
-  }
+  ...ApplicationStyles.screen
 })

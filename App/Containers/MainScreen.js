@@ -57,18 +57,19 @@ class MainScreen extends Component {
   getContent (type) {
     switch (type) {
       case 'HOME':
-        return <NewfeedScreen />
+        return <NewfeedScreen navigation={this.props.navigation} />
       case 'SEARCH':
-        return <SearchScreen />
+        return <SearchScreen navigation={this.props.navigation} />
       case 'SELL':
-        return <SellScreen />
+        return <SellScreen navigation={this.props.navigation} />
       case 'NOTIFICATION':
-        return <NotificationScreen />
+        return <NotificationScreen navigation={this.props.navigation} />
       default:
-        return <UserSettingScreen />
+        return <UserSettingScreen navigation={this.props.navigation} />
     }
   }
   render () {
+    console.log(this.props.navigation)
     let content = this.getContent(this.state.selectedTab)
     return (
       <Container>

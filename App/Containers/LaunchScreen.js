@@ -9,8 +9,9 @@ import BookDetailScreen from './BookDetailScreen'
 
 export default class LaunchScreen extends Component {
   render () {
+    // this.props.navigation.navigate('MainScreen')
     return (
-      <BookDetailScreen />
+      <MainScreen navigation={this.props.navigation} />
     )
   }
 }
