@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
 import { View, Text, Image } from 'react-native'
 import {
-  
+
 } from 'native-base'
 import styles from './Styles/ItemMainStyle'
 

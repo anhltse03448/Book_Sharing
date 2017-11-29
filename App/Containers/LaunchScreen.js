@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import LoginScreen from './LoginScreen'
 import MainScreen from './MainScreen'
 // Styles
-//import styles from './Styles/LaunchScreenStyles'
+// import styles from './Styles/LaunchScreenStyles'
 
 export default class LaunchScreen extends Component {
   render () {

@@ -16,14 +16,11 @@ import styles from './Styles/NotificationScreenStyle'
 class NotificationScreen extends Component {
   render () {
     return (
-      <Container>          
+      <Container>
         <Content>
           <Tabs>
-            <Tab heading='Tab1'>
-
-            </Tab>
-            <Tab heading='Tab2'>
-            </Tab>
+            <Tab heading='Tab1' />
+            <Tab heading='Tab2' />
           </Tabs>
         </Content>
       </Container>

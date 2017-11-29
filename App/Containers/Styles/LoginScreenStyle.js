@@ -36,7 +36,7 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
   socialImage: {
-    height: '100%'    
+    height: '100%'
   },
   buttonText: {
     flex: 1,

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { 
+import {
   SectionList, FlatList
 } from 'react-native'
 import { connect } from 'react-redux'
