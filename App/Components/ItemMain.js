@@ -23,15 +23,15 @@ export default class ItemMain extends Component {
       <View style={styles.container}>
         <Image
           resizeMode='contain'
-          style={{
-            width: 170,
-            height: 180,
-            marginBottom: 12
-          }}
+          style={styles.image}
           source={require('../Images/cogai.png')}
         />
-        <Text>Cô gái đến từ hôm qua</Text>
-        <Text>150000 -> 2000</Text>
+        <Text
+          style={styles.title}
+        >Cô gái đến từ hôm qua</Text>
+        <Text
+          style={styles.price}
+        >150000 -> 2000</Text>
       </View>
     )
   }

@@ -26,10 +26,7 @@ export default class ListMain extends Component {
   render () {
     return (
       <FlatList horizontal
-        style={{
-          flex: 1,
-          backgroundColor: 'white'
-        }}
+        style={styles.flatList}
         data={[{key: 'a', section: 'Viễn tưởng'}, {key: 'b', section: 'Khoa học'}]}
         renderItem={({item}) => this.renderItem(item)}
       />

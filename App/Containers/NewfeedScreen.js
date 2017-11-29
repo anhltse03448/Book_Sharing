@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {
-  SectionList, FlatList
+  FlatList
 } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
@@ -16,7 +16,6 @@ import {
   Header
 } from 'native-base'
 import styles from './Styles/NewfeedScreenStyle'
-import colors from '../Themes/Colors'
 import ListMain from '../Components/ListMain'
 
 class NewfeedScreen extends Component {
@@ -24,23 +23,12 @@ class NewfeedScreen extends Component {
     return (
       <View>
         <View
-          style={{
-            alignItems: 'center',
-            height: 40,
-            justifyContent: 'space-between',
-            paddingLeft: 12,
-            paddingRight: 12,
-            flexDirection: 'row'
-          }}>
+          style={styles.viewHeader}>
           <Text>{item.section}</Text>
           <Button transparent
-            style={{
-              height: 40
-            }}
+            style={styles.btnSeeAll}
           >
-            <Text style={{
-              color: colors.mainColor
-            }}>
+            <Text style={styles.seeAll}>
               Xem tất cả
             </Text>
           </Button>
