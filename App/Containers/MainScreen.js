@@ -72,10 +72,7 @@ class MainScreen extends Component {
     let content = this.getContent(this.state.selectedTab)
     return (
       <Container>
-        <Header></Header>
-        <Content>
-          {content}
-        </Content>
+        {content}
         <Footer>
           <FooterTab>
             <Button vertical
