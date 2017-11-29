@@ -56,3 +56,6 @@ buck-out/
 #
 .env.example
 .env
+
+# platform.js
+native-base-theme/variables/platform.js
