@@ -1,14 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { View, Image } from 'react-native'
 import {
   Container,
-  Content,
-  Card,
-  CardItem,
-  Thumbnail,
-  Left,
-  Body,
-  Icon
+  Content
 } from 'native-base'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -16,6 +11,8 @@ import {
 // Styles
 // import styles from './Styles/BookSubscribedScreenStyle'
 import Navigation from '../Components/Navigation'
+import BookSubscribedItem from '../Components/BookSubscribedItem'
+
 class BookSubscribedScreen extends Component {
   render () {
     return (
@@ -23,13 +20,11 @@ class BookSubscribedScreen extends Component {
         <Navigation onPressBack={() => this.props.navigation.goBack()}
           title='Sách đang theo dõi' />
         <Content>
-          <Card>
-            <CardItem>
-              <Left>
-                <Thumbnail source={require('../Images/LoginBg.png')} />
-              </Left>
-            </CardItem>
-          </Card>
+          <BookSubscribedItem />
+          <BookSubscribedItem />
+          <BookSubscribedItem />
+          <BookSubscribedItem />
+          <BookSubscribedItem />
         </Content>
       </Container>
     )
