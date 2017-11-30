@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {
   Container,
-  Button,
-  Icon,
+  Content,
+  Card,
+  CardItem,
+  Thumbnail,
   Left,
-  Right,
-  Header,
   Body,
-  Title
+  Icon
 } from 'native-base'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -22,6 +22,15 @@ class BookSubscribedScreen extends Component {
       <Container>
         <Navigation onPressBack={() => this.props.navigation.goBack()}
           title='Sách đang theo dõi' />
+        <Content>
+          <Card>
+            <CardItem>
+              <Left>
+                <Thumbnail source={require('../Images/LoginBg.png')} />
+              </Left>
+            </CardItem>
+          </Card>
+        </Content>
       </Container>
     )
   }
