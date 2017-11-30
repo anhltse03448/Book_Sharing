@@ -20,7 +20,7 @@ class FullBookScreen extends Component {
     return (
       <Container>
         <Navigation onPressBack={() => this.props.navigation.goBack()}
-          title='Truyện tranh' />
+          title={this.props.navigation.state.params.book.section} />
         <Content>
           <FlatList
             data={[{key: 'a', section: 'Viễn tưởng'}, {key: 'b', section: 'Khoa học'}]}

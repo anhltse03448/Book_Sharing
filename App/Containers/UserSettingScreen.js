@@ -42,13 +42,24 @@ class UserSettingScreen extends Component {
               subText='10'
               hasSubPage
             />
+            <ListItem
+              style={{
+                textColor: colors.mainColor
+              }}
+              onPress={() => navigation.navigate('BookSubscribedScreen')}
+              ios='ios-albums-outline'
+              android='md-albums'
+              text='Sách đã mua'
+              subText='10'
+              hasSubPage
+            />
           </List>
           <List style={styles.listWrapper}>
             <ListItem
               onPress={() => navigation.navigate('BookSubscribedScreen')}
               ios='ios-bookmarks-outline'
               android='md-bookmarks'
-              text='Sách đang theo dõi'
+              text='Sách yêu thích'
               subText='10'
               hasSubPage
             />
@@ -60,7 +71,7 @@ class UserSettingScreen extends Component {
               subText='3'
               hasSubPage
             />
-          </List>
+          </List>          
           <List style={styles.listWrapper}>
             <ListItem
               onPress={() => navigation.navigate('RatingSettingScreen')}
@@ -70,8 +81,6 @@ class UserSettingScreen extends Component {
               subText='4'
               hasSubPage
             />
-          </List>
-          <List style={styles.listWrapper}>
             <ListItem
               onPress={() => navigation.navigate('PersonalSettingScreen')}
               ios='ios-settings-outline'

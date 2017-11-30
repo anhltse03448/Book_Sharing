@@ -1,9 +1,7 @@
 import { StyleSheet } from 'react-native'
-import { ApplicationStyles } from '../../Themes/'
 import colors from '../../Themes/Colors'
 
 export default StyleSheet.create({
-  ...ApplicationStyles.screen,
   icon: {
     color: colors.mainColor,
     marginRight: 16
@@ -14,5 +12,16 @@ export default StyleSheet.create({
   },
   list: {
     marginTop: 12
+  },
+  cancelSearch: {
+    margin: 0,
+    padding: 0
+  },
+  searchOptionContainer: {
+    position: 'absolute',
+    top: 0
+  },
+  searchResultOverlay: {
+    flex: 1
   }
 })
