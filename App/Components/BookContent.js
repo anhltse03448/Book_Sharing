@@ -9,18 +9,8 @@ import {
 } from 'native-base'
 import colors from '../Themes/Colors'
 export default class BookContent extends Component {
-  // // Prop type warnings
-  // static propTypes = {
-  //   someProperty: PropTypes.object,
-  //   someSetting: PropTypes.bool.isRequired,
-  // }
-  //
-  // // Defaults for props
-  // static defaultProps = {
-  //   someSetting: false
-  // }
-
   render () {
+    const item = {key: 'a'}
     return (
       <View
         style={{
@@ -53,10 +43,13 @@ export default class BookContent extends Component {
               marginTop: 50
             }}>
             <Button transparent iconLeft bordered small
+              onPress={() => {
+                this.props.onAddBookPress(item)
+              }}
               style={styles.btnAdd}>
               <Icon name='ios-add-circle-outline'
                 style={styles.icon}
-                  />
+              />
               <Text style={styles.textAdd}>Thêm sách</Text>
             </Button>
           </View>

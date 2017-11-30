@@ -6,11 +6,16 @@ import {
   Input,
   Button,
   Icon,
-  Item,
-  Label
+  Item  
 } from 'native-base'
 import colors from '../Themes/Colors'
 export default class CommentBox extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      inputValue: ''
+    }
+  }
   render () {
     return (
       <View
@@ -26,9 +31,18 @@ export default class CommentBox extends Component {
           style={{
             flex: 1
           }}>
-          <Input placeholder='Send a comment' />
+          <Input placeholder='Send a comment'
+            onChangeText={(text) => {
+              this.setState({
+                inputValue: text
+              })
+            }}
+            value={this.state.inputValue}
+          />
         </Item>
-        <Button transparent>
+        <Button transparent
+          onPress={() => this.props.onSendPress(this.state.inputValue)}
+        >
           <Icon name='ios-send-outline'
             color={colors.mainColor}
             style={{

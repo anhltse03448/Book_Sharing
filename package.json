@@ -34,6 +34,7 @@
     "ramda": "^0.24.1",
     "react": "16.0.0",
     "react-native": "0.50.0",
+    "react-native-barcodescanner": "^3.1.1",
     "react-native-config": "^0.6.0",
     "react-native-drawer": "^2.3.0",
     "react-native-linear-gradient": "^2.3.0",
