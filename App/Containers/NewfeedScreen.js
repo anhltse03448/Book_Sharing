@@ -34,7 +34,11 @@ class NewfeedScreen extends Component {
       <View>
         <View
           style={styles.viewHeader}>
-          <Text>{item.section}</Text>
+          <Text
+            style={{
+              fontWeight: '600'
+            }}
+          >{item.section.toUpperCase()}</Text>
           <Button transparent
             onPress={() => this.onPressFull(item)}
             style={styles.btnSeeAll}
@@ -53,7 +57,8 @@ class NewfeedScreen extends Component {
       <Container>
         <HeaderDefault title='Trang chủ' />
         <Content contentContainerStyle={{
-          flex: 1
+          flex: 1,
+          backgroundColor: 'white'
         }}>
           <FlatList
             data={[{key: 'a', section: 'Viễn tưởng'}, {key: 'b', section: 'Khoa học'}]}

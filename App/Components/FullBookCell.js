@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
 import { View, Text, Image } from 'react-native'
-import styles from './Styles/CommentCellStyle'
+import styles from './Styles/FullBookCellStyle'
 import {
   ListItem
 } from 'native-base'
-export default class CommentCell extends Component {
+export default class FullBookCell extends Component {
   // // Prop type warnings
   // static propTypes = {
   //   someProperty: PropTypes.object,
@@ -21,20 +21,9 @@ export default class CommentCell extends Component {
     return (
       <ListItem style={styles.container}>
         <Image
-          source={require('../Images/LoginBg.png')}
           style={styles.image}
+          source={require('../Images/cogai.png')}
         />
-        <View style={styles.commentView}>
-          <View
-            style={{
-              paddingLeft: 8,
-              flex: 1
-            }}>
-            <Text style={styles.userName}>Mai</Text>
-            <Text style={styles.comment}>Sách hay</Text>
-          </View>
-          <Text style={styles.time}>04/04/2017</Text>
-        </View>
       </ListItem>
     )
   }

@@ -44,5 +44,24 @@ export default StyleSheet.create({
   },
   shareText: {
     marginTop: 12
+  },
+  btnAdd: {
+    marginBottom: 12,
+    backgroundColor: colors.mainColor
+  },
+  icon: {
+    color: 'white',
+    fontWeight: '500'
+  },
+  textAdd: {
+    color: 'white',
+    paddingRight: 12,
+    fontSize: 17,
+    marginLeft: 8,
+    fontWeight: '500'
+  },
+  iconHeart: {
+    color: colors.mainColor,
+    marginTop: -8
   }
 })

@@ -25,7 +25,10 @@ export default class Navigation extends Component {
   // }
   render () {
     return (
-      <Header>
+      <Header
+        style={{
+          backgroundColor: colors.mainColor
+        }}>
         <Left
           style={{
             flexGrow: 1
@@ -33,7 +36,7 @@ export default class Navigation extends Component {
           <Button transparent onPress={this.props.onPressBack}>
             <Icon name='arrow-back'
               style={{
-                color: colors.mainColor
+                color: 'white'
               }} />
           </Button>
         </Left>
@@ -41,7 +44,11 @@ export default class Navigation extends Component {
           style={{
             flexGrow: 6
           }}>
-          <Title>{this.props.title}</Title>
+          <Title
+            style={{
+              color: 'white'
+            }}
+          >{this.props.title}</Title>
         </Body>
         <Right
           style={{

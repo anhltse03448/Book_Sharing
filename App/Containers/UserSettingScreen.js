@@ -15,7 +15,7 @@ import {
   List,
   Header,
   Body,
-  Title,
+  Title
 } from 'native-base'
 import styles from './Styles/UserSettingScreenStyle'
 import UserInfo from '../Components/UserInfo'

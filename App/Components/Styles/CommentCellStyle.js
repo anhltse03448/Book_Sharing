@@ -3,7 +3,6 @@ import colors from '../../Themes/Colors'
 export default StyleSheet.create({
   container: {
     flex: 1,
-    padding: 4,
     flexDirection: 'row',
     alignItems: 'center'
   },

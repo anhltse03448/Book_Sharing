@@ -3,12 +3,6 @@ import { ApplicationStyles } from '../../Themes/'
 import colors from '../../Themes/Colors'
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
-  content: {
-    fontSize: 18,
-    padding: 8,
-    fontWeight: '500',
-    color: colors.textMainColor
-  },
   tab: {
     borderColor: colors.mainColor
   },
@@ -18,5 +12,15 @@ export default StyleSheet.create({
   viewShare: {
     flexDirection: 'row',
     backgroundColor: 'white'
+  },
+  btnNumber: {
+    padding: 18,
+    height: 30,
+    backgroundColor: colors.mainColor
+  },
+  shareText: {
+    paddingLeft: 8,
+    fontSize: 18,
+    fontWeight: '500'
   }
 })

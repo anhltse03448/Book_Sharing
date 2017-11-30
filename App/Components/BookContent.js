@@ -3,7 +3,11 @@ import React, { Component } from 'react'
 import { View, Text, Image } from 'react-native'
 import styles from './Styles/BookContentStyle'
 import {
+  Icon,
+  Button,
+  CardItem
 } from 'native-base'
+import colors from '../Themes/Colors'
 export default class BookContent extends Component {
   // // Prop type warnings
   // static propTypes = {
@@ -20,8 +24,11 @@ export default class BookContent extends Component {
     return (
       <View
         style={{
+          flex: 1,
           flexDirection: 'row',
-          padding: 24,
+          paddingLeft: 12,
+          paddingTop: 12,
+          paddingRight: 8,
           backgroundColor: 'white'
         }}
       >
@@ -38,6 +45,21 @@ export default class BookContent extends Component {
             style={styles.author}
           >Tô Hoài
           </Text>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginTop: 50
+            }}>
+            <Button transparent iconLeft bordered small
+              style={styles.btnAdd}>
+              <Icon name='ios-add-circle-outline'
+                style={styles.icon}
+                  />
+              <Text style={styles.textAdd}>Thêm sách</Text>
+            </Button>
+          </View>
         </View>
       </View>
     )

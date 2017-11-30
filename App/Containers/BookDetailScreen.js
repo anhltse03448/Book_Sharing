@@ -20,9 +20,9 @@ import colors from '../Themes/Colors'
 import styles from './Styles/BookDetailScreenStyle'
 import BookContent from '../Components/BookContent'
 import BookCommentScreen from './BookCommentScreen'
-import ListBookSellerScreen from './ListBookSellerScreen'
 import CommentBox from '../Components/CommentBox'
 import Navigation from '../Components/Navigation'
+import ContentBook from '../Components/ContentBook'
 class BookDetailScreen extends Component {
   constructor (props) {
     super(props)
@@ -41,13 +41,12 @@ class BookDetailScreen extends Component {
               this.props.navigation.navigate('ListBookSellerScreen')
             }}
             style={{
-              alignItems: 'center'
+              alignItems: 'center',
+              borderTopWidth: 0.3,
+              borderTopColor: '#BDBDBD'
             }}>
             <Button rounded
-              style={{
-                padding: 18,
-                height: 30
-              }}
+              style={styles.btnNumber}
             >
               <Text
                 style={{
@@ -59,12 +58,7 @@ class BookDetailScreen extends Component {
               Người chia sẻ
             </Text>
           </CardItem>
-          <Card horizontal>
-            <Text
-              style={styles.content}
-            >Đắc Nhân Tâm cụ thể và chi tiết với những chỉ dẫn để dẫn đạo người, để gây thiện cảm và dẫn dắt người khác,... những hướng dẫn ấy, qua thời gian
-            </Text>
-          </Card>
+          <ContentBook />
           <BookCommentScreen />
           <CommentBox />
         </Content>

@@ -3,9 +3,11 @@ import React, { Component } from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import {
   Card,
-  Icon
+  Icon,
+  Button
 } from 'native-base'
 import styles from './Styles/ItemMainStyle'
+import colors from '../Themes/Colors'
 
 export default class ItemMain extends Component {
   onPressItem (item) {
@@ -21,13 +23,12 @@ export default class ItemMain extends Component {
         >
           <Card
             style={{
-              borderRadius: 8,
-              paddingTop: 4,
+              paddingTop: 8,
               paddingBottom: 4
             }}
           >
             <Image
-              resizeMode='contain'
+              resizeMode='stretch'
               style={styles.image}
               source={require('../Images/cogai.png')}
             />
@@ -40,12 +41,32 @@ export default class ItemMain extends Component {
                   flexDirection: 'row'
                 }}
               >
-                <Text>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    paddingTop: 4
+                  }}
+                >
+                  <Button transparent rounded
+                    style={{
+                      width: 27,
+                      height: 27,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      backgroundColor: colors.mainColor
+                    }}>
+                    <Text
+                      style={styles.priceMax}
+                    >{41 + ' '}</Text>
+                  </Button>
                   <Text
-                    style={styles.priceMax}
-                  >{41 + ' '}</Text>
-                  cuốn sách
-                </Text>
+                    style={{
+                      marginLeft: 4,
+                      color: colors.textSecondColor
+                    }}
+                  >cuốn sách</Text>
+                </View>
               </View>
             </View>
           </Card>

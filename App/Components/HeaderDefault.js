@@ -7,6 +7,7 @@ import {
   Body,
   Title
 } from 'native-base'
+import colors from '../Themes/Colors'
 export default class HeaderDefault extends Component {
   // // Prop type warnings
   // static propTypes = {
@@ -21,9 +22,17 @@ export default class HeaderDefault extends Component {
 
   render () {
     return (
-      <Header>
+      <Header
+        style={{
+          backgroundColor: colors.mainColor
+        }}
+      >
         <Body>
-          <Title>{this.props.title}</Title>
+          <Title
+            style={{
+              color: 'white'
+            }}
+          >{this.props.title}</Title>
         </Body>
       </Header>
     )

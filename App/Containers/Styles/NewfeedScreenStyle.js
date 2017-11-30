@@ -12,7 +12,8 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     paddingLeft: 12,
     paddingRight: 12,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    backgroundColor: '#FAFAFA'
   },
   btnSeeAll: {
     height: 40
