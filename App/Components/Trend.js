@@ -20,10 +20,10 @@ export default class Trend extends Component {
   // }
 
   render () {
-    const arr = ['Cô gái đến từ hôm qua', 'Harry Potter', 'Alibaba', 'Hello World', 'ADSDADAS'] 
+    const arr = ['Cô gái đến từ hôm qua', 'Harry Potter', 'Alibaba', 'Hello World', 'ADSDADAS']
     let content = arr.map(item => {
       return (
-        <Button transparent bordered rounded
+        <Button key={item} transparent bordered rounded
           style={styles.button}>
           <Text style={styles.text}>{item}</Text>
         </Button>

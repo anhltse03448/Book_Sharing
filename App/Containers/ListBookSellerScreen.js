@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { FlatList } from 'react-native'
+import { FlatList, View } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -24,10 +24,12 @@ class ListBookSellerScreen extends Component {
         <Navigation onPressBack={() => this.props.navigation.goBack()}
           title='Người chia sẻ' />
         <Content>
-          <FlatList
-            data={[{key: 'a', section: 'Viễn tưởng'}, {key: 'b', section: 'Khoa học'}]}
-            renderItem={({item}) => this.renderItem(item)}
-          />
+          <View style={styles.container}>
+            <FlatList
+              data={[{key: 'a', section: 'Viễn tưởng'}, {key: 'b', section: 'Khoa học'}]}
+              renderItem={({item}) => this.renderItem(item)}
+            />
+          </View>
         </Content>
       </Container>
     )

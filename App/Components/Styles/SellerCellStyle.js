@@ -1,18 +1,24 @@
 import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 12,
-    flexDirection: 'column'
+  title: {
+    fontWeight: '700',
+    marginBottom: 4
+  },
+  price: {
+    marginBottom: 4
+  },
+  status: {
+    marginBottom: 4
+  },
+  address: {
+    marginBottom: 4
   },
   image: {
-    width: 50,
-    height: 50,
-    marginLeft: 10,
-    marginRight: 10
   },
   card: {
-    paddingTop: 8
+    flex: 1,
+    justifyContent: 'center'
+    // flexDirection: 'column'
   }
 })

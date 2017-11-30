@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, KeyboardAvoidingView } from 'react-native'
+import { Text, FlatList, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -13,30 +13,84 @@ import {
   Item,
   Icon,
   Input,
-  Button,
   ListItem,
   List
 } from 'native-base'
 import Trend from '../Components/Trend'
+import SearchResult from '../Components/SearchResult'
 
-class SearchScreen extends Component {  
+class SearchScreen extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      isSearching: false,
+      searchText: '',
+      showResult: false
+    }
+  }
+
+  handleSearch = (text) => {
+    if (text === '' || text === null) {
+      this.handleCancelSearch()
+    } else {
+      this.setState({
+        isSearching: true,
+        showResult: false,
+        searchText: text
+      })
+    }
+  }
+
+  handleCancelSearch = () => {
+    this.setState({
+      isSearching: false,
+      searchText: '',
+      showResult: false
+    })
+  }
+
+  handlePressKeyword = () => {
+    this.setState({
+      showResult: true
+    })
+  }
+
   render () {
     const { navigation } = this.props
+    const keywordData = [
+      {key: 1, name: 'harry potter'},
+      {key: 2, name: 'harry potter'},
+      {key: 3, name: 'harry potter'},
+      {key: 4, name: 'harry potter'},
+      {key: 5, name: 'harry potter'},
+      {key: 6, name: 'harry potter'},
+      {key: 7, name: 'harry potter'},
+      {key: 8, name: 'harry potter'},
+      {key: 9, name: 'harry potter'},
+      {key: 10, name: 'harry potter'},
+      {key: 11, name: 'harry potter'},
+      {key: 12, name: 'harry potter'},
+      {key: 13, name: 'harry potter'},
+      {key: 14, name: 'harry potter'}
+    ]
     return (
       <Container>
         <Header searchBar rounded>
           <Item>
             <Icon name='ios-search' />
-            <Input placeholder='Search' />
-            <Icon name='ios-people' />
+            <Input
+              onChangeText={(text) => this.handleSearch(text)}
+              value={this.state.searchText}
+              placeholder='Search' />
+            {this.state.isSearching &&
+              <TouchableOpacity onPress={this.handleCancelSearch} style={styles.cancelButton}>
+                <Icon name='ios-close-circle-outline' />
+              </TouchableOpacity>
+            }
           </Item>
-          <Button transparent>
-            <Text>Search</Text>
-          </Button>
         </Header>
-        <Content style={{          
-        }}>
-          <List>
+        <Content>
+          <List style={styles.searchOptionContainer}>
             <ListItem
               onPress={() => {
                 navigation.navigate('AroundScreen')
@@ -64,6 +118,20 @@ class SearchScreen extends Component {
             </ListItem>
             <Trend />
           </List>
+          {this.state.isSearching && !this.state.showResult &&
+            <FlatList
+              style={styles.searchResultOverlay}
+              data={keywordData}
+              renderItem={({item}) =>
+                <ListItem>
+                  <TouchableOpacity
+                    onPress={this.handlePressKeyword}>
+                    <Text style={styles.searchResultText}>{item.name}</Text>
+                  </TouchableOpacity>
+                </ListItem>}
+            />
+          }
+          {this.state.showResult && <SearchResult />}
         </Content>
       </Container>
     )
