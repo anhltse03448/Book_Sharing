@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -13,16 +13,18 @@ import {
   Item,
   Input,
   Button,
-  Label
+  Icon,
 } from 'native-base'
 import styles from './Styles/AddBookScreenStyle'
 import Navigation from '../Components/Navigation'
 import BookInfoAdd from '../Components/BookInfoAdd'
+import ImageCell from '../Components/ImageCell'
 class AddBookScreen extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      selected2: undefined
+      selected2: undefined,
+      starCount: 0
     }
   }
   onValueChange2 (value) {
@@ -30,7 +32,44 @@ class AddBookScreen extends Component {
       selected2: value
     })
   }
+
+  pressStar (position) {
+    this.setState({
+      starCount: position
+    })
+  }
+
+  renderItem (item) {
+    return (
+      <ImageCell />
+    )
+  }
+
   render () {
+    let arr = []
+    for (i=0;i <= this.state.starCount;i++) {
+      arr.push(true)
+    }
+    for(i=this.state.starCount+1;i < 5;i++) {
+      arr.push(false)
+    }
+
+    let starView = arr.map((e, index) => {
+      if (e === true) {
+        return (
+          <Icon name='ios-star'
+            style={styles.star}
+            onPress={() => this.pressStar(index)}
+          />
+        )
+      } else {
+        return (
+          <Icon name='ios-star-outline'
+            onPress={() => this.pressStar(index)}
+        />
+        )
+      }
+    })
     return (
       <Container
         style={{
@@ -41,24 +80,29 @@ class AddBookScreen extends Component {
         <Content>
           <BookInfoAdd />
           <View>
-            <ListItem>
+            <ListItem
+              style={[styles.listItem, {
+                alignItems: 'center'
+              }]}>
               <Text>Tình trạng</Text>
-              <Picker
-                mode='dropdown'
-                placeholder='Select One'
-                selectedValue={this.state.selected2}
-                onValueChange={this.onValueChange2.bind(this)}
+              <View
+                style={{
+                  marginLeft: 12,
+                  flexDirection: 'row'
+                }}
               >
-                <Item label='Mới' value='key0' />
-                <Item label='Trung Bình' value='key1' />
-                <Item label='Cũ' value='key2' />
-              </Picker>
+                {starView}
+              </View>
             </ListItem>
-            <ListItem>
+            <ListItem
+              style={styles.listItem}
+            >
               <Text>Giá bán</Text>
               <Input />
             </ListItem>
-            <ListItem>
+            <ListItem
+              style={styles.listItem}
+            >
               <Input
                 style={{
                   height: 100
@@ -66,6 +110,10 @@ class AddBookScreen extends Component {
                 placeholder='Ghi chú'
               />
             </ListItem>
+            <FlatList horizontal>
+              data={[{key: 'a', section: 'Viễn tưởng'}, {key: 'b', section: 'Khoa học'}]}
+              renderItem={({item}) => this.renderItem(item)}
+            </FlatList>
             <Button transparent
               style={styles.doneButton}
             >

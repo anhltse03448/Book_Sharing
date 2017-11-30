@@ -12,10 +12,16 @@ export default StyleSheet.create({
   },
   doneButton: {
     backgroundColor: colors.mainColor,
-    height: 50,
+    height: 40,
     alignSelf: 'center',
     width: '70%',
     justifyContent: 'center',
     marginTop: 12
+  },
+  listItem: {
+    height: 50
+  },
+  star: {
+    color: '#FFD740'
   }
 })

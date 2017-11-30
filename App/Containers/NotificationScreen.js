@@ -29,7 +29,27 @@ class NotificationScreen extends Component {
       <Container>
         <HeaderDefault title='Thông báo' />
         <Content>
-          <Tabs
+          <NoticeScreen onPress={this.onPress} />
+        </Content>
+      </Container>
+    )
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NotificationScreen)
+/*
+
+<Tabs
             tabBarUnderlineStyle={{
               backgroundColor: colors.mainColor,
               height: 2
@@ -50,20 +70,5 @@ class NotificationScreen extends Component {
               <BookFollowScreen onPress={this.onPress} />
             </Tab>
           </Tabs>
-        </Content>
-      </Container>
-    )
-  }
-}
 
-const mapStateToProps = (state) => {
-  return {
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(NotificationScreen)
+*/
