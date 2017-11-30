@@ -1,20 +1,25 @@
 import React, { Component } from 'react'
+import { ScrollView, Text, KeyboardAvoidingView } from 'react-native'
 import { connect } from 'react-redux'
-import {
-  Container
-} from 'native-base'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 
 // Styles
-// import styles from './Styles/PersonalSettingScreenStyle'
+import styles from './Styles/AroundScreenStyle'
+import {
+  Container,
+  Content
+} from 'native-base'
 import Navigation from '../Components/Navigation'
-class PersonalSettingScreen extends Component {
+class AroundScreen extends Component {
   render () {
     return (
       <Container>
         <Navigation onPressBack={() => this.props.navigation.goBack()}
-          title='Thiết lập cá nhân' />
+          title='Tìm kiếm quanh đây' />
+        <Content>
+
+        </Content>
       </Container>
     )
   }
@@ -30,4 +35,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PersonalSettingScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(AroundScreen)

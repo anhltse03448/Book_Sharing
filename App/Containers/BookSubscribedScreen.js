@@ -1,14 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {
-  Container,
-  Button,
-  Icon,
-  Left,
-  Right,
-  Header,
-  Body,
-  Title
+  Container
 } from 'native-base'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'

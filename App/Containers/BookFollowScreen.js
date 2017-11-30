@@ -16,7 +16,7 @@ import NoticeFindBookCell from '../Components/NoticeFindBookCell'
 class BookFollowScreen extends Component {
   renderItem (item) {
     return (
-      <NoticeFindBookCell />
+      <NoticeFindBookCell onPress={this.props.onPress} />
     )
   }
   render () {
@@ -26,7 +26,6 @@ class BookFollowScreen extends Component {
           <FlatList
             data={[{key: 'a', section: 'Viễn tưởng'}, {key: 'b', section: 'Khoa học'}]}
             renderItem={({item}) => this.renderItem(item)}
-            ItemSeparatorComponent={SeperatorItem}
           />
         </Content>
       </Container>

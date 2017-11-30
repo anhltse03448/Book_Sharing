@@ -14,24 +14,40 @@ import {
   Header
 } from 'native-base'
 import styles from './Styles/NotificationScreenStyle'
-
+import HeaderDefault from '../Components/HeaderDefault'
+import colors from '../Themes/Colors'
 class NotificationScreen extends Component {
+  constructor (props) {
+    super(props)
+    this.onPress = this.onPress.bind(this)
+  }
+  onPress (item) {
+    console.log('Press On Notification Screen:  ', item)
+  }
   render () {
     return (
       <Container>
-        <Header>
-
-        </Header>
+        <HeaderDefault title='Thông báo' />
         <Content>
-          <Tabs>
-            <Tab heading='Đang theo dõi'
+          <Tabs
+            tabBarUnderlineStyle={{
+              backgroundColor: colors.mainColor,
+              height: 2
+            }}>
+            <Tab heading='Sách đang mua'
               activeTabStyle={styles.tab}
               tabStyle={styles.tab}
+              activeTextStyle={styles.text}
               textStyle={styles.text}>
-              <NoticeScreen />
+              <NoticeScreen onPress={this.onPress} />
             </Tab>
-            <Tab heading='Sách tìm kiếm'>
-              <BookFollowScreen />
+            <Tab heading='Sách đang bán'
+              activeTabStyle={styles.tab}
+              tabStyle={styles.tab}
+              activeTextStyle={styles.text}
+              textStyle={styles.text}
+            >
+              <BookFollowScreen onPress={this.onPress} />
             </Tab>
           </Tabs>
         </Content>

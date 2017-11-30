@@ -20,17 +20,13 @@ import {
 import styles from './Styles/UserSettingScreenStyle'
 import UserInfo from '../Components/UserInfo'
 import ListItem from '../Components/ListItem'
-
+import HeaderDefault from '../Components/HeaderDefault'
 class UserSettingScreen extends Component {
   render () {
     const { navigation } = this.props
     return (
       <Container>
-        <Header>
-          <Body>
-            <Title>Cá nhân</Title>
-          </Body>
-        </Header>
+        <HeaderDefault title='Cá nhân' />
         <Content>
           <UserInfo onPress={() => navigation.navigate('UserProfileScreen')} />
           <List style={styles.listWrapper}>

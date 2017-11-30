@@ -21,6 +21,7 @@ import Trend from '../Components/Trend'
 
 class SearchScreen extends Component {  
   render () {
+    const { navigation } = this.props
     return (
       <Container>
         <Header searchBar rounded>
@@ -38,7 +39,7 @@ class SearchScreen extends Component {
           <List>
             <ListItem
               onPress={() => {
-
+                navigation.navigate('AroundScreen')
               }}
             >
               <Icon
@@ -47,7 +48,7 @@ class SearchScreen extends Component {
               />
               <Text
                 style={styles.text}
-              >Bạn bè xung quanh</Text>
+              >Tìm kiếm quanh đây</Text>
             </ListItem>
             <ListItem
               style={styles.list}

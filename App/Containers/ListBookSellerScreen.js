@@ -11,8 +11,7 @@ import {
 } from 'native-base'
 import styles from './Styles/ListBookSellerScreenStyle'
 import SellerCell from '../Components/SellerCell'
-import SeperatorItem from '../Components/SeperatorItem'
-
+import Navigation from '../Components/Navigation'
 class ListBookSellerScreen extends Component {
   renderItem (item) {
     return (
@@ -22,11 +21,12 @@ class ListBookSellerScreen extends Component {
   render () {
     return (
       <Container>
+        <Navigation onPressBack={() => this.props.navigation.goBack()}
+          title='Người chia sẻ' />
         <Content>
           <FlatList
             data={[{key: 'a', section: 'Viễn tưởng'}, {key: 'b', section: 'Khoa học'}]}
             renderItem={({item}) => this.renderItem(item)}
-            ItemSeparatorComponent={SeperatorItem}
           />
         </Content>
       </Container>

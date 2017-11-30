@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { View, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -16,19 +16,21 @@ import styles from './Styles/BookCommentScreenStyle'
 import CommentCell from '../Components/CommentCell'
 
 class BookCommentScreen extends Component {
+  renderItem (item) {
+    return (
+      <CommentCell item={item} />
+    )
+  }
   render () {
-    const comments = ["ABC","ABC","ABC","ABC","ABC","ABC",'abc']
-    let content = comments.map(e => {
-      return (
-        <CommentCell />
-      )
-    })
     return (
       <View
         style={{
           marginLeft: 4
         }}>
-        {content}
+        <FlatList
+          data={[{key: 'a', section: 'Viễn tưởng'}, {key: 'b', section: 'Khoa học'}]}
+          renderItem={({item}) => this.renderItem(item)}
+      />
       </View>
     )
   }

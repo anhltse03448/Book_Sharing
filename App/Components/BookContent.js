@@ -3,9 +3,6 @@ import React, { Component } from 'react'
 import { View, Text, Image } from 'react-native'
 import styles from './Styles/BookContentStyle'
 import {
-  Card,
-  ListItem,
-  List
 } from 'native-base'
 export default class BookContent extends Component {
   // // Prop type warnings
@@ -21,36 +18,28 @@ export default class BookContent extends Component {
 
   render () {
     return (
-      <Card
+      <View
         style={{
-          flexDirection: 'row'
+          flexDirection: 'row',
+          padding: 24,
+          backgroundColor: 'white'
         }}
       >
         <Image style={styles.image}
           resizeMode='cover'
-          source={require('../Images/LoginBg.png')}
+          source={require('../Images/cogai.png')}
         />
         <View
           style={styles.contentView}>
           <Text
             style={styles.title}
           >Chắc ai đó sẽ về</Text>
-          <List>
-            <ListItem>
-              <Text>Tác giả: </Text>
-              <Text>Tô Hoài</Text>
-            </ListItem>
-            <ListItem>
-              <Text></Text>
-              <Text>Nhà Xuất Bản Phụ Nữ</Text>
-            </ListItem>
-            <ListItem>
-              <Text>Gía bìa</Text>
-              <Text>100k</Text>
-            </ListItem>
-          </List>
+          <Text
+            style={styles.author}
+          >Tô Hoài
+          </Text>
         </View>
-      </Card>
+      </View>
     )
   }
 }

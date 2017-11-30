@@ -67,7 +67,7 @@ class MainScreen extends Component {
       default:
         return <UserSettingScreen navigation={this.props.navigation} />
     }
-  }
+  }  
   render () {
     console.log(this.props.navigation)
     let content = this.getContent(this.state.selectedTab)

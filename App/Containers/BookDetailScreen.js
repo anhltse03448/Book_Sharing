@@ -11,14 +11,12 @@ import { connect } from 'react-redux'
 import {
   Container,
   Content,
-  Header,
-  Title,
   Card,
-  Tabs,
-  Tab,
-  Body,
-  Footer
+  ListItem,
+  Button,
+  CardItem
 } from 'native-base'
+import colors from '../Themes/Colors'
 import styles from './Styles/BookDetailScreenStyle'
 import BookContent from '../Components/BookContent'
 import BookCommentScreen from './BookCommentScreen'
@@ -35,31 +33,40 @@ class BookDetailScreen extends Component {
     return (
       <Container>
         <Navigation onPressBack={() => this.props.navigation.goBack()}
-          title='Thiết lập cá nhân' />
+          title='Chắc ai đó sẽ về' />
         <Content>
           <BookContent />
-          <Card>
+          <CardItem button horizontal
+            onPress={() => {
+              this.props.navigation.navigate('ListBookSellerScreen')
+            }}
+            style={{
+              alignItems: 'center'
+            }}>
+            <Button rounded
+              style={{
+                padding: 18,
+                height: 30
+              }}
+            >
+              <Text
+                style={{
+                  color: 'white',
+                  fontWeight: '600'
+                }}>41</Text>
+            </Button>
+            <Text style={styles.shareText}>
+              Người chia sẻ
+            </Text>
+          </CardItem>
+          <Card horizontal>
             <Text
               style={styles.content}
-            >dhasiudasdhsaidhsadhsajkdhsajkdhsakdhasiudasdhsaidhsadhsajkdhsajkdhsakdhasiudasdhsaidhsadhsajkdhsajkdhsakdhasiudasdhsaidhsadhsajkdhsajkdhsakdhasiudasdhsaidhsadhsaj
-              kdhsajkdhsakdhasiudasdhsaidhsadhsajkdhsajkdhsak
+            >Đắc Nhân Tâm cụ thể và chi tiết với những chỉ dẫn để dẫn đạo người, để gây thiện cảm và dẫn dắt người khác,... những hướng dẫn ấy, qua thời gian
             </Text>
           </Card>
-          <Tabs>
-            <Tab heading='Bình luận'
-              activeTabStyle={styles.tab}
-              tabStyle={styles.tab}
-              textStyle={styles.text}>
-              <BookCommentScreen />
-              <CommentBox />
-            </Tab>
-            <Tab heading='Danh sách bán'
-              activeTabStyle={styles.tab}
-              tabStyle={styles.tab}
-              textStyle={styles.text}>
-              <ListBookSellerScreen />
-            </Tab>
-          </Tabs>
+          <BookCommentScreen />
+          <CommentBox />
         </Content>
       </Container>
     )

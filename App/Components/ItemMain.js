@@ -6,7 +6,6 @@ import {
   Icon
 } from 'native-base'
 import styles from './Styles/ItemMainStyle'
-import { Colors } from '../Themes/index'
 
 export default class ItemMain extends Component {
   onPressItem (item) {
@@ -41,21 +40,11 @@ export default class ItemMain extends Component {
                   flexDirection: 'row'
                 }}
               >
-                <Text
-                  style={styles.priceMin}
-                >
-                  {'150,000 '}
-                </Text>
-                <Icon
-                  style={{
-                    color: Colors.textPriceMinColor,
-                    alignSelf: 'center'
-                  }}
-                  name='ios-arrow-round-forward' />
-                <Text
-                  style={styles.priceMax}
-                >
-                  {' 200,000'}
+                <Text>
+                  <Text
+                    style={styles.priceMax}
+                  >{41 + ' '}</Text>
+                  cuốn sách
                 </Text>
               </View>
             </View>

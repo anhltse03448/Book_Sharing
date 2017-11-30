@@ -12,14 +12,11 @@ import {
   Content,
   Text,
   Button,
-  View,
-  Header,
-  Body,
-  Title
+  View
 } from 'native-base'
 import styles from './Styles/NewfeedScreenStyle'
 import ListMain from '../Components/ListMain'
-
+import HeaderDefault from '../Components/HeaderDefault'
 class NewfeedScreen extends Component {
   constructor (props) {
     super(props)
@@ -29,6 +26,9 @@ class NewfeedScreen extends Component {
     console.log('Press at newFeeds: ', item)
     this.props.navigation.navigate('BookDetailScreen', {book: item})
   }
+  onPressFull (item) {
+    this.props.navigation.navigate('FullBookScreen', {book: item})
+  }
   renderItem (item) {
     return (
       <View>
@@ -36,6 +36,7 @@ class NewfeedScreen extends Component {
           style={styles.viewHeader}>
           <Text>{item.section}</Text>
           <Button transparent
+            onPress={() => this.onPressFull(item)}
             style={styles.btnSeeAll}
           >
             <Text style={styles.seeAll}>
@@ -50,11 +51,7 @@ class NewfeedScreen extends Component {
   render () {
     return (
       <Container>
-        <Header>
-          <Body>
-            <Title>Cá nhân</Title>
-          </Body>
-        </Header>
+        <HeaderDefault title='Trang chủ' />
         <Content contentContainerStyle={{
           flex: 1
         }}>

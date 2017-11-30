@@ -3,7 +3,8 @@ import React, { Component } from 'react'
 import { View, Text, Image } from 'react-native'
 import styles from './Styles/NoticeFindBookCellStyle'
 import {
-  Icon
+  Icon,
+  ListItem
 } from 'native-base'
 export default class NoticeFindBookCell extends Component {
   // // Prop type warnings
@@ -19,7 +20,7 @@ export default class NoticeFindBookCell extends Component {
 
   render () {
     return (
-      <View style={styles.container}>
+      <ListItem style={styles.container}>
         <Image
           source={require('../Images/LoginBg.png')}
           style={styles.image}
@@ -44,7 +45,7 @@ export default class NoticeFindBookCell extends Component {
             > 1 hours ago</Text>
           </View>
         </View>
-      </View>
+      </ListItem>
     )
   }
 }

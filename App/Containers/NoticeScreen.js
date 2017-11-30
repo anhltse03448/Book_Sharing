@@ -16,7 +16,7 @@ import NoticeCell from '../Components/NoticeCell'
 class NoticeScreen extends Component {
   renderItem (item) {
     return (
-      <NoticeCell />
+      <NoticeCell onPress={this.props.onPress} />
     )
   }
   render () {
@@ -26,7 +26,6 @@ class NoticeScreen extends Component {
           <FlatList
             data={[{key: 'a', section: 'Viễn tưởng'}, {key: 'b', section: 'Khoa học'}]}
             renderItem={({item}) => this.renderItem(item)}
-            ItemSeparatorComponent={SeperatorItem}
           />
         </Content>
       </Container>

@@ -8,5 +8,15 @@ export default StyleSheet.create({
     padding: 8,
     fontWeight: '500',
     color: colors.textMainColor
+  },
+  tab: {
+    borderColor: colors.mainColor
+  },
+  text: {
+    color: colors.mainColor
+  },
+  viewShare: {
+    flexDirection: 'row',
+    backgroundColor: 'white'
   }
 })

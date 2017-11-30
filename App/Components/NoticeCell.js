@@ -3,7 +3,8 @@ import React, { Component } from 'react'
 import { View, Text, Image } from 'react-native'
 import styles from './Styles/NoticeCellStyle'
 import {
-  Icon
+  Icon,
+  ListItem
 } from 'native-base'
 
 export default class NoticeCell extends Component {
@@ -19,8 +20,10 @@ export default class NoticeCell extends Component {
   // }
 
   render () {
+    let item = {key: 'a'}
     return (
-      <View style={styles.container}>
+      <ListItem style={styles.container}
+        onPress={() => this.props.onPress(item)}>
         <Image
           source={require('../Images/LoginBg.png')}
           style={styles.image}
@@ -48,7 +51,7 @@ export default class NoticeCell extends Component {
             > 1 hours ago</Text>
           </View>
         </View>
-      </View>
+      </ListItem>
     )
   }
 }

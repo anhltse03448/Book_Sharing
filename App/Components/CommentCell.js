@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { View, Text, Image } from 'react-native'
 import styles from './Styles/CommentCellStyle'
 import {
-  Card
+  ListItem
 } from 'native-base'
 export default class CommentCell extends Component {
   // // Prop type warnings
@@ -19,7 +19,7 @@ export default class CommentCell extends Component {
 
   render () {
     return (
-      <Card style={styles.container}>
+      <ListItem style={styles.container}>
         <Image
           source={require('../Images/LoginBg.png')}
           style={styles.image}
@@ -35,7 +35,7 @@ export default class CommentCell extends Component {
           </View>
           <Text style={styles.time}>04/04/2017</Text>
         </View>
-      </Card>
+      </ListItem>
     )
   }
 }

@@ -11,6 +11,7 @@ import {
   Icon,
   Right
 } from 'native-base'
+import colors from '../Themes/Colors'
 export default class Navigation extends Component {
   // // Prop type warnings
   // static propTypes = {
@@ -25,15 +26,28 @@ export default class Navigation extends Component {
   render () {
     return (
       <Header>
-        <Left>
+        <Left
+          style={{
+            flexGrow: 1
+          }}>
           <Button transparent onPress={this.props.onPressBack}>
-            <Icon name='arrow-back' />
+            <Icon name='arrow-back'
+              style={{
+                color: colors.mainColor
+              }} />
           </Button>
         </Left>
-        <Body>
+        <Body
+          style={{
+            flexGrow: 6
+          }}>
           <Title>{this.props.title}</Title>
         </Body>
-        <Right />
+        <Right
+          style={{
+            flexGrow: 1
+          }}
+        />
       </Header>
     )
   }

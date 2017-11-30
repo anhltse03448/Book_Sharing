@@ -5,30 +5,36 @@ import styles from './Styles/CommentBoxStyle'
 import {
   Input,
   Button,
-  Icon
+  Icon,
+  Item,
+  Label
 } from 'native-base'
+import colors from '../Themes/Colors'
 export default class CommentBox extends Component {
-  // // Prop type warnings
-  // static propTypes = {
-  //   someProperty: PropTypes.object,
-  //   someSetting: PropTypes.bool.isRequired,
-  // }
-  //
-  // // Defaults for props
-  // static defaultProps = {
-  //   someSetting: false
-  // }
-
   render () {
     return (
       <View
         style={{
-          flexDirection: 'row'
+          flexDirection: 'row',
+          flex: 1,
+          paddingTop: 8,
+          paddingBottom: 8,
+          alignItems: 'center'
         }}
       >
-        <Input />
-        <Button>
-          <Icon name='ios-send-outline' />
+        <Item regular
+          style={{
+            flex: 1
+          }}>
+          <Input placeholder='Send a comment' />
+        </Item>
+        <Button transparent>
+          <Icon name='ios-send-outline'
+            color={colors.mainColor}
+            style={{
+              fontSize: 44,
+              color: colors.mainColor
+            }} />
         </Button>
       </View>
     )
