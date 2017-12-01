@@ -20,6 +20,7 @@ export default class CountBook extends Component {
   // }
 
   render () {
+    const count = this.props.count
     return (
       <View
         style={{
@@ -43,7 +44,7 @@ export default class CountBook extends Component {
             }}>
             <Text
               style={styles.priceMax}
-            >{41 + ' '}</Text>
+            >{count + ' '}</Text>
           </Button>
           <Text
             style={{

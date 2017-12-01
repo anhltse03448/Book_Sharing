@@ -45,7 +45,7 @@ export default class ItemMain extends Component {
               <Text
                 style={styles.title}
               >{name}</Text>
-              <CountBook />
+              <CountBook count={item.count} />
             </View>
           </Card>
         </View>
