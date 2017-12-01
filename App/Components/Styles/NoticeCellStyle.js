@@ -16,7 +16,8 @@ export default StyleSheet.create({
     width: 70
   },
   commentView: {
-    padding: 10
+    padding: 10,
+    flex: 1
   },
   timeView: {
     flexDirection: 'row',

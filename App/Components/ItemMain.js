@@ -15,6 +15,13 @@ export default class ItemMain extends Component {
   }
   render () {
     const { item } = this.props
+    let name = item.name
+    if (name.length >= 20) {
+      name = name.substring(0, 20) + '...'
+    }
+    if (name.length < 17) {
+      name = name + '\n'
+    }
     return (
       <TouchableOpacity
         activeOpacity={0.8}
@@ -37,7 +44,7 @@ export default class ItemMain extends Component {
             <View style={styles.viewText}>
               <Text
                 style={styles.title}
-              >{item.name}</Text>
+              >{name}</Text>
               <CountBook />
             </View>
           </Card>

@@ -1,4 +1,5 @@
 import { StackNavigator } from 'react-navigation'
+import ChatHistoryScreen from '../Containers/ChatHistoryScreen'
 import ChatScreen from '../Containers/ChatScreen'
 import AddBookScreen from '../Containers/AddBookScreen'
 import UserSharedInfoScreen from '../Containers/UserSharedInfoScreen'
@@ -28,6 +29,7 @@ import styles from './Styles/NavigationStyles'
 
 // Manifest of possible screens
 const PrimaryNav = StackNavigator({
+  ChatHistoryScreen: { screen: ChatHistoryScreen },
   ChatScreen: { screen: ChatScreen },
   AddBookScreen: { screen: AddBookScreen },
   UserSharedInfoScreen: { screen: UserSharedInfoScreen },
