@@ -15,7 +15,8 @@ export default class ContentBook extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      isShow: true
+      isShow: true,
+      iconName: 'ios-arrow-down-outline'
     }
   }
 
@@ -25,35 +26,43 @@ export default class ContentBook extends Component {
 
   render () {
     const content = 'Đắc Nhân Tâm cụ thể và chi tiết với những chỉ dẫn để dẫn đạo người, để gây thiện cảm và dẫn dắt người khác,... những hướng dẫn ấy, qua thời gian'
-    let contentShow = ''
-    if (content.length >= 100) {
+    let contentShow = content
+    if (content.length >= 100 && this.state.isShow) {
       contentShow = content.substring(0, 100) + '...'
     }
     let button = <Button transparent
       onPress={() => {
+        if (this.state.isShow) {
+          this.setState({
+            iconName: 'ios-arrow-up-outline'
+          })
+        } else {
+          this.setState({
+            iconName: 'ios-arrow-down-outline'
+          })
+        }
         this.setState({
           isShow: !this.state.isShow
         })
       }}
       style={styles.seeMore}>
-      <Icon name='ios-arrow-down-outline' />
+      <Icon name={this.state.iconName} />
     </Button>
     return (
       <ListItem
         style={{
+          flexDirection: 'column',
           borderTopWidth: 0.5,
           borderTopColor: colors.seperatorColor,
           borderBottomWidth: 0.5,
-          borderBottomColor: colors.seperatorColor,
-          flex: 1,
-          width: '100%'
+          borderBottomColor: colors.seperatorColor
         }}
       >
         <Text style={styles.content}>
           {contentShow}
         </Text>
         {
-          this.state.isShow ? button : null
+          button
         }
       </ListItem>
     )

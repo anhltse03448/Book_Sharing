@@ -22,7 +22,7 @@ const colors = {
   border: '#483F53',
   banner: '#5F3E63',
   text: '#E0D7E5',
-  mainColor: '#29B6F6',
+  mainColor: '#0277BD',
   textMainColor: '#666666',
   textSecondColor: '#919191',
   textPriceMaxColor: '#0D9F67',

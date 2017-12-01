@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { 
   Image,
-  Text  
+  Text,  
+  FlatList
 } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
@@ -18,17 +19,19 @@ import {
   CardItem,
   Badge
 } from 'native-base'
-import colors from '../Themes/Colors'
 import styles from './Styles/BookDetailScreenStyle'
 import BookContent from '../Components/BookContent'
 import BookCommentScreen from './BookCommentScreen'
-import CommentBox from '../Components/CommentBox'
 import Navigation from '../Components/Navigation'
 import ContentBook from '../Components/ContentBook'
-
+import CommentDetail from '../Components/CommentDetail'
+import ListMain from '../Components/ListMain'
 class BookDetailScreen extends Component {
   constructor (props) {
     super(props)
+    this.state = {
+      dataComment: [{key: 'a'}, {key: 'b'}, {key: 'c'}]
+    }
     this.onAddBookPress = this.onAddBookPress.bind(this)
   }
 
@@ -46,7 +49,14 @@ class BookDetailScreen extends Component {
   onSendPress (value) {
     console.log('Value:  ', value)
   }
-
+  onSendComment (comment) {
+    console.log('Comment:  ', comment)
+    let data = this.state.dataComment
+    data.shift()
+    this.setState({
+      dataComment: data.concat([{key: 'a'}])
+    })
+  }
   render () {
     const { navigation } = this.props
     const item = navigation.state.params.book
@@ -57,10 +67,9 @@ class BookDetailScreen extends Component {
         <Content>
           <BookContent navigation={navigation} item={item} onAddBookPress={this.onAddBookPress} />
           <ContentBook />
-          <BookCommentScreen />
-          <CommentBox
-            onSendPress={this.onSendPress.bind(this)}
-          />
+          <CommentDetail onSendComment={this.onSendComment.bind(this)} />
+          <BookCommentScreen data={this.state.dataComment} />
+          <ListMain items={[]} />
         </Content>
       </Container>
     )
@@ -81,3 +90,8 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookDetailScreen)
+/*
+<CommentBox
+            onSendPress={this.onSendPress.bind(this)}
+          />
+*/
