@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
-import { View, Text, Image, FlatList } from 'react-native'
+import { View, Text, Image, FlatList, TouchableOpacity, TouchableHighlight } from 'react-native'
 import {
   Button,
   Card,
@@ -9,15 +9,19 @@ import {
   Right,
   Body,
   Thumbnail,
-  Icon,
-  Toast
+  Icon
 } from 'native-base'
 import styles from './Styles/SellerCellStyle'
+import colors from '../Themes/Colors'
 
 export default class SellerCell extends Component {
-  // constructor (props) {
-  //   super(props)
-  // }
+  constructor (props) {
+    super(props)
+    this.state = {
+      isShowMore: false
+    }
+  }
+
   renderItem (item) {
     return (
       <Image
@@ -30,6 +34,10 @@ export default class SellerCell extends Component {
     )
   }
 
+  handleShowMore = () => {
+    this.setState({isShowMore: !this.state.isShowMore})
+  }
+
   render () {
     const featureImageData = [
       {key: 'a'}, {key: 'b'}, {key: 'c'}, {key: 'd'}, {key: 'e'}
@@ -39,17 +47,34 @@ export default class SellerCell extends Component {
       <View style={styles.card}>
         <Card>
           <CardItem>
-            <Left style={{flexGrow: 2}}>
-              <Thumbnail source={require('../Images/LoginBg.png')} />
-              <Body>
-                <Text style={styles.title}>Huy Trần</Text>
-                <Text style={styles.price}>Giá bán: 100k</Text>
-                <Text style={styles.status}>Tình trạng: tốt</Text>
-                <Text style={styles.address}>FPT University - 1km</Text>
-              </Body>
-            </Left>
+            <TouchableHighlight
+              activeOpacity={1}
+              underlayColor='#fff'
+              style={{flexGrow: 2}}
+              onPress={this.props.onPress}>
+              <Left>
+                <Thumbnail source={require('../Images/LoginBg.png')} />
+                <Body>
+                  <Text style={styles.title}>Huy Trần</Text>
+                  <Text style={styles.price}>Giá bán: 100k</Text>
+                  <Text style={styles.address}>FPT University - 1km</Text>
+                </Body>
+              </Left>
+            </TouchableHighlight>
+            <Right>
+              <TouchableOpacity onPress={this.handleShowMore}>
+                <Icon
+                  name='ios-chatboxes'
+                  style={{color: colors.mainColor, fontSize: 30}} />
+              </TouchableOpacity>
+            </Right>
           </CardItem>
-          <CardItem cardBody>
+          <CardItem style={{flexDirection: 'column'}} cardBody>
+            <View style={{marginBottom: 8}}>
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              </Text>
+            </View>
             <FlatList horizontal
               showsHorizontalScrollIndicator={false}
               data={featureImageData}
