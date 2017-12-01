@@ -47,7 +47,7 @@ class BookDetailScreen extends Component {
           <BookContent onAddBookPress={this.onAddBookPress} />
           <CardItem button horizontal
             onPress={() => {
-              this.props.navigation.navigate('ListBookSellerScreen')
+              this.props.navigation.navigate('ListBookSellerScreen', {navigation: this.props.navigation})
             }}
             style={{
               alignItems: 'center',

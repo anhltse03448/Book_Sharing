@@ -15,8 +15,14 @@ import Navigation from '../Components/Navigation'
 class ListBookSellerScreen extends Component {
   renderItem (item) {
     return (
-      <SellerCell onPress={() => this.props.navigation.navigate('UserSharedInfoScreen')} />
+      <SellerCell onPress={() => this.props.navigation.navigate('UserSharedInfoScreen')}
+        onPressMessage={this.onPressMessage.bind(this)} />
     )
+  }
+
+  onPressMessage (user) {
+    this.props.navigation.navigate('ChatScreen')
+    console.log('User:  ', user)
   }
   render () {
     return (

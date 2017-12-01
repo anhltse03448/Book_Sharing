@@ -36,6 +36,7 @@ export default class SellerCell extends Component {
 
   handleShowMore = () => {
     this.setState({isShowMore: !this.state.isShowMore})
+    this.props.onPressMessage({a: 'User'})
   }
 
   render () {
@@ -62,11 +63,10 @@ export default class SellerCell extends Component {
               </Left>
             </TouchableHighlight>
             <Right>
-              <TouchableOpacity onPress={this.handleShowMore}>
-                <Icon
-                  name='ios-chatboxes'
-                  style={{color: colors.mainColor, fontSize: 30}} />
-              </TouchableOpacity>
+              <Icon
+                onPress={this.handleShowMore}
+                name='ios-chatboxes'
+                style={{color: colors.mainColor, fontSize: 30}} />
             </Right>
           </CardItem>
           <CardItem style={{flexDirection: 'column'}} cardBody>
