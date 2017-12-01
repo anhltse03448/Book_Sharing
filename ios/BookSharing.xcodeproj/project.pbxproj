@@ -22,8 +22,11 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		22581EF76BB246EAE294895C /* libPods-BookSharing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E957AC86D0F1A69638614BD /* libPods-BookSharing.a */; };
 		257F573BFA33446481667C23 /* Roboto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1DC1AE8C593744F3BCCB5E20 /* Roboto.ttf */; };
 		32628B8DC2CA463C9DBB5E32 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E6FD369A8F644C583C4B1A0 /* libRNImagePicker.a */; };
+		362FD9E01FD1D01100E6782A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 362FD9B61FD1D01100E6782A /* GoogleService-Info.plist */; };
+		362FD9E71FD1D93900E6782A /* libRCTCameraRoll.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 362FD9E61FD1D90500E6782A /* libRCTCameraRoll.a */; };
 		364EAE3D1FD113AD00E393FE /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 364EAE391FD113AC00E393FE /* FBSDKLoginKit.framework */; };
 		364EAE3E1FD113AD00E393FE /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 364EAE3A1FD113AC00E393FE /* Bolts.framework */; };
 		364EAE3F1FD113AD00E393FE /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 364EAE3B1FD113AD00E393FE /* FBSDKCoreKit.framework */; };
@@ -102,6 +105,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 83CBBA2E1A601D0E00E9B192;
 			remoteInfo = React;
+		};
+		362FD9E51FD1D90500E6782A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 362FD9E11FD1D90500E6782A /* RCTCameraRoll.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 58B5115D1A9E6B3D00147676;
+			remoteInfo = RCTCameraRoll;
 		};
 		364EAE361FD1126D00E393FE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -357,23 +367,28 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = BookSharing/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		14D9DC710975448782923448 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
+		16C0C919C1E41E2551B627D5 /* Pods-BookSharing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookSharing.release.xcconfig"; path = "Pods/Target Support Files/Pods-BookSharing/Pods-BookSharing.release.xcconfig"; sourceTree = "<group>"; };
 		1C06C19575BB4EE4885C5CFD /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; };
 		1D3A052E56DE4FFEAA5AF920 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/native-base/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		1DC1AE8C593744F3BCCB5E20 /* Roboto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto.ttf; path = "../node_modules/native-base/Fonts/Roboto.ttf"; sourceTree = "<group>"; };
 		1E31E81739BA43B08F70733A /* RCTFBSDK.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTFBSDK.xcodeproj; path = "../node_modules/react-native-fbsdk/ios/RCTFBSDK.xcodeproj"; sourceTree = "<group>"; };
 		29AA33F10E7648808B917323 /* Roboto_medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto_medium.ttf; path = "../node_modules/native-base/Fonts/Roboto_medium.ttf"; sourceTree = "<group>"; };
+		362FD9B61FD1D01100E6782A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		362FD9E11FD1D90500E6782A /* RCTCameraRoll.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCameraRoll.xcodeproj; path = "../node_modules/react-native/Libraries/CameraRoll/RCTCameraRoll.xcodeproj"; sourceTree = "<group>"; };
 		364EAE391FD113AC00E393FE /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		364EAE3A1FD113AC00E393FE /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		364EAE3B1FD113AD00E393FE /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		364EAE3C1FD113AD00E393FE /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		36B24821EC5447A0BBDB0543 /* libReactNativeConfig.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativeConfig.a; sourceTree = "<group>"; };
 		37970C4354BC4F968FBB9256 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/native-base/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		4E957AC86D0F1A69638614BD /* libPods-BookSharing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BookSharing.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		525DA45CB7B24B699BD93B7C /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/native-base/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		6E6FD369A8F644C583C4B1A0 /* libRNImagePicker.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNImagePicker.a; sourceTree = "<group>"; };
 		76EBE178090A4466BFA4CE50 /* libBVLinearGradient.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libBVLinearGradient.a; sourceTree = "<group>"; };
 		77E62A119B72490B90E15142 /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
+		81284C98633AEB5B9DF860FA /* Pods-BookSharing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookSharing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BookSharing/Pods-BookSharing.debug.xcconfig"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		8DF65F3AF26A4165905222E6 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/native-base/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		927AC4EAB7064DF9B6E0A07F /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/native-base/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
@@ -392,6 +407,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				362FD9E71FD1D93900E6782A /* libRCTCameraRoll.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				364EAE3E1FD113AD00E393FE /* Bolts.framework in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
@@ -414,6 +430,7 @@
 				76E5EDCB3F084D3DBE156585 /* libRCTCamera.a in Frameworks */,
 				94FDF14CE0F640F08B1462E1 /* libRCTFBSDK.a in Frameworks */,
 				32628B8DC2CA463C9DBB5E32 /* libRNImagePicker.a in Frameworks */,
+				22581EF76BB246EAE294895C /* libPods-BookSharing.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,6 +551,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		362FD9E21FD1D90500E6782A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				362FD9E61FD1D90500E6782A /* libRCTCameraRoll.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		364EAE331FD1126D00E393FE /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -549,6 +574,7 @@
 				364EAE3B1FD113AD00E393FE /* FBSDKCoreKit.framework */,
 				364EAE391FD113AC00E393FE /* FBSDKLoginKit.framework */,
 				364EAE3C1FD113AD00E393FE /* FBSDKShareKit.framework */,
+				4E957AC86D0F1A69638614BD /* libPods-BookSharing.a */,
 			);
 			path = Frameworks;
 			sourceTree = "<group>";
@@ -652,6 +678,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				362FD9E11FD1D90500E6782A /* RCTCameraRoll.xcodeproj */,
+				362FD9B61FD1D01100E6782A /* GoogleService-Info.plist */,
 				364EAE381FD1138C00E393FE /* Frameworks */,
 				13B07FAE1A68108700A75B9A /* BookSharing */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -659,6 +687,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				92D026FC4601451396DA6F04 /* Resources */,
 				36D0BF321FCE9A8800A386E3 /* Recovered References */,
+				DE200607E9C203BAF92ECC54 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -701,6 +730,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		DE200607E9C203BAF92ECC54 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				81284C98633AEB5B9DF860FA /* Pods-BookSharing.debug.xcconfig */,
+				16C0C919C1E41E2551B627D5 /* Pods-BookSharing.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -708,10 +746,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "BookSharing" */;
 			buildPhases = (
+				4989E0AEB14CA52925012D9D /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				62F9887C9C4C387BF2FF7C19 /* [CP] Embed Pods Frameworks */,
+				8ECD503D3C67D87853E9333B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -767,6 +808,10 @@
 				{
 					ProductGroup = 36ED88481FD08D0E00B037CB /* Products */;
 					ProjectRef = 1C06C19575BB4EE4885C5CFD /* RCTCamera.xcodeproj */;
+				},
+				{
+					ProductGroup = 362FD9E21FD1D90500E6782A /* Products */;
+					ProjectRef = 362FD9E11FD1D90500E6782A /* RCTCameraRoll.xcodeproj */;
 				},
 				{
 					ProductGroup = 364EAE331FD1126D00E393FE /* Products */;
@@ -879,6 +924,13 @@
 			fileType = archive.ar;
 			path = libReact.a;
 			remoteRef = 146834031AC3E56700842450 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		362FD9E61FD1D90500E6782A /* libRCTCameraRoll.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTCameraRoll.a;
+			remoteRef = 362FD9E51FD1D90500E6782A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		364EAE371FD1126D00E393FE /* libRCTFBSDK.a */ = {
@@ -1121,6 +1173,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				362FD9E01FD1D01100E6782A /* GoogleService-Info.plist in Resources */,
 				6421C1B5689A4E51833624B1 /* Entypo.ttf in Resources */,
 				B32BFD3C979242848B1F0808 /* EvilIcons.ttf in Resources */,
 				11A9C71C1E4044AB9603BF17 /* FontAwesome.ttf in Resources */,
@@ -1153,6 +1206,54 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
+		4989E0AEB14CA52925012D9D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BookSharing-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		62F9887C9C4C387BF2FF7C19 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BookSharing/Pods-BookSharing-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8ECD503D3C67D87853E9333B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BookSharing/Pods-BookSharing-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1182,6 +1283,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81284C98633AEB5B9DF860FA /* Pods-BookSharing.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1221,6 +1323,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 16C0C919C1E41E2551B627D5 /* Pods-BookSharing.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
