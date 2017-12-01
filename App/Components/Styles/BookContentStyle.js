@@ -1,34 +1,38 @@
 import { StyleSheet } from 'react-native'
 import colors from '../../Themes/Colors'
+import variable from '../../../native-base-theme/variables/platform'
 
 export default StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    padding: 12,
+    backgroundColor: 'white'
   },
   image: {
-    height: 170,
-    width: 130,
+    height: 120,
+    width: 80,
     paddingRight: 8,
     shadowOpacity: 0.75,
     shadowRadius: 5,
     shadowColor: 'red',
     shadowOffset: { height: 0, width: 0 }
   },
-  title: {
-    fontSize: 22,
-    color: colors.mainColor,
-    fontWeight: '500'
+  contentViewContainer: {
+    flex: 1,
+    flexDirection: 'row'
   },
   contentView: {
     flex: 1,
-    alignItems: 'flex-start',
-    paddingTop: 4,
-    paddingLeft: 12
+    paddingLeft: 8
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: '500'
   },
   author: {
-    fontSize: 17,
-    color: colors.textSecondColor,
-    marginTop: 12
+    fontSize: 16,
+    fontWeight: '600',
+    color: colors.textSecondColor
   },
   content: {
     fontSize: 18,
@@ -45,13 +49,20 @@ export default StyleSheet.create({
   shareText: {
     marginTop: 12
   },
-  btnAdd: {
-    marginBottom: 12,
-    backgroundColor: colors.mainColor
+  buttonSubBlock: {
+    flex: 1
+  },
+  buttonSub: {
+    width: '100%'
   },
   icon: {
-    color: 'white',
-    fontWeight: '500'
+    backgroundColor: colors.mainColor,
+    height: 30,
+    width: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderTopLeftRadius: variable.borderRadiusBase,
+    borderBottomLeftRadius: variable.borderRadiusBase
   },
   textAdd: {
     color: 'white',

@@ -4,11 +4,13 @@ import API from '../Services/Api'
 /* ------------- Types ------------- */
 
 import { ListBookTypes } from '../Redux/ListBookRedux'
+import { BookTypes } from '../Redux/BookRedux'
 
 /* ------------- Sagas ------------- */
 
 import { getListBook } from './ListBookSagas'
-import { takeEvery } from 'redux-saga';
+import { getBook } from './BookSagas'
+import { takeEvery } from 'redux-saga'
 
 /* ------------- API ------------- */
 
@@ -20,6 +22,7 @@ const api = API.create()
 
 export default function * root () {
   yield all([
-    takeEvery(ListBookTypes.LIST_BOOK_REQUEST, getListBook, api)
+    takeEvery(ListBookTypes.LIST_BOOK_REQUEST, getListBook, api),
+    takeLatest(BookTypes.BOOK_REQUEST, getBook, api)
   ])
 }

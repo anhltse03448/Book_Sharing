@@ -6,6 +6,7 @@ import {
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
+import BookActions from '../Redux/BookRedux'
 
 // Styles
 import {
@@ -14,7 +15,8 @@ import {
   Card,
   ListItem,
   Button,
-  CardItem
+  CardItem,
+  Badge
 } from 'native-base'
 import colors from '../Themes/Colors'
 import styles from './Styles/BookDetailScreenStyle'
@@ -27,46 +29,31 @@ import ContentBook from '../Components/ContentBook'
 class BookDetailScreen extends Component {
   constructor (props) {
     super(props)
-    let book = this.props.navigation
-    console.log('Book: ', book)
     this.onAddBookPress = this.onAddBookPress.bind(this)
   }
+
+  componentWillMount () {
+    this.props.fetchBook(this.props.navigation.state.params.bookId)
+  }
+
   onAddBookPress (item) {
     console.log('Add Book Press')
     this.props.navigation.navigate('AddBookScreen')
   }
+
   onSendPress (value) {
     console.log('Value:  ', value)
   }
+
   render () {
+    const { navigation, payload } = this.props
+    const item = payload
     return (
-      <Container>
-        <Navigation onPressBack={() => this.props.navigation.goBack()}
-          title='Chắc ai đó sẽ về' />
+      item && <Container>
+        <Navigation onPressBack={() => navigation.goBack()}
+          title={item.name} />
         <Content>
-          <BookContent onAddBookPress={this.onAddBookPress} />
-          <CardItem button horizontal
-            onPress={() => {
-              this.props.navigation.navigate('ListBookSellerScreen', {navigation: this.props.navigation})
-            }}
-            style={{
-              alignItems: 'center',
-              borderTopWidth: 0.3,
-              borderTopColor: '#BDBDBD'
-            }}>
-            <Button rounded
-              style={styles.btnNumber}
-            >
-              <Text
-                style={{
-                  color: 'white',
-                  fontWeight: '600'
-                }}>41</Text>
-            </Button>
-            <Text style={styles.shareText}>
-              Người đang bán
-            </Text>
-          </CardItem>
+          <BookContent navigation={navigation} item={item} onAddBookPress={this.onAddBookPress} />
           <ContentBook />
           <BookCommentScreen />
           <CommentBox
@@ -79,12 +66,15 @@ class BookDetailScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
+  const { payload } = state.book
   return {
+    payload
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    fetchBook: (id) => dispatch(BookActions.bookRequest(id))
   }
 }
 

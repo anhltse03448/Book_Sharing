@@ -1,4 +1,5 @@
 import color from 'color'
+import colors from '../../App/Themes/Colors'
 
 import { Platform, Dimensions, PixelRatio } from 'react-native'
 
@@ -109,7 +110,7 @@ export default {
   cardDefaultBg: '#fff',
 
   // Color
-  brandPrimary: platform === 'ios' ? '#007aff' : '#3F51B5',
+  brandPrimary: platform === 'ios' ? colors.mainColor : colors.mainColor,
   brandInfo: '#62B1F6',
   brandSuccess: '#5cb85c',
   brandDanger: '#d9534f',
