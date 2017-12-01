@@ -4,7 +4,8 @@ import { View, Text } from 'react-native'
 import styles from './Styles/ContentBookStyle'
 import {
   Card,
-  Button
+  Button,
+  Icon
 } from 'native-base'
 import SeperatorItem from '../Components/SeperatorItem'
 export default class ContentBook extends Component {
@@ -32,15 +33,11 @@ export default class ContentBook extends Component {
         })
       }}
       style={styles.seeMore}>
-      <Text
-        style={styles.textSeeMore}
-      >Xem thêm</Text>
+      <Icon name='ios-arrow-down-outline' />
     </Button>
     return (
-      <Card horizontal>
-        <Text
-          style={styles.content}
-        >
+      <Card>
+        <Text style={styles.content}>
           {contentShow}
         </Text>
         <SeperatorItem />
