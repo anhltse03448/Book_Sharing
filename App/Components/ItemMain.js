@@ -8,7 +8,7 @@ import {
 } from 'native-base'
 import styles from './Styles/ItemMainStyle'
 import colors from '../Themes/Colors'
-
+import CountBook from '../Components/CountBook'
 export default class ItemMain extends Component {
   onPressItem (item) {
     this.props.onPressItem(item)
@@ -17,6 +17,7 @@ export default class ItemMain extends Component {
     const item = {c: 'A'}
     return (
       <TouchableOpacity
+        activeOpacity={0.8}
         onPress={() => this.onPressItem(item)}
       >
         <View style={styles.container}
@@ -36,38 +37,7 @@ export default class ItemMain extends Component {
               <Text
                 style={styles.title}
               >Chắc ai đó sẽ về</Text>
-              <View
-                style={{
-                  flexDirection: 'row'
-                }}
-              >
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    paddingTop: 4
-                  }}
-                >
-                  <Button transparent rounded
-                    style={{
-                      width: 27,
-                      height: 27,
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      backgroundColor: colors.mainColor
-                    }}>
-                    <Text
-                      style={styles.priceMax}
-                    >{41 + ' '}</Text>
-                  </Button>
-                  <Text
-                    style={{
-                      marginLeft: 4,
-                      color: colors.textSecondColor
-                    }}
-                  >cuốn sách</Text>
-                </View>
-              </View>
+              <CountBook />
             </View>
           </Card>
         </View>

@@ -5,7 +5,7 @@ export default StyleSheet.create({
     flex: 1
   },
   content: {
-    fontSize: 18,
+    fontSize: 15,
     padding: 8,
     fontWeight: '500',
     color: colors.textMainColor,

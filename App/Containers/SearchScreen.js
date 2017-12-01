@@ -110,7 +110,7 @@ class SearchScreen extends Component {
             </ListItem>
             <ListItem
               style={styles.list}
-              onPress={() => {                
+              onPress={() => {
               }}>
               <Icon
                 style={styles.icon}

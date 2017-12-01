@@ -8,6 +8,7 @@ import {
   Body,
   Right
 } from 'native-base'
+import CountBook from '../Components/CountBook'
 export default class FullBookCell extends Component {
   // // Prop type warnings
   // static propTypes = {
@@ -33,10 +34,7 @@ export default class FullBookCell extends Component {
           <Text style={styles.title}>Cô gái đến từ hôm qua</Text>
           <Text style={styles.author}>Tác giả: Nguyễn Nhật Ánh</Text>
           <Text style={styles.published}>Xuất bản năm 1001</Text>
-          <View style={styles.tags}>
-            <View style={styles.tag}><Text style={styles.tagText}>Best seller 2017</Text></View>
-            <View style={styles.tag}><Text style={styles.tagText}>tiểu thuyết</Text></View>
-          </View>
+          <CountBook />
         </Body>
       </ListItem>
     )

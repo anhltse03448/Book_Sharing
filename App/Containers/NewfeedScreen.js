@@ -21,13 +21,18 @@ class NewfeedScreen extends Component {
   constructor (props) {
     super(props)
     this.onPressItem = this.onPressItem.bind(this)
+    this.onPressItemSearch = this.onPressItemSearch.bind(this)
+  }
+  onPressItemSearch (item) {
+    console.log('Press Item at Newfeed:  ', item)
+    this.props.navigation.navigate('BookDetailScreen', {navigation: this.props.navigation})
   }
   onPressItem (item) {
     console.log('Press at newFeeds: ', item)
     this.props.navigation.navigate('BookDetailScreen', {navigation: this.props.navigation})
   }
   onPressFull (item) {
-    this.props.navigation.navigate('FullBookScreen', {book: item})
+    this.props.navigation.navigate('FullBookScreen', {book: item, onPressItemSearch: this.onPressItemSearch})
   }
   renderItem (item) {
     return (

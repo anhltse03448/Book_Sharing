@@ -4,10 +4,10 @@ import colors from '../../Themes/Colors'
 export default StyleSheet.create({
   container: {
     alignItems: 'center',
-    width: 150    
+    width: 150
   },
   image: {
-    width: 130,    
+    width: 130,
     height: 170,
     marginBottom: 8,
     marginLeft: 8,
@@ -19,12 +19,6 @@ export default StyleSheet.create({
     marginTop: 4,
     marginBottom: 4,
     color: colors.textMainColor
-  },
-  priceMax: {
-    fontSize: 14,
-    fontWeight: '700',
-    color: 'white',
-    backgroundColor: 'transparent'
   },
   priceMin: {
     fontSize: 15,

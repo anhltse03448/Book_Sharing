@@ -12,7 +12,6 @@ export default StyleSheet.create({
     borderRadius: 25
   },
   commentView: {
-    padding: 8,
     flex: 1
   },
   userName: {
@@ -20,7 +19,9 @@ export default StyleSheet.create({
   },
   comment: {
     marginTop: 4,
-    fontSize: 15
+    fontSize: 15,
+    color: colors.textMainColor,
+    fontWeight: '500'
   },
   time: {
     marginTop: 2,

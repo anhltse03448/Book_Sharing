@@ -58,13 +58,14 @@ class AddBookScreen extends Component {
       if (e === true) {
         return (
           <Icon name='ios-star'
-            style={styles.star}
+            style={[styles.star, {color: '#FFD740'}]}
             onPress={() => this.pressStar(index)}
           />
         )
       } else {
         return (
           <Icon name='ios-star-outline'
+            style={styles.star}
             onPress={() => this.pressStar(index)}
         />
         )

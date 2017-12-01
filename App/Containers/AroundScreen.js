@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, KeyboardAvoidingView } from 'react-native'
+import { FlatList } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -11,14 +11,23 @@ import {
   Content
 } from 'native-base'
 import Navigation from '../Components/Navigation'
+import AroundCell from '../Components/AroundCell'
 class AroundScreen extends Component {
+  renderItem (item) {
+    return (
+      <AroundCell />
+    )
+  }
   render () {
     return (
       <Container>
         <Navigation onPressBack={() => this.props.navigation.goBack()}
           title='Tìm kiếm quanh đây' />
         <Content>
-
+          <FlatList
+            data={[{key: 'a', section: 'Viễn tưởng'}, {key: 'b', section: 'Khoa học'}]}
+            renderItem={({item}) => this.renderItem(item)}
+          />
         </Content>
       </Container>
     )

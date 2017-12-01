@@ -64,7 +64,7 @@ class BookDetailScreen extends Component {
                 }}>41</Text>
             </Button>
             <Text style={styles.shareText}>
-              Người chia sẻ
+              Người đang bán
             </Text>
           </CardItem>
           <ContentBook />

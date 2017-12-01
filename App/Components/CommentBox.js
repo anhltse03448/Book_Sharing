@@ -20,6 +20,7 @@ export default class CommentBox extends Component {
     return (
       <View
         style={{
+          backgroundColor: 'white',
           flexDirection: 'row',
           flex: 1,
           paddingTop: 8,
@@ -27,7 +28,7 @@ export default class CommentBox extends Component {
           alignItems: 'center'
         }}
       >
-        <Item regular
+        <Item
           style={{
             flex: 1
           }}>
@@ -39,17 +40,17 @@ export default class CommentBox extends Component {
             }}
             value={this.state.inputValue}
           />
+          <Button transparent
+            onPress={() => this.props.onSendPress(this.state.inputValue)}
+          >
+            <Icon name='ios-send-outline'
+              color={colors.mainColor}
+              style={{
+                fontSize: 44,
+                color: colors.mainColor
+              }} />
+          </Button>
         </Item>
-        <Button transparent
-          onPress={() => this.props.onSendPress(this.state.inputValue)}
-        >
-          <Icon name='ios-send-outline'
-            color={colors.mainColor}
-            style={{
-              fontSize: 44,
-              color: colors.mainColor
-            }} />
-        </Button>
       </View>
     )
   }

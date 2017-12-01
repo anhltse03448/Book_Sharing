@@ -22,6 +22,6 @@ export default StyleSheet.create({
     height: 50
   },
   star: {
-    color: '#FFD740'
+    marginLeft: 4
   }
 })
