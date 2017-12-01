@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Text,
         Image,
-        View
+        View,
+        AsyncStorage
 } from 'react-native'
 import {
   Button,
@@ -15,10 +16,45 @@ import { connect } from 'react-redux'
 // import YourActions from '../Redux/YourRedux'
 
 // Styles
+const FBSDK = require('react-native-fbsdk')
+const {
+  LoginManager,
+  AccessToken
+} = FBSDK
 import LinearGradient from 'react-native-linear-gradient'
 import styles from './Styles/LoginScreenStyle'
 
 class LoginScreen extends Component {
+  constructor (props) {
+    super(props)
+    this.signInWithFacebook = this.signInWithFacebook.bind(this)
+  }
+  signInWithFacebook() {
+    LoginManager.logInWithReadPermissions(['public_profile']).then(
+      function (result) {
+        if (result.isCancelled) {
+          alert('Login cancelled')
+        } else {
+          alert('Login success with permissions: '
+            +result.grantedPermissions.toString())
+          console.log('result FB:  ', result)
+          AccessToken.getCurrentAccessToken().then(
+            async (data) => {
+              //alert(data.accessToken.toString())
+              try {
+                await AsyncStorage.setItem('TokenID', 'I like to save it.')
+              } catch (error) {
+                // Error saving data
+              }
+            }
+          )
+        }
+      },
+      function (error) {
+        alert('Login fail with error: ' + error)
+      }
+    )
+  }
   render () {
     return (
       <Container>
@@ -52,23 +88,13 @@ class LoginScreen extends Component {
               <Text style={styles.buttonText}>Connect with Facebook</Text>
             </Button>
           </LinearGradient>
-          <LinearGradient colors={['#df4a32', '#e02f2f']}
-            style={styles.buttonLinearGradient}>
-            <Button iconLeft transparent style={styles.googleButton}
-              onPress={this.signInWithGoogle}>
-              <LinearGradient colors={['#c32c2b', '#df4932']}
-                style={styles.socialIcon}>
-                <Image source={require('../Images/icon_google.png')}
-                  style={styles.socialImage} resizeMode='contain' />
-              </LinearGradient>
-              <Text style={styles.buttonText}>Connect with Google</Text>
-            </Button>
-          </LinearGradient>
           <View
             style={{
               flexDirection: 'row',
               alignItems: 'center',
-              marginTop: 20
+              marginTop: 20,
+              width: '100%',
+              justifyContent: 'center'
             }}
           >
             <Icon
@@ -78,7 +104,7 @@ class LoginScreen extends Component {
                 marginRight: 10
               }}
             />
-            <Text>We don't post anything to Facebook or Google</Text>
+            <Text>We don't post anything to Facebook</Text>
           </View>
         </Content>
       </Container>
