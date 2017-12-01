@@ -21,7 +21,7 @@ export default class ItemMain extends Component {
     }
     if (name.length < 17) {
       name = name + '\n'
-    }    
+    }
     return (
       <TouchableOpacity
         activeOpacity={0.8}

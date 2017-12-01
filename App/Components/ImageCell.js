@@ -8,6 +8,7 @@ export default class ImageCell extends Component {
     return (
       <Image
         style={styles.image}
+        source={require('../Images/add.png')}
       />
     )
   }

@@ -16,6 +16,7 @@ import {
 import styles from './Styles/NotificationScreenStyle'
 import HeaderDefault from '../Components/HeaderDefault'
 import colors from '../Themes/Colors'
+import ChatHistoryScreen from './ChatHistoryScreen'
 class NotificationScreen extends Component {
   constructor (props) {
     super(props)
@@ -29,7 +30,27 @@ class NotificationScreen extends Component {
       <Container>
         <HeaderDefault title='Thông báo' />
         <Content>
-          <NoticeScreen onPress={this.onPress} />
+          <Tabs
+            tabBarUnderlineStyle={{
+              backgroundColor: colors.mainColor,
+              height: 2
+            }}>
+            <Tab heading='Sách theo dõi'
+              activeTabStyle={styles.tab}
+              tabStyle={styles.tab}
+              activeTextStyle={styles.text}
+              textStyle={styles.text}>
+              <NoticeScreen onPress={this.onPress} />
+            </Tab>
+            <Tab heading='Tin Nhắn'
+              activeTabStyle={styles.tab}
+              tabStyle={styles.tab}
+              activeTextStyle={styles.text}
+              textStyle={styles.text}
+            >
+              <ChatHistoryScreen onPress={this.onPress} />
+            </Tab>
+          </Tabs>
         </Content>
       </Container>
     )

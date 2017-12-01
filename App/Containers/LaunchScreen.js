@@ -11,7 +11,7 @@ export default class LaunchScreen extends Component {
   render () {
     // this.props.navigation.navigate('MainScreen')
     return (
-      <MainScreen navigation={this.props.navigation} />
+      <Login />
     )
   }
 }

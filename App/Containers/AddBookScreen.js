@@ -41,7 +41,10 @@ class AddBookScreen extends Component {
 
   renderItem (item) {
     return (
-      <ImageCell />
+      <ListItem>
+        <ImageCell
+        />
+      </ListItem>
     )
   }
 
@@ -116,8 +119,7 @@ class AddBookScreen extends Component {
               renderItem={({item}) => this.renderItem(item)}
             </FlatList>
             <Button transparent
-              style={styles.doneButton}
-            >
+              style={styles.doneButton}>
               <Text
                 style={styles.done}
               >Xong</Text>
