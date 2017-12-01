@@ -38,7 +38,7 @@ const create = (baseURL = 'https://sheltered-ridge-83772.herokuapp.com') => {
   const getListBook = () => api.get('/books')
   const getBook = (id) => api.get('/book/' + id)
   const authWithFacebook = (token) => api.post('/auth/facebook', {token: token})
-
+  const getFavoriteBook = () => api.get('/books')
   // ------
   // STEP 3
   // ------
@@ -56,7 +56,8 @@ const create = (baseURL = 'https://sheltered-ridge-83772.herokuapp.com') => {
     getRoot,
     getListBook,
     getBook,
-    authWithFacebook
+    authWithFacebook,
+    getFavoriteBook
   }
 }
 

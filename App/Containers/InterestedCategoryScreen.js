@@ -7,6 +7,7 @@ import {
 } from 'native-base'
 import Navigation from '../Components/Navigation'
 import InterestedCategory from '../Components/InterestedCategory'
+import ListBookFavoriteAction from '../Redux/ListBookFavoriteRedux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 
@@ -14,7 +15,11 @@ import InterestedCategory from '../Components/InterestedCategory'
 import styles from './Styles/InterestedCategoryScreenStyle'
 
 class InterestedCategoryScreen extends Component {
+  componentWillMount () {
+    this.props.fetchListBookFavorite()
+  }
   render () {
+    console.log('Pay Load:  ', this.props.payload)
     return (
       <Container>
         <Navigation onPressBack={() => this.props.navigation.goBack()}
@@ -40,12 +45,15 @@ class InterestedCategoryScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
+  const { payload } = state.listFavoviteBook
   return {
+    payload
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    fetchListBookFavorite: () => dispatch(ListBookFavoriteAction.listBookFavoriteRequest())
   }
 }
 
