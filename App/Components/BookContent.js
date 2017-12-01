@@ -50,7 +50,7 @@ export default class BookContent extends Component {
               </Badge>
             </View>
           </View>
-          <View style={{marginTop: 4}}>
+          <View style={{marginTop: 0}}>
             <Icon
               onPress={this.handleCheckBookmark}
               name={this.state.isCheckedBookmark ? 'ios-bookmark' : 'ios-bookmark-outline'}

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList } from 'react-native'
+import { View, Text, FlatList, Image } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
-// import ImagePicker from 'react-native-image-crop-picker'
+import ImagePicker from 'react-native-image-crop-picker'
 
 // Styles
 import {
@@ -15,18 +15,22 @@ import {
   Input,
   Button,
   Icon,
+  Text as NBText
 } from 'native-base'
 import styles from './Styles/AddBookScreenStyle'
 import Navigation from '../Components/Navigation'
 import BookInfoAdd from '../Components/BookInfoAdd'
 import ImageCell from '../Components/ImageCell'
+import Loading from '../Components/Loading'
 
 class AddBookScreen extends Component {
   constructor (props) {
     super(props)
     this.state = {
       selected2: undefined,
-      starCount: 0
+      starCount: 0,
+      images: null,
+      isChoosingImage: false
     }
   }
 
@@ -44,17 +48,31 @@ class AddBookScreen extends Component {
 
   renderItem (item) {
     return (
-      <ListItem>
-      </ListItem>
+      <Image
+        style={{
+          flex: 1,
+          width: 100,
+          height: 150,
+          marginRight: 4
+        }}
+        onError={() => console.log('error')}
+        source={{uri: `data:image/png;base64,${item.data}`}} />
     )
   }
 
   handleImagePicker = () => {
-    // ImagePicker.openPicker({
-    //   multiple: true
-    // }).then(images => {
-    //   console.log(images)
-    // })
+    this.setState({
+      images: null,
+      isChoosingImage: true
+    })
+    ImagePicker.openPicker({
+      multiple: true,
+      includeBase64: true
+    }).then(images => {
+      this.setState({ images })
+    }).catch(() => {
+      this.setState({isChoosingImage: false})
+    })
   }
 
   render () {
@@ -69,14 +87,14 @@ class AddBookScreen extends Component {
     let starView = arr.map((e, index) => {
       if (e === true) {
         return (
-          <Icon name='ios-star'
+          <Icon key={index} name='ios-star'
             style={[styles.star, {color: '#FFD740'}]}
             onPress={() => this.pressStar(index)}
           />
         )
       } else {
         return (
-          <Icon name='ios-star-outline'
+          <Icon key={index} name='ios-star-outline'
             style={styles.star}
             onPress={() => this.pressStar(index)}
         />
@@ -125,23 +143,29 @@ class AddBookScreen extends Component {
                 placeholder='Ghi chú'
               />
             </ListItem>
-            <View style={{padding: 16}}>
-              <Button
-                onPress={this.handleImagePicker}
-                style={{
-                  width: 50,
-                  height: 50,
-                  borderRadius: 0
-                }}
-                bordered>
-                <Icon name='ios-add-outline' />
+            <View style={{flex: 1, padding: 12}}>
+              <Button onPress={this.handleImagePicker}
+                iconLeft bordered transparent>
+                <Icon name='ios-camera-outline' />
+                <NBText>Lựa chọn ảnh</NBText>
               </Button>
             </View>
-            
-            {/* <FlatList horizontal
-              data={[{key: 'a', section: 'Viễn tưởng'}, {key: 'b', section: 'Khoa học'}]}
-              renderItem={({item}) => this.renderItem(item)} /> */}
-            <Button transparent
+            <View style={{
+              flex: 3,
+              flexDirection: 'row',
+              padding: 16
+            }}>
+              {this.state.isChoosingImage && (
+                this.state.images ? <FlatList horizontal
+                  showsHorizontalScrollIndicator={false}
+                  data={this.state.images}
+                  keyExtractor={(item) => item.filename}
+                  renderItem={({item}) => this.renderItem(item)} />
+                : <Loading />)
+              }
+            </View>
+            <Button
+              disabled={this.state.images === null}
               style={styles.doneButton}>
               <Text
                 style={styles.done}
