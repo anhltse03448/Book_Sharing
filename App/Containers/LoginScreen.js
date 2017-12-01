@@ -15,6 +15,8 @@ import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 import AuthActions from '../Redux/AuthRedux'
+import { NavigationActions } from 'react-navigation'
+import Loading from '../Components/Loading'
 
 // Styles
 const FBSDK = require('react-native-fbsdk')
@@ -30,11 +32,24 @@ class LoginScreen extends Component {
     super(props)
 
     this.state = {
-      accessToken: ''
+      accessToken: '',
+      loggingIn: false,
+      isLogged: false
     }
 
     this.signInWithFacebook = this.signInWithFacebook.bind(this)
   }
+
+  componentDidMount () {
+    AsyncStorage.getItem('@BookSharing:user', (err, res) => {
+      if (err) {
+        console.log(err)
+      } else {
+        this.setState({isLogged: true})
+      }
+    })
+  }
+
   signInWithFacebook = () => {
     LoginManager.logInWithReadPermissions(['public_profile']).then(
       function (result) {
@@ -44,12 +59,9 @@ class LoginScreen extends Component {
           console.log('result FB:  ', result)
           AccessToken.getCurrentAccessToken().then(
             async function (data) {
-              //alert(data.accessToken.toString())
               try {
-                await AsyncStorage.setItem('@MySuperStore:key', data.accessToken)
-                console.log('Data: ' + data.accessToken)
-                // this.setState({accessToken: data.accessToken})
-                // console.log(this.props)
+                this.setState({loggingIn: true})
+                await AsyncStorage.setItem('@BookSharing:token', data.accessToken)
                 this.props.authWithFacebook(data.accessToken)
               } catch (error) {
                 console.log('Error Login FB: ', error)
@@ -60,12 +72,24 @@ class LoginScreen extends Component {
         }
       }.bind(this),
       function (error) {
-        alert('Login fail with error: ' + error)
+        console.log('Login fail with error: ' + error)
       }
     )
   }
   render () {
-    console.log('Payload: ' , this.props.payload)
+    const { payload } = this.props
+    if (payload) {
+      try {
+        AsyncStorage.setItem('@BookSharing:user',
+          JSON.stringify(this.props.payload.user))
+      } catch (error) {
+        console.log(error)
+      }
+      this.props.navigate('MainScreen')
+    }
+    if (this.state.isLogged) {
+      setTimeout(() => this.props.navigate('MainScreen'), 1000)
+    }
     return (
       <Container>
         <Content contentContainerStyle={{
@@ -84,29 +108,29 @@ class LoginScreen extends Component {
             resizeMode='contain'
             style={{
               alignSelf: 'center',
-              marginBottom: 40,
               padding: 12,
               width: '85%'
             }}
             source={require('../Images/Icons/Icon.png')}
           />
-          <LinearGradient colors={['#5074af', '#415887']}
-            style={styles.buttonLinearGradient}>
-            <Button iconLeft transparent style={styles.facebookButton}
-              onPress={this.signInWithFacebook}>
-              <LinearGradient colors={['#355088', '#4f72ad']}
-                style={styles.socialIcon}>
-                <Image source={require('../Images/icon_facebook.png')}
-                  style={styles.socialImage} resizeMode='contain' />
-              </LinearGradient>
-              <Text style={styles.buttonText}>Connect with Facebook</Text>
-            </Button>
-          </LinearGradient>
+          {this.state.loggingIn || this.state.isLogged
+            ? <Loading style={{padding: 0, backgroundColor: 'transparent'}} />
+            : <LinearGradient colors={['#5074af', '#415887']}
+              style={styles.buttonLinearGradient}>
+              <Button iconLeft transparent style={styles.facebookButton}
+                onPress={this.signInWithFacebook}>
+                <LinearGradient colors={['#355088', '#4f72ad']}
+                  style={styles.socialIcon}>
+                  <Image source={require('../Images/icon_facebook.png')}
+                    style={styles.socialImage} resizeMode='contain' />
+                </LinearGradient>
+                <Text style={styles.buttonText}>Connect with Facebook</Text>
+              </Button>
+            </LinearGradient>}
           <View
             style={{
               flexDirection: 'row',
               alignItems: 'center',
-              marginTop: 20,
               width: '100%',
               justifyContent: 'center'
             }}
@@ -135,6 +159,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    navigate: (routeName, params) => dispatch(NavigationActions.navigate({
+      routeName: routeName,
+      params: params
+    })),
     authWithFacebook: (token) => dispatch(AuthActions.authRequest(token))
   }
 }
