@@ -8,16 +8,16 @@ import {
 } from 'native-base'
 import SeperatorItem from '../Components/SeperatorItem'
 export default class ContentBook extends Component {
-  // // Prop type warnings
-  // static propTypes = {
-  //   someProperty: PropTypes.object,
-  //   someSetting: PropTypes.bool.isRequired,
-  // }
-  //
-  // // Defaults for props
-  // static defaultProps = {
-  //   someSetting: false
-  // }
+  constructor (props) {
+    super(props)
+    this.state = {
+      isShow: true
+    }
+  }
+
+  onPressMore () {
+
+  }
 
   render () {
     const content = 'Đắc Nhân Tâm cụ thể và chi tiết với những chỉ dẫn để dẫn đạo người, để gây thiện cảm và dẫn dắt người khác,... những hướng dẫn ấy, qua thời gian'
@@ -25,6 +25,17 @@ export default class ContentBook extends Component {
     if (content.length >= 100) {
       contentShow = content.substring(0, 100) + '...'
     }
+    let button = <Button transparent
+      onPress={() => {
+        this.setState({
+          isShow: !this.state.isShow
+        })
+      }}
+      style={styles.seeMore}>
+      <Text
+        style={styles.textSeeMore}
+      >Xem thêm</Text>
+    </Button>
     return (
       <Card horizontal>
         <Text
@@ -33,12 +44,9 @@ export default class ContentBook extends Component {
           {contentShow}
         </Text>
         <SeperatorItem />
-        <Button transparent
-          style={styles.seeMore}>
-          <Text
-            style={styles.textSeeMore}
-          >Xem thêm</Text>
-        </Button>
+        {
+          this.state.isShow ? button : null
+        }
       </Card>
     )
   }

@@ -23,11 +23,20 @@ import BookCommentScreen from './BookCommentScreen'
 import CommentBox from '../Components/CommentBox'
 import Navigation from '../Components/Navigation'
 import ContentBook from '../Components/ContentBook'
+
 class BookDetailScreen extends Component {
   constructor (props) {
     super(props)
     let book = this.props.navigation
     console.log('Book: ', book)
+    this.onAddBookPress = this.onAddBookPress.bind(this)
+  }
+  onAddBookPress (item) {
+    console.log('Add Book Press')
+    this.props.navigation.navigate('AddBookScreen')
+  }
+  onSendPress (value) {
+    console.log('Value:  ', value)
   }
   render () {
     return (
@@ -35,7 +44,7 @@ class BookDetailScreen extends Component {
         <Navigation onPressBack={() => this.props.navigation.goBack()}
           title='Chắc ai đó sẽ về' />
         <Content>
-          <BookContent />
+          <BookContent onAddBookPress={this.onAddBookPress} />
           <CardItem button horizontal
             onPress={() => {
               this.props.navigation.navigate('ListBookSellerScreen')
@@ -60,7 +69,9 @@ class BookDetailScreen extends Component {
           </CardItem>
           <ContentBook />
           <BookCommentScreen />
-          <CommentBox />
+          <CommentBox
+            onSendPress={this.onSendPress.bind(this)}
+          />
         </Content>
       </Container>
     )

@@ -55,6 +55,10 @@ class SearchScreen extends Component {
     })
   }
 
+  onPressItemSearch (item) {
+    this.props.navigation.navigate('BookDetailScreen')
+  }
+
   render () {
     const { navigation } = this.props
     const keywordData = [
@@ -106,8 +110,7 @@ class SearchScreen extends Component {
             </ListItem>
             <ListItem
               style={styles.list}
-              onPress={() => {
-                
+              onPress={() => {                
               }}>
               <Icon
                 style={styles.icon}
@@ -123,15 +126,13 @@ class SearchScreen extends Component {
               style={styles.searchResultOverlay}
               data={keywordData}
               renderItem={({item}) =>
-                <ListItem>
-                  <TouchableOpacity
-                    onPress={this.handlePressKeyword}>
-                    <Text style={styles.searchResultText}>{item.name}</Text>
-                  </TouchableOpacity>
+                <ListItem
+                  onPress={this.handlePressKeyword}>
+                  <Text style={styles.searchResultText}>{item.name}</Text>
                 </ListItem>}
             />
           }
-          {this.state.showResult && <SearchResult />}
+          {this.state.showResult && <SearchResult onPressItemSearch={this.onPressItemSearch.bind(this)}/>}
         </Content>
       </Container>
     )

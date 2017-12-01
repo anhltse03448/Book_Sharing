@@ -21,8 +21,10 @@ export default class FullBookCell extends Component {
   // }
 
   render () {
+    let item = {key: 'a'}
     return (
-      <ListItem style={styles.container}>
+      <ListItem style={styles.container}
+        onPress={() => this.props.onPressItemSearch(item)}>
         <Image
           style={styles.image}
           source={require('../Images/cogai.png')}
