@@ -5,11 +5,15 @@ import API from '../Services/Api'
 
 import { ListBookTypes } from '../Redux/ListBookRedux'
 import { BookTypes } from '../Redux/BookRedux'
+import { AuthTypes } from '../Redux/AuthRedux'
+import { ListBookFavoriteTypes } from '../Redux/ListBookFavoriteRedux'
 
-/* ------------- Sagas ------------- */
+/* ------------- Sagas ------------ */
 
 import { getListBook } from './ListBookSagas'
 import { getBook } from './BookSagas'
+import { authWithFacebook } from './AuthSagas'
+import { getListBokFavorite } from './ListBokFavoriteSagas'
 import { takeEvery } from 'redux-saga'
 
 /* ------------- API ------------- */
@@ -23,6 +27,8 @@ const api = API.create()
 export default function * root () {
   yield all([
     takeEvery(ListBookTypes.LIST_BOOK_REQUEST, getListBook, api),
-    takeLatest(BookTypes.BOOK_REQUEST, getBook, api)
+    takeEvery(ListBookFavoriteTypes.LIST_BOOK_FAVORITE_REQUEST, getListBokFavorite, api),
+    takeLatest(BookTypes.BOOK_REQUEST, getBook, api),
+    takeLatest(AuthTypes.AUTH_REQUEST, authWithFacebook, api)
   ])
 }

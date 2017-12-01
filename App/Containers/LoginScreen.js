@@ -14,6 +14,7 @@ import {
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
+import AuthActions from '../Redux/AuthRedux'
 
 // Styles
 const FBSDK = require('react-native-fbsdk')
@@ -27,35 +28,44 @@ import styles from './Styles/LoginScreenStyle'
 class LoginScreen extends Component {
   constructor (props) {
     super(props)
+
+    this.state = {
+      accessToken: ''
+    }
+
     this.signInWithFacebook = this.signInWithFacebook.bind(this)
   }
-  signInWithFacebook() {
+  signInWithFacebook = () => {
     LoginManager.logInWithReadPermissions(['public_profile']).then(
       function (result) {
         if (result.isCancelled) {
-          alert('Login cancelled')
+          
         } else {
-          alert('Login success with permissions: '
-            +result.grantedPermissions.toString())
           console.log('result FB:  ', result)
           AccessToken.getCurrentAccessToken().then(
-            async (data) => {
+            async function (data) {
               //alert(data.accessToken.toString())
               try {
-                await AsyncStorage.setItem('TokenID', 'I like to save it.')
+                await AsyncStorage.setItem('@MySuperStore:key', data.accessToken)
+                console.log('Data: ' + data.accessToken)
+                // this.setState({accessToken: data.accessToken})
+                // console.log(this.props)
+                this.props.authWithFacebook(data.accessToken)
               } catch (error) {
+                console.log('Error Login FB: ', error)
                 // Error saving data
               }
-            }
+            }.bind(this)
           )
         }
-      },
+      }.bind(this),
       function (error) {
         alert('Login fail with error: ' + error)
       }
     )
   }
   render () {
+    console.log('Payload: ' , this.props.payload)
     return (
       <Container>
         <Content contentContainerStyle={{
@@ -67,7 +77,7 @@ class LoginScreen extends Component {
             source={require('../Images/LoginBg.png')}
             style={{
               position: 'absolute',
-              marginTop: -400              
+              marginTop: -400
             }}
           />
           <Image
@@ -117,12 +127,15 @@ class LoginScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
+  const { payload } = state.auth
   return {
+    payload
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    authWithFacebook: (token) => dispatch(AuthActions.authRequest(token))
   }
 }
 
