@@ -2,7 +2,7 @@
 import apisauce from 'apisauce'
 
 // our "constructor"
-const create = (baseURL = 'https://api.github.com/') => {
+const create = (baseURL = 'https://sheltered-ridge-83772.herokuapp.com') => {
   // ------
   // STEP 1
   // ------
@@ -35,8 +35,8 @@ const create = (baseURL = 'https://api.github.com/') => {
   // way at this level.
   //
   const getRoot = () => api.get('')
-  const getRate = () => api.get('rate_limit')
-  const getUser = (username) => api.get('search/users', {q: username})
+  const getListBook = () => api.get('/books')
+  const getBook = (id) => api.get('/book/' + id)
 
   // ------
   // STEP 3
@@ -53,8 +53,8 @@ const create = (baseURL = 'https://api.github.com/') => {
   return {
     // a list of the API functions from step 2
     getRoot,
-    getRate,
-    getUser
+    getListBook,
+    getBook
   }
 }
 

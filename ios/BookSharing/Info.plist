@@ -40,18 +40,18 @@
 	<false/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Use Location For Better Experience</string>
-  <key>NSCameraUsageDescription</key>
-  <string>Your message to user when the camera is accessed for the first time</string>
-  
-  <!-- Include this only if you are planning to use the camera roll -->
-  <key>NSPhotoLibraryUsageDescription</key>
-  <string>Your message to user when the photo library is accessed for the first time</string>
-  
-  <!-- Include this only if you are planning to use the microphone for video recording -->
-  <key>NSMicrophoneUsageDescription</key>
-  <string>Your message to user when the microsphone is accessed for the first time</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Your message to user when the camera is accessed for the first time</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Your message to user when the photo library is accessed for the first time</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Your message to user when the microsphone is accessed for the first time</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
+		<key>NSAllowsArbitraryLoadsInWebContent</key>
+		<true/>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
 			<key>localhost</key>

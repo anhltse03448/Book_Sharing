@@ -14,7 +14,7 @@ export default class ItemMain extends Component {
     this.props.onPressItem(item)
   }
   render () {
-    const item = {c: 'A'}
+    const { item } = this.props
     return (
       <TouchableOpacity
         onPress={() => this.onPressItem(item)}
@@ -30,12 +30,11 @@ export default class ItemMain extends Component {
             <Image
               resizeMode='stretch'
               style={styles.image}
-              source={require('../Images/cogai.png')}
+              onError={() => console.log('err')}
+              source={{uri: 'http://isach.info/images/story/cover_120/toi_thay_hoa_vang_tren_co_xanh__nguyen_nhat_anh.jpg'}}
             />
             <View style={styles.viewText}>
-              <Text
-                style={styles.title}
-              >Chắc ai đó sẽ về</Text>
+              <Text style={styles.title}>{item.name}</Text>
               <View
                 style={{
                   flexDirection: 'row'
