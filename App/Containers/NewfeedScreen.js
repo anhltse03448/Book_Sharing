@@ -36,7 +36,7 @@ class NewfeedScreen extends Component {
   onPressItem (item) {
     console.log('Press at newFeeds: ', item)
     this.props.navigation.navigate('BookDetailScreen', {
-      bookId: item.id
+      book: item
     })
   }
   onPressFull (item) {

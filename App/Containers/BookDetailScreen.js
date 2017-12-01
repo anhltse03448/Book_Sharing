@@ -33,10 +33,9 @@ class BookDetailScreen extends Component {
   }
 
   componentWillMount () {
-    
   }
   componentDidMount () {
-    this.props.fetchBook(this.props.navigation.state.params.bookId)
+    // this.props.fetchBook(this.props.navigation.state.params.bookId)
   }
 
   onAddBookPress (item) {
@@ -49,8 +48,8 @@ class BookDetailScreen extends Component {
   }
 
   render () {
-    const { navigation, payload } = this.props
-    const item = payload
+    const { navigation } = this.props
+    const item = navigation.state.params.book
     return (
       item && <Container>
         <Navigation onPressBack={() => navigation.goBack()}
@@ -69,15 +68,15 @@ class BookDetailScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { payload } = state.book
+  // const { payload } = state.book
   return {
-    payload
+    // payload
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchBook: (id) => dispatch(BookActions.bookRequest(id))
+    // fetchBook: (id) => dispatch(BookActions.bookRequest(id))
   }
 }
 
