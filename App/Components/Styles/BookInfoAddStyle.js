@@ -12,6 +12,7 @@ export default StyleSheet.create({
     width: 50
   },
   content: {
+    flex: 1,
     justifyContent: 'flex-start',
     paddingLeft: 12
   },

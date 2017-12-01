@@ -3,6 +3,7 @@ import { View, Text, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
+import ImagePicker from 'react-native-image-picker'
 
 // Styles
 import {
@@ -19,6 +20,7 @@ import styles from './Styles/AddBookScreenStyle'
 import Navigation from '../Components/Navigation'
 import BookInfoAdd from '../Components/BookInfoAdd'
 import ImageCell from '../Components/ImageCell'
+
 class AddBookScreen extends Component {
   constructor (props) {
     super(props)
@@ -27,6 +29,7 @@ class AddBookScreen extends Component {
       starCount: 0
     }
   }
+
   onValueChange2 (value) {
     this.setState({
       selected2: value
@@ -42,10 +45,36 @@ class AddBookScreen extends Component {
   renderItem (item) {
     return (
       <ListItem>
-        <ImageCell
-        />
       </ListItem>
     )
+  }
+
+  handleImagePicker = () => {
+    var opts = {
+      title: 'Chọn ảnh',
+      storageOptions: {
+        skipBackup: true,
+        path: 'images'
+      }
+    }
+    ImagePicker.showImagePicker(opts, (response) => {
+      console.log('Response = ', response)
+
+      if (response.didCancel) {
+        console.log('User cancelled image picker')
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error)
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      } else {
+        let source = { uri: response.uri }
+
+        // You can also display the image using data:
+        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+
+        console.log(source)
+      }
+    })
   }
 
   render () {
@@ -74,15 +103,17 @@ class AddBookScreen extends Component {
         )
       }
     })
+    const { navigation } = this.props
+    const { item } = navigation.state.params
     return (
       <Container
         style={{
           backgroundColor: 'white'
         }}>
         <Navigation onPressBack={() => this.props.navigation.goBack()}
-          title='Chắc ai đó sẽ về' />
+          title={item.name} />
         <Content>
-          <BookInfoAdd />
+          <BookInfoAdd item={item} />
           <View>
             <ListItem
               style={[styles.listItem, {
@@ -114,10 +145,19 @@ class AddBookScreen extends Component {
                 placeholder='Ghi chú'
               />
             </ListItem>
-            <FlatList horizontal>
+            <View style={{padding: 16}}>
+              <Button style={{
+                width: 50,
+                height: 50,
+                borderRadius: 0
+              }} bordered>
+                <Icon name='ios-add-outline' />
+              </Button>
+            </View>
+            
+            {/* <FlatList horizontal
               data={[{key: 'a', section: 'Viễn tưởng'}, {key: 'b', section: 'Khoa học'}]}
-              renderItem={({item}) => this.renderItem(item)}
-            </FlatList>
+              renderItem={({item}) => this.renderItem(item)} /> */}
             <Button transparent
               style={styles.doneButton}>
               <Text

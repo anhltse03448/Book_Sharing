@@ -19,15 +19,17 @@ export default class BookInfoAdd extends Component {
   // }
 
   render () {
+    const { item } = this.props
     return (
       <View style={styles.container}
       >
         <CardItem
           style={{
+            flex: 1,
             flexDirection: 'row'
           }}>
           <Image
-            source={require('../Images/LoginBg.png')}
+            source={{uri: item.cover}}
             style={styles.image}
           />
           <View
@@ -35,7 +37,7 @@ export default class BookInfoAdd extends Component {
           >
             <Text
               style={styles.title}
-            >Chắc ai đó sẽ về</Text>
+            >{item.name}</Text>
             <Text
               style={styles.author}
             >Hary Kane</Text>

@@ -3,6 +3,7 @@ import { ScrollView, Text, KeyboardAvoidingView, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
+import ListBookActions from '../Redux/ListBookRedux'
 
 // Styles
 import {
@@ -24,9 +25,15 @@ class FullBookScreen extends Component {
       inputValue: ''
     }
   }
-  renderItem (item) {
-    return <FullBookCell onPressItemSearch={this.props.navigation.state.params.onPressItemSearch} />
+
+  componentWillMount () {
+    this.props.fetchBookList()
   }
+
+  renderItem (item) {
+    return <FullBookCell item={item} onPressItemSearch={this.props.navigation.state.params.onPressItemSearch} />
+  }
+
   render () {
     return (
       <Container>
@@ -48,10 +55,11 @@ class FullBookScreen extends Component {
               <Text>Search</Text>
             </Button>
           </Header>
-          <FlatList
-            data={[{key: 'a', section: 'Viễn tưởng'}, {key: 'b', section: 'Khoa học'}]}
+          {this.props.payload && <FlatList
+            data={this.props.payload}
+            keyExtractor={(item) => item.id}
             renderItem={({item}) => this.renderItem(item)}
-          />
+          />}
         </Content>
       </Container>
     )
@@ -59,12 +67,15 @@ class FullBookScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
+  const { payload } = state.listBook
   return {
+    payload
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    fetchBookList: () => dispatch(ListBookActions.listBookRequest())
   }
 }
 

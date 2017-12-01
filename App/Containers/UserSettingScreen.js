@@ -71,7 +71,7 @@ class UserSettingScreen extends Component {
               subText='3'
               hasSubPage
             />
-          </List>          
+          </List>
           <List style={styles.listWrapper}>
             <ListItem
               onPress={() => navigation.navigate('RatingSettingScreen')}

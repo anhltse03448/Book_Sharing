@@ -43,7 +43,7 @@ class BookDetailScreen extends Component {
 
   onAddBookPress (item) {
     console.log('Add Book Press')
-    this.props.navigation.navigate('AddBookScreen')
+    this.props.navigation.navigate('AddBookScreen', {item: item})
   }
 
   onSendPress (value) {

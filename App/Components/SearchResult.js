@@ -6,10 +6,12 @@ import FullBookCell from '../Components/FullBookCell'
 
 export default class SearchResult extends Component {
   render () {
+    console.log(this.props.items)
     return (
       <FlatList
-        data={[{key: 'a', section: 'Viễn tưởng'}, {key: 'b', section: 'Khoa học'}]}
-        renderItem={({item}) => <FullBookCell onPressItemSearch={this.props.onPressItemSearch} />}
+        data={this.props.items}
+        keyExtractor={(item) => item.id}
+        renderItem={({item}) => <FullBookCell item={item} onPressItemSearch={this.props.onPressItemSearch} />}
       />
     )
   }
