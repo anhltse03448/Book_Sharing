@@ -60,19 +60,23 @@ class LoginScreen extends Component {
       <Container>
         <Content contentContainerStyle={{
           marginTop: 64,
+          flex: 1,
           alignItems: 'center'
         }}>
           <Image
             source={require('../Images/LoginBg.png')}
             style={{
               position: 'absolute',
-              marginTop: -400
+              marginTop: -400              
             }}
           />
           <Image
+            resizeMode='contain'
             style={{
               alignSelf: 'center',
-              marginBottom: 40
+              marginBottom: 40,
+              padding: 12,
+              width: '85%'
             }}
             source={require('../Images/Icons/Icon.png')}
           />

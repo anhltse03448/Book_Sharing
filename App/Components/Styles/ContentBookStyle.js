@@ -6,10 +6,10 @@ export default StyleSheet.create({
   },
   content: {
     fontSize: 15,
-    padding: 8,
     fontWeight: '500',
     color: colors.textMainColor,
     borderBottomWidth: 1,
+    flexGrow: 5,
     borderBottomColor: colors.seperatorColor
   },
   seeMore: {

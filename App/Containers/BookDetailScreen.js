@@ -33,6 +33,9 @@ class BookDetailScreen extends Component {
   }
 
   componentWillMount () {
+    
+  }
+  componentDidMount () {
     this.props.fetchBook(this.props.navigation.state.params.bookId)
   }
 

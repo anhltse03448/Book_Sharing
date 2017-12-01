@@ -5,8 +5,11 @@ import styles from './Styles/ContentBookStyle'
 import {
   Card,
   Button,
-  Icon
+  Icon,
+  CardItem,
+  ListItem
 } from 'native-base'
+import colors from '../Themes/Colors'
 import SeperatorItem from '../Components/SeperatorItem'
 export default class ContentBook extends Component {
   constructor (props) {
@@ -36,15 +39,23 @@ export default class ContentBook extends Component {
       <Icon name='ios-arrow-down-outline' />
     </Button>
     return (
-      <Card>
+      <ListItem
+        style={{
+          borderTopWidth: 0.5,
+          borderTopColor: colors.seperatorColor,
+          borderBottomWidth: 0.5,
+          borderBottomColor: colors.seperatorColor,
+          flex: 1,
+          width: '100%'
+        }}
+      >
         <Text style={styles.content}>
           {contentShow}
         </Text>
-        <SeperatorItem />
         {
           this.state.isShow ? button : null
         }
-      </Card>
+      </ListItem>
     )
   }
 }
