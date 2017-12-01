@@ -25,7 +25,7 @@ class BookCommentScreen extends Component {
     return (
       <View
         style={{
-          marginLeft: 4
+          
         }}>
         <FlatList
           data={[{key: 'a', section: 'Viễn tưởng'}, {key: 'b', section: 'Khoa học'}]}
