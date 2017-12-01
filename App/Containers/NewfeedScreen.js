@@ -5,6 +5,7 @@ import {
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
+import ListBookActions from '../Redux/ListBookRedux'
 
 // Styles
 import {
@@ -27,6 +28,11 @@ class NewfeedScreen extends Component {
     console.log('Press Item at Newfeed:  ', item)
     this.props.navigation.navigate('BookDetailScreen', {navigation: this.props.navigation})
   }
+  
+  componentWillMount () {
+    this.props.fetchBookList()
+  }
+  
   onPressItem (item) {
     console.log('Press at newFeeds: ', item)
     this.props.navigation.navigate('BookDetailScreen', {navigation: this.props.navigation})
@@ -53,7 +59,7 @@ class NewfeedScreen extends Component {
             </Text>
           </Button>
         </View>
-        <ListMain onPressItem={this.onPressItem} />
+        <ListMain items={this.props.payload} onPressItem={this.onPressItem} />
       </View>
     )
   }
@@ -66,7 +72,11 @@ class NewfeedScreen extends Component {
           backgroundColor: 'white'
         }}>
           <FlatList
-            data={[{key: 'a', section: 'Viễn tưởng'}, {key: 'b', section: 'Khoa học'}]}
+            data={[
+              {key: 1, section: 'Mua nhiều nhất'},
+              {key: 2, section: 'Gần bạn'},
+              {key: 3, section: 'Sách mới bán'}
+            ]}
             renderItem={({item}) => this.renderItem(item)}
           />
         </Content>
@@ -76,12 +86,15 @@ class NewfeedScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
+  const { payload } = state.listBook
   return {
+    payload
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    fetchBookList: () => dispatch(ListBookActions.listBookRequest())
   }
 }
 

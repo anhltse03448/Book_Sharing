@@ -8,16 +8,17 @@ import {
 export default class ListMain extends Component {
   renderItem (item) {
     return (
-      <ItemMain onPressItem={() => this.props.onPressItem(item)} />
+      <ItemMain item={item} onPressItem={() => this.props.onPressItem(item)} />
     )
   }
 
   render () {
     return (
-      <FlatList horizontal
+      this.props.items && <FlatList horizontal
         showsHorizontalScrollIndicator={false}
         style={styles.flatList}
-        data={[{key: 'a', section: 'Viễn tưởng'}, {key: 'b', section: 'Khoa học'}]}
+        data={this.props.items}
+        keyExtractor={(item) => item.id}
         renderItem={({item}) => this.renderItem(item)}
       />
     )

@@ -14,7 +14,7 @@ export default class ItemMain extends Component {
     this.props.onPressItem(item)
   }
   render () {
-    const item = {c: 'A'}
+    const { item } = this.props
     return (
       <TouchableOpacity
         activeOpacity={0.8}
@@ -31,12 +31,13 @@ export default class ItemMain extends Component {
             <Image
               resizeMode='stretch'
               style={styles.image}
-              source={require('../Images/cogai.png')}
+              onError={() => console.log('err')}
+              source={{uri: item.cover}}
             />
             <View style={styles.viewText}>
               <Text
                 style={styles.title}
-              >Chắc ai đó sẽ về</Text>
+              >{item.name}</Text>
               <CountBook />
             </View>
           </Card>
