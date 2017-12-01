@@ -68,7 +68,7 @@ export default class BookContent extends Component {
           <View style={[styles.buttonSubBlock, {marginRight: 6}]}>
             <Button bordered small
               onPress={() => {
-                navigation.navigate('ListBookSellerScreen', {navigation: this.props.navigation})
+                navigation.navigate('ListBookSellerScreen', {bookId: item.id})
               }}
               style={styles.buttonSub}>
               <View style={styles.icon}>

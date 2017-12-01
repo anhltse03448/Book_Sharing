@@ -3,6 +3,7 @@ import { FlatList, View } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
+import ListSellerBookActions from '../Redux/ListSellerBookRedux'
 
 // Styles
 import {
@@ -13,9 +14,15 @@ import styles from './Styles/ListBookSellerScreenStyle'
 import SellerCell from '../Components/SellerCell'
 import Navigation from '../Components/Navigation'
 class ListBookSellerScreen extends Component {
+  componentWillMount () {
+    this.props.fetchListSellerBook(this.props.navigation.state.params.bookId)
+  }
+
   renderItem (item) {
     return (
-      <SellerCell onPress={() => this.props.navigation.navigate('UserSharedInfoScreen')}
+      <SellerCell
+        item={item}
+        onPress={() => this.props.navigation.navigate('UserSharedInfoScreen')}
         onPressMessage={this.onPressMessage.bind(this)} />
     )
   }
@@ -24,6 +31,7 @@ class ListBookSellerScreen extends Component {
     this.props.navigation.navigate('ChatScreen')
     console.log('User:  ', user)
   }
+
   render () {
     return (
       <Container>
@@ -32,7 +40,8 @@ class ListBookSellerScreen extends Component {
         <Content>
           <View style={styles.container}>
             <FlatList
-              data={[{key: 'a', section: 'Viễn tưởng'}, {key: 'b', section: 'Khoa học'}]}
+              data={this.props.payload}
+              keyExtractor={(item) => item.id}
               renderItem={({item}) => this.renderItem(item)}
             />
           </View>
@@ -43,12 +52,16 @@ class ListBookSellerScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
+  const { payload } = state.listSellerBook
   return {
+    payload
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    fetchListSellerBook: (bookId) =>
+      dispatch(ListSellerBookActions.listSellerBookRequest(bookId))
   }
 }
 

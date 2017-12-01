@@ -8,7 +8,8 @@ export const reducers = combineReducers({
   listBook: require('./ListBookRedux').reducer,
   book: require('./BookRedux').reducer,
   auth: require('./AuthRedux').reducer,
-  listFavoviteBook: require('./ListBookFavoriteRedux').reducer
+  listFavoviteBook: require('./ListBookFavoriteRedux').reducer,
+  listSellerBook: require('./ListSellerBookRedux').reducer
 })
 
 export default () => {

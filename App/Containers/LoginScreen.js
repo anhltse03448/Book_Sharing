@@ -45,6 +45,7 @@ class LoginScreen extends Component {
       if (err) {
         console.log(err)
       } else {
+        console.log(JSON.parse(res))
         this.setState({isLogged: true})
       }
     })
