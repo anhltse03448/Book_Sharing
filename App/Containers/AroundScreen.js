@@ -15,8 +15,12 @@ import AroundCell from '../Components/AroundCell'
 class AroundScreen extends Component {
   renderItem (item) {
     return (
-      <AroundCell />
+      <AroundCell onPress={this.onPress.bind(this)} />
     )
+  }
+  onPress (user) {
+    console.log('User: ', user)
+    this.props.navigation.navigate('UserSharedInfoScreen')
   }
   render () {
     return (

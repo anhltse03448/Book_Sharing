@@ -97,7 +97,7 @@ class SearchScreen extends Component {
           <List style={styles.searchOptionContainer}>
             <ListItem
               onPress={() => {
-                navigation.navigate('AroundScreen')
+                navigation.navigate('AroundScreen', {navigation: this.props.navigation})
               }}
             >
               <Icon
