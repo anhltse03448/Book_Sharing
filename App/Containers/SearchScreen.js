@@ -3,6 +3,7 @@ import { Text, FlatList, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
+import ListBookActions from '../Redux/ListBookRedux'
 
 // Styles
 import styles from './Styles/SearchScreenStyle'
@@ -18,6 +19,7 @@ import {
 } from 'native-base'
 import Trend from '../Components/Trend'
 import SearchResult from '../Components/SearchResult'
+import Loading from '../Components/Loading'
 
 class SearchScreen extends Component {
   constructor (props) {
@@ -50,13 +52,14 @@ class SearchScreen extends Component {
   }
 
   handlePressKeyword = () => {
+    this.props.fetchBookList()
     this.setState({
       showResult: true
     })
   }
 
   onPressItemSearch (item) {
-    this.props.navigation.navigate('BookDetailScreen')
+    this.props.navigation.navigate('BookDetailScreen', {book: item})
   }
 
   render () {
@@ -132,7 +135,12 @@ class SearchScreen extends Component {
                 </ListItem>}
             />
           }
-          {this.state.showResult && <SearchResult onPressItemSearch={this.onPressItemSearch.bind(this)}/>}
+          {this.state.showResult &&
+            (this.props.payload
+              ? <SearchResult
+                items={this.props.payload}
+                onPressItemSearch={this.onPressItemSearch.bind(this)}
+                /> : <Loading />)}
         </Content>
       </Container>
     )
@@ -140,12 +148,15 @@ class SearchScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
+  const { payload } = state.listBook
   return {
+    payload
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    fetchBookList: () => dispatch(ListBookActions.listBookRequest())
   }
 }
 

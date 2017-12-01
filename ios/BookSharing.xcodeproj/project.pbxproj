@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		008FF30959A846D4911D1B0E /* libReactNativeConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B24821EC5447A0BBDB0543 /* libReactNativeConfig.a */; };
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
@@ -43,6 +42,7 @@
 		B0BB1D2CC1294BF888BFA599 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 76EBE178090A4466BFA4CE50 /* libBVLinearGradient.a */; };
 		B32BFD3C979242848B1F0808 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D3A052E56DE4FFEAA5AF920 /* EvilIcons.ttf */; };
 		E1425C201BB3443685CD91CC /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8DF65F3AF26A4165905222E6 /* SimpleLineIcons.ttf */; };
+		32628B8DC2CA463C9DBB5E32 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E6FD369A8F644C583C4B1A0 /* libRNImagePicker.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -375,6 +375,8 @@
 		D3D5D3D8CF5B488EBA0923FD /* libRCTCamera.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTCamera.a; sourceTree = "<group>"; };
 		ECE0168D58E441A69A3497C9 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/native-base/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		F57989C44CB24006B95EBE76 /* libRCTFBSDK.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTFBSDK.a; sourceTree = "<group>"; };
+		F3B130E22AFE44F48AF194F1 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; name = "RNImagePicker.xcodeproj"; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		6E6FD369A8F644C583C4B1A0 /* libRNImagePicker.a */ = {isa = PBXFileReference; name = "libRNImagePicker.a"; path = "libRNImagePicker.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -403,6 +405,7 @@
 				B0BB1D2CC1294BF888BFA599 /* libBVLinearGradient.a in Frameworks */,
 				76E5EDCB3F084D3DBE156585 /* libRCTCamera.a in Frameworks */,
 				94FDF14CE0F640F08B1462E1 /* libRCTFBSDK.a in Frameworks */,
+				32628B8DC2CA463C9DBB5E32 /* libRNImagePicker.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -615,6 +618,7 @@
 				77E62A119B72490B90E15142 /* BVLinearGradient.xcodeproj */,
 				1C06C19575BB4EE4885C5CFD /* RCTCamera.xcodeproj */,
 				1E31E81739BA43B08F70733A /* RCTFBSDK.xcodeproj */,
+				F3B130E22AFE44F48AF194F1 /* RNImagePicker.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1165,12 +1169,14 @@
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
+					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
 				);
 				INFOPLIST_FILE = BookSharing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/BookSharing\"",
 					"\"$(SRCROOT)/BookSharing\"",
 					"\"$(SRCROOT)/BookSharing\"",
 				);
@@ -1200,6 +1206,7 @@
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
+					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
 				);
 				INFOPLIST_FILE = BookSharing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1208,6 +1215,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/BookSharing\"",
 					"\"$(SRCROOT)/BookSharing\"",
 					"\"$(SRCROOT)/BookSharing\"",
 				);

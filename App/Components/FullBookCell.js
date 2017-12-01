@@ -22,16 +22,16 @@ export default class FullBookCell extends Component {
   // }
 
   render () {
-    let item = {key: 'a'}
+    const { item } = this.props
     return (
       <ListItem style={styles.container}
         onPress={() => this.props.onPressItemSearch(item)}>
         <Image
           style={styles.image}
-          source={require('../Images/cogai.png')}
+          source={{uri: item.cover}}
         />
         <Body style={styles.infoContainer}>
-          <Text style={styles.title}>Cô gái đến từ hôm qua</Text>
+          <Text style={styles.title}>{item.name}</Text>
           <Text style={styles.author}>Tác giả: Nguyễn Nhật Ánh</Text>
           <Text style={styles.published}>Xuất bản năm 1001</Text>
           <CountBook />
