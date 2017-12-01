@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
-import { View, Text, Image, FlatList, TouchableOpacity } from 'react-native'
+import { View, Text, Image, FlatList, TouchableOpacity, TouchableHighlight } from 'react-native'
 import {
   Button,
   Card,
@@ -47,14 +47,20 @@ export default class SellerCell extends Component {
       <View style={styles.card}>
         <Card>
           <CardItem>
-            <Left style={{flexGrow: 2}}>
-              <Thumbnail source={require('../Images/LoginBg.png')} />
-              <Body>
-                <Text style={styles.title}>Huy Trần</Text>
-                <Text style={styles.price}>Giá bán: 100k</Text>
-                <Text style={styles.address}>FPT University - 1km</Text>
-              </Body>
-            </Left>
+            <TouchableHighlight
+              activeOpacity={1}
+              underlayColor='#fff'
+              style={{flexGrow: 2}}
+              onPress={this.props.onPress}>
+              <Left>
+                <Thumbnail source={require('../Images/LoginBg.png')} />
+                <Body>
+                  <Text style={styles.title}>Huy Trần</Text>
+                  <Text style={styles.price}>Giá bán: 100k</Text>
+                  <Text style={styles.address}>FPT University - 1km</Text>
+                </Body>
+              </Left>
+            </TouchableHighlight>
             <Right>
               <TouchableOpacity onPress={this.handleShowMore}>
                 <Icon

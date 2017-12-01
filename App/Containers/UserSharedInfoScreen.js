@@ -4,17 +4,24 @@ import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 
+import {
+  Container,
+  Content
+} from 'native-base'
+
+import Navigation from '../Components/Navigation'
+
 // Styles
 import styles from './Styles/UserSharedInfoScreenStyle'
 
 class UserSharedInfoScreen extends Component {
   render () {
+    const { navigation } = this.props
     return (
-      <ScrollView style={styles.container}>
-        <KeyboardAvoidingView behavior='position'>
-          <Text>UserSharedInfoScreen</Text>
-        </KeyboardAvoidingView>
-      </ScrollView>
+      <Container>
+        <Navigation onPressBack={() => this.props.navigation.goBack()}
+          title='Huy Trần' />
+      </Container>
     )
   }
 }

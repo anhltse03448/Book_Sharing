@@ -15,7 +15,7 @@ import Navigation from '../Components/Navigation'
 class ListBookSellerScreen extends Component {
   renderItem (item) {
     return (
-      <SellerCell />
+      <SellerCell onPress={() => this.props.navigation.navigate('UserSharedInfoScreen')} />
     )
   }
   render () {
