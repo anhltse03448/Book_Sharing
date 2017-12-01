@@ -5,15 +5,15 @@ export default StyleSheet.create({
     flex: 1
   },
   content: {
+    flex: 1,
     fontSize: 15,
     fontWeight: '500',
     color: colors.textMainColor,
     borderBottomWidth: 1,
-    flexGrow: 5,
     borderBottomColor: colors.seperatorColor
   },
   seeMore: {
-    alignSelf: 'center',
+    alignSelf: 'flex-end',
     height: 30
   },
   textSeeMore: {

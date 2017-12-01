@@ -54,7 +54,7 @@ export default class BookContent extends Component {
             <Icon
               onPress={this.handleCheckBookmark}
               name={this.state.isCheckedBookmark ? 'ios-bookmark' : 'ios-bookmark-outline'}
-              style={{color: colors.mainColor, fontSize: 22}}
+              style={{color: colors.mainColor, fontSize: 25}}
               />
           </View>
         </View>

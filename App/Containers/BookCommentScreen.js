@@ -16,19 +16,23 @@ import styles from './Styles/BookCommentScreenStyle'
 import CommentCell from '../Components/CommentCell'
 
 class BookCommentScreen extends Component {
+  constructor (props) {
+    super(props)
+  }
   renderItem (item) {
     return (
       <CommentCell item={item} />
     )
   }
   render () {
+    const data = this.props.data
     return (
       <View
         style={{
           
         }}>
         <FlatList
-          data={[{key: 'a', section: 'Viễn tưởng'}, {key: 'b', section: 'Khoa học'}]}
+          data={data}
           renderItem={({item}) => this.renderItem(item)}
       />
       </View>
