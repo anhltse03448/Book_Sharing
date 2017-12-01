@@ -3,7 +3,7 @@ import { View, Text, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
-import ImagePicker from 'react-native-image-picker'
+// import ImagePicker from 'react-native-image-crop-picker'
 
 // Styles
 import {
@@ -50,31 +50,11 @@ class AddBookScreen extends Component {
   }
 
   handleImagePicker = () => {
-    var opts = {
-      title: 'Chọn ảnh',
-      storageOptions: {
-        skipBackup: true,
-        path: 'images'
-      }
-    }
-    ImagePicker.showImagePicker(opts, (response) => {
-      console.log('Response = ', response)
-
-      if (response.didCancel) {
-        console.log('User cancelled image picker')
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error)
-      } else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
-      } else {
-        let source = { uri: response.uri }
-
-        // You can also display the image using data:
-        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-
-        console.log(source)
-      }
-    })
+    // ImagePicker.openPicker({
+    //   multiple: true
+    // }).then(images => {
+    //   console.log(images)
+    // })
   }
 
   render () {
@@ -146,11 +126,14 @@ class AddBookScreen extends Component {
               />
             </ListItem>
             <View style={{padding: 16}}>
-              <Button style={{
-                width: 50,
-                height: 50,
-                borderRadius: 0
-              }} bordered>
+              <Button
+                onPress={this.handleImagePicker}
+                style={{
+                  width: 50,
+                  height: 50,
+                  borderRadius: 0
+                }}
+                bordered>
                 <Icon name='ios-add-outline' />
               </Button>
             </View>
