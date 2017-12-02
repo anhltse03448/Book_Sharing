@@ -26,6 +26,7 @@ const {
 } = FBSDK
 import LinearGradient from 'react-native-linear-gradient'
 import styles from './Styles/LoginScreenStyle'
+import MainScreen from './MainScreen'
 
 class LoginScreen extends Component {
   constructor (props) {
@@ -33,24 +34,10 @@ class LoginScreen extends Component {
 
     this.state = {
       accessToken: '',
-      loggingIn: false,
-      isLogged: false
+      loggingIn: false
     }
 
     this.signInWithFacebook = this.signInWithFacebook.bind(this)
-  }
-
-  componentDidMount () {
-    AsyncStorage.getItem('@BookSharing:user')
-      .then((res) => {
-        if (res) {
-          this.setState({isLogged: true})
-        } else {
-          this.setState({isLogged: false})
-        }
-        console.log(JSON.parse(res))
-      })
-      .catch((error) => console.log(error))
   }
 
   signInWithFacebook = () => {
@@ -89,10 +76,7 @@ class LoginScreen extends Component {
       } catch (error) {
         console.log(error)
       }
-      this.props.navigate('MainScreen')
-    }
-    if (this.state.isLogged) {
-      setTimeout(() => this.props.navigate('MainScreen'), 1000)
+      return this.props.navigate('MainScreen')
     }
     return (
       <Container>
@@ -117,7 +101,7 @@ class LoginScreen extends Component {
             }}
             source={require('../Images/Icons/Icon.png')}
           />
-          {this.state.loggingIn || this.state.isLogged
+          {this.state.loggingIn
             ? <Loading style={{padding: 0, backgroundColor: 'transparent'}} />
             : <LinearGradient colors={['#5074af', '#415887']}
               style={styles.buttonLinearGradient}>

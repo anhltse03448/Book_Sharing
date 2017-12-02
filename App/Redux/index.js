@@ -14,7 +14,8 @@ export const reducers = combineReducers({
   listSellerBook: require('./ListSellerBookRedux').reducer,
   listCommentBook: require('./ListCommentBookRedux').reducer,
   addComment: require('./AddCommentRedux').reducer,
-  user: require('./UserRedux').reducer
+  user: require('./UserRedux').reducer,
+  listTag: require('./ListTagRedux').reducer
 })
 
 export default () => {

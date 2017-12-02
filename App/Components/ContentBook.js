@@ -25,7 +25,7 @@ export default class ContentBook extends Component {
   }
 
   render () {
-    const content = 'Đắc Nhân Tâm cụ thể và chi tiết với những chỉ dẫn để dẫn đạo người, để gây thiện cảm và dẫn dắt người khác,... những hướng dẫn ấy, qua thời gian'
+    const { content } = this.props
     let contentShow = content
     if (content.length >= 100 && this.state.isShow) {
       contentShow = content.substring(0, 100) + '...'

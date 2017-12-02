@@ -99,7 +99,7 @@ class BookDetailScreen extends Component {
               navigation={navigation}
               item={item}
               onAddBookPress={this.onAddBookPress} />
-            <ContentBook />
+            <ContentBook content={item.description} />
             <CommentDetail bookId={item.id} onSendComment={this.onSendComment} />
             {
               (listCommentBook)

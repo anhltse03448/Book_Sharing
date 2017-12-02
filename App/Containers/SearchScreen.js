@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 import ListBookActions from '../Redux/ListBookRedux'
+import ListTagActions from '../Redux/ListTagRedux'
 
 // Styles
 import styles from './Styles/SearchScreenStyle'
@@ -29,6 +30,10 @@ class SearchScreen extends Component {
       searchText: '',
       showResult: false
     }
+  }
+
+  componentWillMount () {
+    this.props.fetchListTag()
   }
 
   handleSearch = (text) => {
@@ -149,14 +154,17 @@ class SearchScreen extends Component {
 
 const mapStateToProps = (state) => {
   const { payload } = state.listBook
+  const listTag = state.listTag.payload
   return {
-    payload
+    payload,
+    listTag
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchBookList: () => dispatch(ListBookActions.listBookRequest())
+    fetchBookList: () => dispatch(ListBookActions.listBookRequest()),
+    fetchListTag: () => dispatch(ListTagActions.listTagRequest())
   }
 }
 
