@@ -76,7 +76,7 @@ class LoginScreen extends Component {
       } catch (error) {
         console.log(error)
       }
-      return this.props.navigate('MainScreen')
+      this.props.navigate('MainScreen')
     }
     return (
       <Container>
