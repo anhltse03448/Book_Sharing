@@ -45,6 +45,12 @@ const create = (baseURL = 'https://sheltered-ridge-83772.herokuapp.com') => {
     headers: {'Authorization': 'Bearer ' + token}
   })
 
+  const addSeller = ({token, bookid, price, content, photos}) => api.post('/posts', {
+    bookid, content, price, photos
+  }, {
+    headers: {'Authorization': 'Bearer ' + token}
+  })
+
   const getListCommentOfABook = (bookId) => api.get('/comments/' + bookId)
 
   const addComment = ({token, bookId, content}) => api.post('/comments', {
@@ -110,7 +116,8 @@ const create = (baseURL = 'https://sheltered-ridge-83772.herokuapp.com') => {
     searchByQuery,
     searchByTag,
     getBookByISBN,
-    getListBookSoldByUser
+    getListBookSoldByUser,
+    addSeller
   }
 }
 
