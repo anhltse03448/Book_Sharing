@@ -24,6 +24,8 @@ export default class BookSubscribedItem extends Component {
   }
 
   render () {
+    const { item } = this.props
+    console.log(item)
     const featureImageData = [
       {key: 'a'}, {key: 'b'}, {key: 'c'}, {key: 'd'}, {key: 'e'}
     ]

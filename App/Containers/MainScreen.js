@@ -69,7 +69,6 @@ class MainScreen extends Component {
     }
   }  
   render () {
-    console.log(this.props.navigation)
     let content = this.getContent(this.state.selectedTab)
     return (
       <Container>

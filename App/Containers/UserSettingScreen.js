@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import {
-  View,
-  Image,
-  Text as RNText,
-  TouchableHighlight
+  AsyncStorage
 } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
@@ -22,7 +19,17 @@ import UserInfo from '../Components/UserInfo'
 import ListItem from '../Components/ListItem'
 import HeaderDefault from '../Components/HeaderDefault'
 import colors from '../Themes/Colors'
+
 class UserSettingScreen extends Component {
+  // constructor (props) {
+  //   super(props)
+  // }
+
+  handleLogout = async () => {
+    await AsyncStorage.removeItem('@BookSharing:user')
+    await AsyncStorage.removeItem('@BookSharing:token')
+  }
+
   render () {
     const { navigation } = this.props
     return (
@@ -89,6 +96,7 @@ class UserSettingScreen extends Component {
               hasSubPage
             />
             <ListItem
+              onPress={this.handleLogout}
               ios='ios-log-out-outline'
               android='md-log-out'
               text='Thoát tài khoản'

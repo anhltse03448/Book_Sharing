@@ -13,17 +13,17 @@
 import { call, put } from 'redux-saga/effects'
 import ListBookFavoriteActions from '../Redux/ListBookFavoriteRedux'
 
-export function * getListBokFavorite (api, action) {
+export function * getListBookFavorite (api, action) {
   const { data } = action
   // make the call to the api
-  const response = yield call(api.getFavoriteBook, data)
-  console.log(response)
+  const response = yield call(api.getListBookFavorite, data)
+
   // success?
   if (response.ok) {
     // You might need to change the response here - do this with a 'transform',
     // located in ../Transforms/. Otherwise, just pass the data back from the api.
-    yield put(ListBookFavoriteActions.listBokFavoriteSuccess(response.data))
+    yield put(ListBookFavoriteActions.listBookFavoriteSuccess(response.data))
   } else {
-    yield put(ListBookFavoriteActions.listBokFavoriteFailure())
+    yield put(ListBookFavoriteActions.listBookFavoriteFailure())
   }
 }
