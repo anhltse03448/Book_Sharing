@@ -19,7 +19,9 @@ export default StyleSheet.create({
   },
   searchOptionContainer: {
     position: 'absolute',
-    top: 0
+    top: 0,
+    left: 0,
+    right: 0
   },
   searchResultOverlay: {
     flex: 1
