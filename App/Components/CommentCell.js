@@ -18,10 +18,11 @@ export default class CommentCell extends Component {
   // }
 
   render () {
+    const { item } = this.props
     return (
       <ListItem style={styles.container}>
         <Image
-          source={require('../Images/LoginBg.png')}
+          source={{uri: item.avatar}}
           style={styles.image}
         />
         <View style={styles.commentView}>
@@ -30,10 +31,10 @@ export default class CommentCell extends Component {
               paddingLeft: 8,
               flex: 1
             }}>
-            <Text style={styles.userName}>Mai</Text>
-            <Text style={styles.comment}>Sách hay</Text>
+            <Text style={styles.userName}>{item.username}</Text>
+            <Text style={styles.comment}>{item.content}</Text>
           </View>
-          <Text style={styles.time}>04/04/2017</Text>
+          <Text style={styles.time}>{new Date(item.timestamp).toLocaleString()}</Text>
         </View>
       </ListItem>
     )

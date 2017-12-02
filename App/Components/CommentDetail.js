@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
-import { View, Image } from 'react-native'
+import { View, Image, AsyncStorage } from 'react-native'
 import styles from './Styles/CommentDetailStyle'
 import {
   ListItem,
@@ -16,18 +16,30 @@ export default class CommentDetail extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      comment: ''
+      comment: '',
+      user: null
     }
   }
+
+  componentWillMount () {
+    AsyncStorage.getItem('@BookSharing:user')
+    .then((res) => {
+      this.setState({
+        user: JSON.parse(res)
+      })
+    })
+    .catch((error) => console.log(error))
+  }
+
   render () {
     return (
       <View
         style={styles.container}
       >
-        <Image
-          source={require('../Images/LoginBg.png')}
+        {this.state.user && <Image
+          source={{uri: this.state.user.avatar}}
           style={styles.image}
-        />
+        />}
         <Text
           style={styles.nhanxet}
         >Nhận xét</Text>
@@ -39,9 +51,8 @@ export default class CommentDetail extends Component {
         />
         <Button transparent
           onPress={() => {
-            console.log('Finish')
             let comment = this.state.comment
-            this.props.onSendComment(comment)
+            this.props.onSendComment(this.props.bookId, comment)
             this.setState({
               comment: ''
             })

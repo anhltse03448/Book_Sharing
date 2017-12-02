@@ -11,6 +11,8 @@ import { ListSellerBookTypes } from '../Redux/ListSellerBookRedux'
 import { ListCommentBookTypes } from '../Redux/ListCommentBookRedux'
 import { AddFavoriteBookTypes } from '../Redux/AddFavoriteBookRedux'
 import { DeleteFavoriteBookTypes } from '../Redux/DeleteFavoriteBookRedux'
+import { UserTypes } from '../Redux/UserRedux'
+import { AddCommentTypes } from '../Redux/AddCommentRedux'
 
 /* ------------- Sagas ------------ */
 
@@ -22,6 +24,8 @@ import { getListSellerBook } from './ListSellerBookSagas'
 import { getListCommentBook } from './ListCommentBookSagas'
 import { addFavoriteBook } from './AddFavoriteBookSagas'
 import { deleteFavoriteBook } from './DeleteFavoriteBookSagas'
+import { getUser } from './UserSagas'
+import { addComment } from './AddCommentSagas'
 
 /* ------------- API ------------- */
 
@@ -47,6 +51,10 @@ export default function * root () {
 
     takeEvery(ListSellerBookTypes.LIST_SELLER_BOOK_REQUEST, getListSellerBook, api),
 
-    takeEvery(ListCommentBookTypes.LIST_COMMENT_BOOK_REQUEST, getListCommentBook, api)
+    takeEvery(ListCommentBookTypes.LIST_COMMENT_BOOK_REQUEST, getListCommentBook, api),
+    
+    takeLatest(AddCommentTypes.ADD_COMMENT_REQUEST, addComment, api),
+
+    takeLatest(UserTypes.USER_REQUEST, getUser, api)
   ])
 }

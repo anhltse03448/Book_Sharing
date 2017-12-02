@@ -12,7 +12,9 @@ export const reducers = combineReducers({
   addFavoriteBook: require('./AddFavoriteBookRedux').reducer,
   deleteFavoriteBook: require('./DeleteFavoriteBookRedux').reducer,
   listSellerBook: require('./ListSellerBookRedux').reducer,
-  listCommentBook: require('./ListCommentBookRedux').reducer
+  listCommentBook: require('./ListCommentBookRedux').reducer,
+  addComment: require('./AddCommentRedux').reducer,
+  user: require('./UserRedux').reducer
 })
 
 export default () => {

@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
 import {
-  AsyncStorage
+  AsyncStorage,
+  Text,
+  View
 } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 import AddFavoriteBookActions from '../Redux/AddFavoriteBookRedux'
+import AddCommentActions from '../Redux/AddCommentRedux'
 import DeleteFavoriteBookActions from '../Redux/DeleteFavoriteBookRedux'
 import ListBookFavoriteActions from '../Redux/ListBookFavoriteRedux'
+import ListCommentBookActions from '../Redux/ListCommentBookRedux'
 
 // Styles
 import {
@@ -42,24 +46,29 @@ class BookDetailScreen extends Component {
     .catch((error) => console.log(error))
   }
   componentDidMount () {
+    this.props.fetchListCommentBook(
+      this.props.navigation.state.params.book.id)
     // this.props.fetchBook(this.props.navigation.state.params.bookId)
   }
 
   onAddBookPress (item) {
-    console.log('Add Book Press')
     this.props.navigation.navigate('AddBookScreen', {item: item})
   }
 
-  onSendPress (value) {
-    console.log('Value:  ', value)
-  }
-  onSendComment (comment) {
-    console.log('Comment:  ', comment)
-    // let data = this.state.dataComment
-    // data.shift()
-    // this.setState({
-    //   dataComment: data.concat([{key: 'a'}])
-    // })
+  onSendComment = (bookId, content) => {
+    AsyncStorage.getItem('@BookSharing:token')
+    .then((res) => {
+      if (content !== null && content !== '') {
+        this.props.addComment({
+          token: res,
+          bookId,
+          content
+        })
+        this.props.fetchListCommentBook(
+          this.props.navigation.state.params.book.id)
+      }
+    })
+    .catch((error) => console.log(error))
   }
 
   onPressFavorite = (checked, bookId) => {
@@ -75,8 +84,9 @@ class BookDetailScreen extends Component {
   }
 
   render () {
-    const { navigation } = this.props
+    const { navigation, listCommentBook } = this.props
     const item = navigation.state.params.book
+    console.log(listCommentBook)
     return (
       <Container>
         <Navigation onPressBack={() => navigation.goBack()}
@@ -90,9 +100,23 @@ class BookDetailScreen extends Component {
               item={item}
               onAddBookPress={this.onAddBookPress} />
             <ContentBook />
-            <CommentDetail onSendComment={this.onSendComment.bind(this)} />
-            <BookCommentScreen bookId={item.id} />
-            {/* <ListMain items={[]} /> */}
+            <CommentDetail bookId={item.id} onSendComment={this.onSendComment} />
+            {
+              (listCommentBook)
+                ? (
+                    (listCommentBook.length > 0)
+                      ? <BookCommentScreen listCommentBook={listCommentBook} />
+                      : <View style={{
+                        flex: 1,
+                        backgroundColor: '#fff',
+                        alignItems: 'center',
+                        paddingBottom: 24
+                      }}>
+                        <Text>Hãy là người đầu tiên comment</Text>
+                      </View>
+                  )
+                : <Loading />
+            }
           </Content> : <Loading />}
       </Container>
     )
@@ -101,8 +125,10 @@ class BookDetailScreen extends Component {
 
 const mapStateToProps = (state) => {
   const { payload } = state.listBookFavovite
+  const listCommentBook = state.listCommentBook.payload
   return {
-    payload
+    payload,
+    listCommentBook
   }
 }
 
@@ -110,10 +136,14 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addFavoriteBook: ({token, bookId}) =>
       dispatch(AddFavoriteBookActions.addFavoriteBookRequest({token, bookId})),
+    addComment: ({token, bookId, content}) =>
+      dispatch(AddCommentActions.addCommentRequest({token, bookId, content})),
     deleteFavoriteBook: ({token, bookId}) =>
       dispatch(DeleteFavoriteBookActions.deleteFavoriteBookRequest({token, bookId})),
     fetchListBookFavorite: (token) =>
-      dispatch(ListBookFavoriteActions.listBookFavoriteRequest(token))
+      dispatch(ListBookFavoriteActions.listBookFavoriteRequest(token)),
+    fetchListCommentBook: (bookId) =>
+      dispatch(ListCommentBookActions.listCommentBookRequest(bookId))
   }
 }
 
