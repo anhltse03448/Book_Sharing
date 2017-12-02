@@ -35,8 +35,7 @@ class ListBookSellerScreen extends Component {
   }
 
   onPressMessage (user) {
-    this.props.navigation.navigate('ChatScreen')
-    console.log('User:  ', user)
+    this.props.navigation.navigate('ChatScreen', {user: user})
   }
 
   render () {
