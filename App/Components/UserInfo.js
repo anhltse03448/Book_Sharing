@@ -25,18 +25,17 @@ export default class UserInfo extends Component {
   }
 
   render () {
-    console.log('User:  ', this.state.user)
-    const avatar = this.state.user ? this.state.user.avatar : ''
+    const { user } = this.props
     return (
       <TouchableHighlight onPress={this.props.onPress}>
         <View style={styles.container}>
           <Image
             style={styles.imageContainer}
-            source={{uri: avatar}}
+            source={{uri: user.avatar}}
           />
           <View style={styles.info}>
-            <Text style={styles.infoPrimary}>Xin chào , Tuấn Anh Lê</Text>
-            <Text style={styles.infoSecondary}>anhltse.fpt@gmail.com</Text>
+            <Text style={styles.infoPrimary}>Xin chào , {user.username}</Text>
+            <Text style={styles.infoSecondary}>{user.email}</Text>
           </View>
           <View style={styles.forward}>
             <Icon ios='ios-arrow-forward-outline' android='md-arrow-forward' />

@@ -16,6 +16,7 @@ import { AddCommentTypes } from '../Redux/AddCommentRedux'
 import { ListTagTypes } from '../Redux/ListTagRedux'
 import { SearchTypes } from '../Redux/SearchRedux'
 import { IsbnTypes } from '../Redux/IsbnRedux'
+import { AddSellerTypes } from '../Redux/AddSellerRedux'
 
 /* ------------- Sagas ------------ */
 
@@ -32,6 +33,7 @@ import { addComment } from './AddCommentSagas'
 import { getListTag } from './ListTagSagas'
 import { searchByTag } from './SearchSagas'
 import { getBookByISBN } from './IsbnSagas'
+import { addSeller } from './AddSellerSagas'
 
 /* ------------- API ------------- */
 
@@ -69,6 +71,8 @@ export default function * root () {
 
     takeEvery(SearchTypes.SEARCH_REQUEST, searchByTag, api),
 
-    takeLatest(IsbnTypes.ISBN_REQUEST, getBookByISBN, api)
+    takeLatest(IsbnTypes.ISBN_REQUEST, getBookByISBN, api),
+
+    takeLatest(AddSellerTypes.ADD_SELLER_REQUEST, addSeller, api)
   ])
 }

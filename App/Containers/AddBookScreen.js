@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList, Image } from 'react-native'
+import { View, Text, FlatList, Image, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
+import AddSellerActions from '../Redux/AddSellerRedux'
 import ImagePicker from 'react-native-image-crop-picker'
 
 // Styles
@@ -32,8 +33,26 @@ class AddBookScreen extends Component {
       selected2: undefined,
       starCount: 0,
       images: null,
-      isChoosingImage: false
+      isChoosingImage: false,
+      price: null,
+      note: null,
+      submitted: false
     }
+  }
+
+  handleOnSubmit = () => {
+    AsyncStorage.getItem('@BookSharing:token')
+    .then((res) => {
+      this.props.addSeller({
+        token: res,
+        bookid: this.props.navigation.state.params.item.id,
+        price: this.state.price,
+        content: this.state.note,
+        photos: []
+      })
+      this.setState({ submitted: true })
+    })
+    .catch((error) => console.log(error))
   }
 
   onValueChange2 (value) {
@@ -112,73 +131,93 @@ class AddBookScreen extends Component {
         }}>
         <Navigation onPressBack={() => this.props.navigation.goBack()}
           title={item.name} />
-        <Content>
-          <BookInfoAdd item={item} />
-          <Form>
-            <ListItem
-              style={[styles.listItem, {
-                alignItems: 'center'
-              }]}>
-              <Text>Tình trạng</Text>
-              <View
-                style={{
-                  marginLeft: 12,
-                  flexDirection: 'row'
-                }}
-              >
-                {starView}
-              </View>
-            </ListItem>
-            <Item floatingLabel>
-              <Label>Giá bán</Label>
-              <Input />
-            </Item>
-            <Item regular>
-              <Label>Ghi chú</Label>
-              <Input style={{maxHeight: 70}} multiline />
-            </Item>
-            <View style={{flex: 1, padding: 12}}>
-              <Button onPress={this.handleImagePicker}
-                iconLeft bordered transparent>
-                <Icon name='ios-camera-outline' />
-                <NBText>Lựa chọn ảnh</NBText>
-              </Button>
-            </View>
-            <View style={{
-              flex: 3,
-              flexDirection: 'row',
-              padding: 16
-            }}>
-              {this.state.isChoosingImage && (
-                this.state.images ? <FlatList horizontal
-                  showsHorizontalScrollIndicator={false}
-                  data={this.state.images}
-                  keyExtractor={(item) => item.filename}
-                  renderItem={({item}) => this.renderItem(item)} />
-                : <Loading />)
-              }
-            </View>
-            <Button
-              disabled={this.state.images === null}
-              style={styles.doneButton}>
-              <Text
-                style={styles.done}
-              >Xong</Text>
-            </Button>
-          </Form>
-        </Content>
+        {(this.state.submitted &&
+          this.props.addSellerState)
+            ? <Loading style={{flex: 1, flexDirection: 'row'}} />
+            : <Content>
+              <BookInfoAdd item={item} />
+              <Form>
+                <ListItem
+                  style={[styles.listItem, {
+                    alignItems: 'center'
+                  }]}>
+                  <Text>Tình trạng</Text>
+                  <View
+                    style={{
+                      marginLeft: 12,
+                      flexDirection: 'row'
+                    }}
+                  >
+                    {starView}
+                  </View>
+                </ListItem>
+                <Item inlineLabel>
+                  <Label>Giá bán</Label>
+                  <Input
+                    onChangeText={(text) => this.setState({price: text})}
+                    keyboardType='numeric' />
+                </Item>
+                <Item inlineLabel>
+                  <Label>Ghi chú</Label>
+                  <Input
+                    onChangeText={(text) => this.setState({note: text})}
+                    style={{
+                      maxHeight: 100,
+                      minHeight: 100
+                    }} multiline numberOfLines={5} />
+                </Item>
+                <View style={{flex: 1, padding: 12}}>
+                  <Button onPress={this.handleImagePicker}
+                    iconLeft bordered transparent>
+                    <Icon name='ios-camera-outline' />
+                    <NBText>Lựa chọn ảnh</NBText>
+                  </Button>
+                </View>
+                <View style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  padding: 16
+                }}>
+                  {this.state.isChoosingImage && (
+                    this.state.images ? <FlatList horizontal
+                      showsHorizontalScrollIndicator={false}
+                      data={this.state.images}
+                      keyExtractor={(item) => item.filename}
+                      renderItem={({item}) => this.renderItem(item)} />
+                    : <Loading />)
+                  }
+                </View>
+                <Button
+                  onPress={this.handleOnSubmit}
+                  disabled={
+                    this.state.images === null ||
+                      this.state.price === null ||
+                        this.state.note === null
+                  }
+                  style={styles.doneButton}>
+                  <Text
+                    style={styles.done}
+                  >Xong</Text>
+                </Button>
+              </Form>
+            </Content>
+        }
       </Container>
     )
   }
 }
 
 const mapStateToProps = (state) => {
+  const addSellerState = state.addSeller.payload
   return {
+    addSellerState
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    addSeller: ({token, bookid, price, content, photos}) =>
+      dispatch(AddSellerActions.addSellerRequest({token, bookid, price, content, photos}))
   }
 }
 

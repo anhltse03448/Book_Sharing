@@ -53,6 +53,7 @@ class UserSharedInfoScreen extends Component {
 
   render () {
     const { user, listBook, navigation } = this.props
+    console.tron.log(user)
     return (
       user ? <Container style={styles.container}>
         <Navigation onPressBack={() => this.props.navigation.goBack()}
@@ -90,7 +91,7 @@ class UserSharedInfoScreen extends Component {
               </Text>
               <Text style={{marginBottom: 4, fontSize: 14, color: '#666'}}>
                 <Icon name='ios-compass-outline' style={{fontSize: 14, color: '#666'}} />
-                &nbsp;&nbsp;FPT University, Hanoi
+                &nbsp;&nbsp;{user.location}
               </Text>
             </View>
           </View>
