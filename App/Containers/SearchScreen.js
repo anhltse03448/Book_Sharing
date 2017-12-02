@@ -78,9 +78,8 @@ class SearchScreen extends Component {
   }
 
   render () {
-    const { navigation, listBook } = this.props
+    const { navigation } = this.props
     const { listTag } = this.state
-    console.log(listBook)
     return (
       <Container>
         <Header searchBar rounded>
@@ -126,7 +125,9 @@ class SearchScreen extends Component {
                     style={styles.text}
                   >Xu hướng tìm kiếm</Text>
                 </ListItem>
-                <Trend />
+                <Trend
+                  onItemPress={this.handlePressKeyword}
+                  items={this.props.listTag} />
               </List>
           }
           {this.state.isSearching && !this.state.showResult &&
