@@ -21,9 +21,21 @@ import HeaderDefault from '../Components/HeaderDefault'
 import colors from '../Themes/Colors'
 
 class UserSettingScreen extends Component {
-  // constructor (props) {
-  //   super(props)
-  // }
+  constructor (props) {
+    super(props)
+    this.state = {
+      user: null
+    }
+  }
+  componentWillMount () {
+    AsyncStorage.getItem('@BookSharing:user')
+    .then((res) => {
+      if (res) {
+        this.setState({user: JSON.parse(res)})
+      }
+    })
+    .catch((error) => console.log(error))
+  }
 
   handleLogout = async () => {
     await AsyncStorage.removeItem('@BookSharing:user')
@@ -32,11 +44,14 @@ class UserSettingScreen extends Component {
 
   render () {
     const { navigation } = this.props
+    const { user } = this.state
     return (
       <Container>
         <HeaderDefault title='Cá nhân' />
         <Content>
-          <UserInfo onPress={() => navigation.navigate('UserProfileScreen')} />
+          {user &&
+            <UserInfo user={user} onPress={() => navigation.navigate('UserProfileScreen')} />
+          }
           <List style={styles.listWrapper}>
             <ListItem
               style={{
