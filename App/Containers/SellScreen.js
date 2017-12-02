@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 // import YourActions from '../Redux/YourRedux'
 import IsbnActions from '../Redux/IsbnRedux'
 import { NavigationActions } from 'react-navigation'
-
+import Loading from '../Components/Loading'
 // Styles
 import {
   Container,
@@ -21,6 +21,7 @@ class SellScreen extends Component {
     this.state = {
       isFinding: true
     }
+    this.isDoneDetect = false
   }
 
   takePicture () {
@@ -36,8 +37,12 @@ class SellScreen extends Component {
   // }
 
   handleBarCodeRead = (barcode) => {
-    this.setState({isFinding: false})
-    this.props.fetchBookByISBN(barcode.data)
+    //this.setState({isFinding: false})
+    this.isDoneDetect = true
+    if (this.isDoneDetect) {
+      this.props.fetchBookByISBN(barcode.data)
+      this.isDoneDetect = false
+    }
   }
 
   render () {
@@ -61,7 +66,7 @@ class SellScreen extends Component {
         <Content contentContainerStyle={{
           flex: 1
         }}>
-          {this.state.isFinding ? camera : null}
+          {this.state.isFinding ? camera : <Loading />}
         </Content>
       </Container>
     )

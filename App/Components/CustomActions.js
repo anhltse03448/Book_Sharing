@@ -28,15 +28,15 @@ export default class CustomActions extends Component {
   }
 
   setImages(images) {
-    this._images = images;
+    this._images = images
   }
 
   getImages() {
-    return this._images;
+    return this._images
   }
 
   setModalVisible(visible = false) {
-    this.setState({modalVisible: visible});
+    this.setState({modalVisible: visible})
   }
 
   onActionsPress() {
