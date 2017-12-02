@@ -19,6 +19,7 @@ export default class BookContent extends Component {
   }
 
   handleCheckBookmark = () => {
+    this.props.onPressFavorite()
     this.setState({isCheckedBookmark: !this.state.isCheckedBookmark})
   }
 
