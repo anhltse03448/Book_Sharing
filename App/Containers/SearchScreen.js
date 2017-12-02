@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 // import YourActions from '../Redux/YourRedux'
 import ListBookActions from '../Redux/ListBookRedux'
 import ListTagActions from '../Redux/ListTagRedux'
+import SearchActions from '../Redux/SearchRedux'
 
 // Styles
 import styles from './Styles/SearchScreenStyle'
@@ -26,6 +27,7 @@ class SearchScreen extends Component {
   constructor (props) {
     super(props)
     this.state = {
+      listTag: [],
       isSearching: false,
       searchText: '',
       showResult: false
@@ -40,7 +42,14 @@ class SearchScreen extends Component {
     if (text === '' || text === null) {
       this.handleCancelSearch()
     } else {
+      const listTag = this.props.listTag
+      let listTagFiltered = []
+      if (listTag) {
+        listTagFiltered = listTag.filter(
+          (tag) => tag.name.toLowerCase().search(text.toLowerCase()) !== -1)
+      }
       this.setState({
+        listTag: listTagFiltered,
         isSearching: true,
         showResult: false,
         searchText: text
@@ -56,8 +65,9 @@ class SearchScreen extends Component {
     })
   }
 
-  handlePressKeyword = () => {
-    this.props.fetchBookList()
+  handlePressKeyword = (keyword) => {
+    // this.props.fetchBookList()
+    this.props.search(keyword)
     this.setState({
       showResult: true
     })
@@ -68,29 +78,16 @@ class SearchScreen extends Component {
   }
 
   render () {
-    const { navigation } = this.props
-    const keywordData = [
-      {key: 1, name: 'harry potter'},
-      {key: 2, name: 'harry potter'},
-      {key: 3, name: 'harry potter'},
-      {key: 4, name: 'harry potter'},
-      {key: 5, name: 'harry potter'},
-      {key: 6, name: 'harry potter'},
-      {key: 7, name: 'harry potter'},
-      {key: 8, name: 'harry potter'},
-      {key: 9, name: 'harry potter'},
-      {key: 10, name: 'harry potter'},
-      {key: 11, name: 'harry potter'},
-      {key: 12, name: 'harry potter'},
-      {key: 13, name: 'harry potter'},
-      {key: 14, name: 'harry potter'}
-    ]
+    const { navigation, listBook } = this.props
+    const { listTag } = this.state
+    console.log(listBook)
     return (
       <Container>
         <Header searchBar rounded>
           <Item>
             <Icon name='ios-search' />
             <Input
+              autoCorrect={false}
               onChangeText={(text) => this.handleSearch(text)}
               value={this.state.searchText}
               placeholder='Search' />
@@ -102,48 +99,52 @@ class SearchScreen extends Component {
           </Item>
         </Header>
         <Content>
-          <List style={styles.searchOptionContainer}>
-            <ListItem
-              onPress={() => {
-                navigation.navigate('AroundScreen', {navigation: this.props.navigation})
-              }}
-            >
-              <Icon
-                style={styles.icon}
-                name='ios-navigate-outline'
-              />
-              <Text
-                style={styles.text}
-              >Tìm kiếm quanh đây</Text>
-            </ListItem>
-            <ListItem
-              style={styles.list}
-              onPress={() => {
-              }}>
-              <Icon
-                style={styles.icon}
-                name='ios-trending-up' />
-              <Text
-                style={styles.text}
-              >Xu hướng tìm kiếm</Text>
-            </ListItem>
-            <Trend />
-          </List>
+          {!this.state.isSearching &&
+            !this.state.showResult &&
+              <List style={styles.searchOptionContainer}>
+                <ListItem
+                  onPress={() => {
+                    navigation.navigate('AroundScreen', {navigation: this.props.navigation})
+                  }}
+                >
+                  <Icon
+                    style={styles.icon}
+                    name='ios-navigate-outline'
+                  />
+                  <Text
+                    style={styles.text}
+                  >Tìm kiếm quanh đây</Text>
+                </ListItem>
+                <ListItem
+                  style={styles.list}
+                  onPress={() => {
+                  }}>
+                  <Icon
+                    style={styles.icon}
+                    name='ios-trending-up' />
+                  <Text
+                    style={styles.text}
+                  >Xu hướng tìm kiếm</Text>
+                </ListItem>
+                <Trend />
+              </List>
+          }
           {this.state.isSearching && !this.state.showResult &&
             <FlatList
               style={styles.searchResultOverlay}
-              data={keywordData}
+              data={listTag}
+              keyExtractor={(item) => item.id}
               renderItem={({item}) =>
                 <ListItem
-                  onPress={this.handlePressKeyword}>
+                  onPress={() => this.handlePressKeyword(item.name)}>
                   <Text style={styles.searchResultText}>{item.name}</Text>
                 </ListItem>}
             />
           }
           {this.state.showResult &&
-            (this.props.payload
+            (this.props.listBook
               ? <SearchResult
-                items={this.props.payload}
+                items={this.props.listBook.books}
                 onPressItemSearch={this.onPressItemSearch.bind(this)}
                 /> : <Loading />)}
         </Content>
@@ -153,18 +154,18 @@ class SearchScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { payload } = state.listBook
   const listTag = state.listTag.payload
+  const listBook = state.search.payload
   return {
-    payload,
-    listTag
+    listTag,
+    listBook
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchBookList: () => dispatch(ListBookActions.listBookRequest()),
-    fetchListTag: () => dispatch(ListTagActions.listTagRequest())
+    fetchListTag: () => dispatch(ListTagActions.listTagRequest()),
+    search: (keyword) => dispatch(SearchActions.searchRequest(keyword))
   }
 }
 

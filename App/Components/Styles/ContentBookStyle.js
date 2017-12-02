@@ -6,6 +6,7 @@ export default StyleSheet.create({
   },
   content: {
     flex: 1,
+    textAlign: 'justify',
     fontSize: 15,
     fontWeight: '500',
     color: colors.textMainColor,

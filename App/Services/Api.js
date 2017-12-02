@@ -1,6 +1,5 @@
 // a library to wrap and simplify api calls
 import apisauce from 'apisauce'
-import { AsyncStorage } from 'react-native'
 
 // our "constructor"
 const create = (baseURL = 'https://sheltered-ridge-83772.herokuapp.com') => {
@@ -72,6 +71,10 @@ const create = (baseURL = 'https://sheltered-ridge-83772.herokuapp.com') => {
 
   const getListTag = () => api.get('/tags')
 
+  const searchByQuery = (keyword) => api.get('/search?q' + keyword)
+
+  const searchByTag = (keyword) => api.get('/tag-name/' + keyword)
+
   // ------
   // STEP 3
   // ------
@@ -97,7 +100,9 @@ const create = (baseURL = 'https://sheltered-ridge-83772.herokuapp.com') => {
     getListBookFavorite,
     addFavoriteBook,
     deleteFavoriteBook,
-    getListTag
+    getListTag,
+    searchByQuery,
+    searchByTag
   }
 }
 

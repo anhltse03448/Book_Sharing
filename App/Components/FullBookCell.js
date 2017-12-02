@@ -34,7 +34,7 @@ export default class FullBookCell extends Component {
           <Text style={styles.title}>{item.name}</Text>
           <Text style={styles.author}>Tác giả: Nguyễn Nhật Ánh</Text>
           <Text style={styles.published}>Xuất bản năm 1001</Text>
-          <CountBook />
+          <CountBook count={item.count} />
         </Body>
       </ListItem>
     )

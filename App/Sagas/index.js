@@ -14,6 +14,7 @@ import { DeleteFavoriteBookTypes } from '../Redux/DeleteFavoriteBookRedux'
 import { UserTypes } from '../Redux/UserRedux'
 import { AddCommentTypes } from '../Redux/AddCommentRedux'
 import { ListTagTypes } from '../Redux/ListTagRedux'
+import { searchTypes, SearchTypes } from '../Redux/SearchRedux'
 
 /* ------------- Sagas ------------ */
 
@@ -28,6 +29,7 @@ import { deleteFavoriteBook } from './DeleteFavoriteBookSagas'
 import { getUser } from './UserSagas'
 import { addComment } from './AddCommentSagas'
 import { getListTag } from './ListTagSagas'
+import { searchByTag } from './SearchSagas'
 
 /* ------------- API ------------- */
 
@@ -59,6 +61,8 @@ export default function * root () {
 
     takeLatest(UserTypes.USER_REQUEST, getUser, api),
 
-    takeEvery(ListTagTypes.LIST_TAG_REQUEST, getListTag, api)
+    takeEvery(ListTagTypes.LIST_TAG_REQUEST, getListTag, api),
+
+    takeEvery(SearchTypes.SEARCH_REQUEST, searchByTag, api)
   ])
 }

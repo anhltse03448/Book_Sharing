@@ -117,7 +117,7 @@ class BookDetailScreen extends Component {
                   )
                 : <Loading />
             }
-          </Content> : <Loading />}
+          </Content> : <Loading style={{flex: 1, flexDirection: 'row'}} />}
       </Container>
     )
   }
