@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		008FF30959A846D4911D1B0E /* libReactNativeConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B24821EC5447A0BBDB0543 /* libReactNativeConfig.a */; };
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
@@ -26,14 +27,14 @@
 		32628B8DC2CA463C9DBB5E32 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E6FD369A8F644C583C4B1A0 /* libRNImagePicker.a */; };
 		362FD9E01FD1D01100E6782A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 362FD9B61FD1D01100E6782A /* GoogleService-Info.plist */; };
 		362FD9E71FD1D93900E6782A /* libRCTCameraRoll.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 362FD9E61FD1D90500E6782A /* libRCTCameraRoll.a */; };
-		362FDA3E1FD2313600E6782A /* QBImagePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 362FDA3D1FD2313600E6782A /* QBImagePicker.framework */; };
 		362FDA3F1FD2313600E6782A /* QBImagePicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 362FDA3D1FD2313600E6782A /* QBImagePicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		362FDA6D1FD2317900E6782A /* RSKImageCropper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 362FDA6C1FD2317900E6782A /* RSKImageCropper.framework */; };
-		362FDA6E1FD2317900E6782A /* RSKImageCropper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 362FDA6C1FD2317900E6782A /* RSKImageCropper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		364EAE3D1FD113AD00E393FE /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 364EAE391FD113AC00E393FE /* FBSDKLoginKit.framework */; };
 		364EAE3E1FD113AD00E393FE /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 364EAE3A1FD113AC00E393FE /* Bolts.framework */; };
 		364EAE3F1FD113AD00E393FE /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 364EAE3B1FD113AD00E393FE /* FBSDKCoreKit.framework */; };
 		364EAE401FD113AD00E393FE /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 364EAE3C1FD113AD00E393FE /* FBSDKShareKit.framework */; };
+		367AC2151FD2FB5B00DA8266 /* RSKImageCropper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 362FDA6C1FD2317900E6782A /* RSKImageCropper.framework */; };
+		367AC2161FD2FB5B00DA8266 /* RSKImageCropper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 362FDA6C1FD2317900E6782A /* RSKImageCropper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		367AC2171FD2FB5B00DA8266 /* QBImagePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 362FDA3D1FD2313600E6782A /* QBImagePicker.framework */; };
 		4331DD863A464C268C62BCC5 /* Roboto_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29AA33F10E7648808B917323 /* Roboto_medium.ttf */; };
 		439A06B38485444E986796F4 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 927AC4EAB7064DF9B6E0A07F /* Zocial.ttf */; };
 		55DECDCC932B4C0BA74F1C26 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECE0168D58E441A69A3497C9 /* Octicons.ttf */; };
@@ -365,7 +366,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				362FDA3F1FD2313600E6782A /* QBImagePicker.framework in Embed Frameworks */,
-				362FDA6E1FD2317900E6782A /* RSKImageCropper.framework in Embed Frameworks */,
+				367AC2161FD2FB5B00DA8266 /* RSKImageCropper.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -440,6 +441,7 @@
 				362FD9E71FD1D93900E6782A /* libRCTCameraRoll.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				364EAE3E1FD113AD00E393FE /* Bolts.framework in Frameworks */,
+				367AC2151FD2FB5B00DA8266 /* RSKImageCropper.framework in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				364EAE3D1FD113AD00E393FE /* FBSDKLoginKit.framework in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
@@ -450,17 +452,14 @@
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
-				362FDA6D1FD2317900E6782A /* RSKImageCropper.framework in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
+				367AC2171FD2FB5B00DA8266 /* QBImagePicker.framework in Frameworks */,
 				008FF30959A846D4911D1B0E /* libReactNativeConfig.a in Frameworks */,
 				364EAE401FD113AD00E393FE /* FBSDKShareKit.framework in Frameworks */,
-				362FDA3E1FD2313600E6782A /* QBImagePicker.framework in Frameworks */,
 				B0BB1D2CC1294BF888BFA599 /* libBVLinearGradient.a in Frameworks */,
-				363E0A361FD2AB2C00D57AF9 /* RSKImageCropper.framework in Frameworks */,
-				363E0A391FD2AB2C00D57AF9 /* QBImagePicker.framework in Frameworks */,
 				76E5EDCB3F084D3DBE156585 /* libRCTCamera.a in Frameworks */,
 				94FDF14CE0F640F08B1462E1 /* libRCTFBSDK.a in Frameworks */,
 				32628B8DC2CA463C9DBB5E32 /* libRNImagePicker.a in Frameworks */,
@@ -821,7 +820,7 @@
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = 8RJDPEUG29;
+						DevelopmentTeam = 77G8PUN44T;
 					};
 				};
 			};

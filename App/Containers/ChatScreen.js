@@ -76,6 +76,11 @@ class ChatScreen extends Component {
         }.bind(this))
       })
     .catch((error) => console.log(error))
+    setTimeout(() => {
+      this.setState({
+        isLoading: false
+      })
+    }, 2000);
     this._isAlright = null
   }
 
