@@ -50,7 +50,7 @@ export default class BookContent extends Component {
               </Badge>
             </View>
           </View>
-          <View style={{marginTop: 4}}>
+          <View style={{marginTop: 0}}>
             <Icon
               onPress={this.handleCheckBookmark}
               name={this.state.isCheckedBookmark ? 'ios-bookmark' : 'ios-bookmark-outline'}
@@ -68,7 +68,7 @@ export default class BookContent extends Component {
           <View style={[styles.buttonSubBlock, {marginRight: 6}]}>
             <Button bordered small
               onPress={() => {
-                navigation.navigate('ListBookSellerScreen', {navigation: this.props.navigation})
+                navigation.navigate('ListBookSellerScreen', {bookId: item.id})
               }}
               style={styles.buttonSub}>
               <View style={styles.icon}>

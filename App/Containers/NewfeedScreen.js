@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 import ListBookActions from '../Redux/ListBookRedux'
+import { NavigationActions } from 'react-navigation'
 
 // Styles
 import {
@@ -20,29 +21,22 @@ import ListMain from '../Components/ListMain'
 import HeaderDefault from '../Components/HeaderDefault'
 
 class NewfeedScreen extends Component {
-  constructor (props) {
-    super(props)
-    this.onPressItem = this.onPressItem.bind(this)
-    this.onPressItemSearch = this.onPressItemSearch.bind(this)
-  }
-  onPressItemSearch (item) {
-    console.log('Press Item at Newfeed:  ', item)
-    this.props.navigation.navigate('BookDetailScreen', {navigation: this.props.navigation})
-  }
+  // constructor (props) {
+  //   super(props)
+  // }
 
   componentWillMount () {
     this.props.fetchBookList()
   }
 
-  onPressItem (item) {
-    console.log('Press at newFeeds: ', item)
-    this.props.navigation.navigate('BookDetailScreen', {
-      book: item
-    })
+  onPressItem = (item) => {
+    this.props.navigation.navigate('BookDetailScreen', {book: item})
   }
+
   onPressFull (item) {
-    this.props.navigation.navigate('FullBookScreen', {book: item, onPressItemSearch: this.onPressItemSearch})
+    this.props.navigation.navigate('FullBookScreen', {item: item})
   }
+
   renderItem (item) {
     return (
       <View>
@@ -97,6 +91,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    navigateToBookDetail: (book) => dispatch(NavigationActions.navigate({
+      routeName: 'BookDetailScreen',
+      params: {book: book}
+    })),
     fetchBookList: () => dispatch(ListBookActions.listBookRequest())
   }
 }

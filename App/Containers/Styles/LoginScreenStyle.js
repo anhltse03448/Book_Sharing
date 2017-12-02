@@ -25,6 +25,7 @@ export default StyleSheet.create({
   buttonLinearGradient: {
     borderRadius: 5,
     marginTop: 20,
+    marginBottom: 20,
     width: buttonWidth
   },
   socialIcon: {

@@ -11,12 +11,12 @@ export default StyleSheet.create({
     fontSize: 18
   },
   doneButton: {
-    backgroundColor: colors.mainColor,
     height: 40,
     alignSelf: 'center',
     width: '70%',
     justifyContent: 'center',
-    marginTop: 12
+    marginTop: 12,
+    marginBottom: 16
   },
   listItem: {
     height: 50

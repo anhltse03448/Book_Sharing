@@ -81,6 +81,14 @@ class UserSharedInfoScreen extends Component {
               </ListItem>
               <ListItem icon last>
                 <Left>
+                  <Icon name='ios-mail' />
+                </Left>
+                <Body>
+                  <Text>abc</Text>
+                </Body>
+              </ListItem>
+              <ListItem icon last>
+                <Left>
                   <Icon name='logo-facebook' />
                 </Left>
                 <Body>
