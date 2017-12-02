@@ -11,34 +11,19 @@
 *************************************************************/
 
 import { call, put } from 'redux-saga/effects'
-import ListBookFavoriteActions from '../Redux/ListBookFavoriteRedux'
+import ListBookSoldByUserActions from '../Redux/ListBookSoldByUserRedux'
 
-export function * getListBookFavorite (api, action) {
+export function * getListBookSoldByUser (api, action) {
   const { data } = action
   // make the call to the api
-  const response = yield call(api.getListBookFavorite, data)
+  const response = yield call(api.getListBookSoldByUser, data)
   console.log(response)
   // success?
   if (response.ok) {
     // You might need to change the response here - do this with a 'transform',
     // located in ../Transforms/. Otherwise, just pass the data back from the api.
-    yield put(ListBookFavoriteActions.listBookFavoriteSuccess(response.data))
+    yield put(ListBookSoldByUserActions.listBookSoldByUserSuccess(response.data))
   } else {
-    yield put(ListBookFavoriteActions.listBookFavoriteFailure())
-  }
-}
-
-export function * addFavoriteBook (api, action) {
-  const { data } = action
-  // make the call to the api
-  const response = yield call(api.addFavoriteBook, data)
-
-  // success?
-  if (response.ok) {
-    // You might need to change the response here - do this with a 'transform',
-    // located in ../Transforms/. Otherwise, just pass the data back from the api.
-    yield put(ListBookFavoriteActions.listBookFavoriteSuccess(response.data))
-  } else {
-    yield put(ListBookFavoriteActions.listBookFavoriteFailure())
+    yield put(ListBookSoldByUserActions.listBookSoldByUserFailure())
   }
 }

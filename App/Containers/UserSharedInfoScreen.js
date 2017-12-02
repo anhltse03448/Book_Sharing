@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 // import YourActions from '../Redux/YourRedux'
 import { NavigationActions } from 'react-navigation'
 import UserActions from '../Redux/UserRedux'
-import ListBookActions from '../Redux/BookRedux'
+import ListBookSoldByUserActions from '../Redux/ListBookSoldByUserRedux'
 
 import {
   Container,
@@ -86,7 +86,7 @@ class UserSharedInfoScreen extends Component {
             </View>
             <View style={styles.infoContainer}>
               <Text style={{fontWeight: '700', fontSize: 16, marginBottom: 4}}>
-                {user.name}&nbsp;&nbsp;
+                {user.username}&nbsp;&nbsp;
                 <Icon name='ios-checkmark-circle' style={{fontSize: 15, color: colors.mainColor}} />
               </Text>
               <Text style={{marginBottom: 4, fontSize: 14, color: '#666'}}>
@@ -151,7 +151,7 @@ class UserSharedInfoScreen extends Component {
 
 const mapStateToProps = (state) => {
   const user = state.user.payload
-  const listBook = state.listBook.payload
+  const listBook = state.listBookSoldByUser.payload
   return {
     user,
     listBook
@@ -166,7 +166,7 @@ const mapDispatchToProps = (dispatch) => {
     })),
     fetchUser: (userId) => dispatch(UserActions.userRequest(userId)),
     fetchListBook: (token) =>
-      dispatch(ListBookActions.listBookSoldByUserRequest(token))
+      dispatch(ListBookSoldByUserActions.listBookSoldByUserRequest(token))
   }
 }
 
