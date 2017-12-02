@@ -73,7 +73,7 @@ export default class BookContent extends Component {
               }}
               style={styles.buttonSub}>
               <View style={styles.icon}>
-                <Text style={{fontSize: 14, color: '#fff'}}>41</Text>
+                <Text style={{fontSize: 14, color: '#fff'}}>{item.count}</Text>
               </View>
               <View style={{flex: 1, alignItems: 'center'}}>
                 <NBText>Đang bán</NBText>

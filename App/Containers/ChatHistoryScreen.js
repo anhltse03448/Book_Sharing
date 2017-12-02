@@ -11,11 +11,16 @@ import {
   Content
 } from 'native-base'
 import config from '../Config/FirebaseConfig'
+import { NavigationActions } from 'react-navigation'
+
 var firebase = require('firebase')
 
 class ChatHistoryScreen extends Component {
   constructor (props) {
     super(props)
+    this.state = {
+      listMessengers: []
+    }
     if (!firebase.apps.length) {
       firebase.initializeApp(config)
     }
@@ -26,24 +31,40 @@ class ChatHistoryScreen extends Component {
     AsyncStorage.getItem('@BookSharing:user')
     .then((res) => {
       this.mySelf = JSON.parse(res)
-      let starCountRef = firebase.database().ref('message/' + this.mySelf.id+'/')
-      starCountRef.on('child_added', function (snapshot) {
-        console.log('Receive: ', snapshot.val())
-      })
+      let starCountRef = firebase.database().ref('message/' + this.mySelf.userid)
+      starCountRef.once('value', function (snapshot) {
+        let messages = snapshot.val()
+        for (var mess1 in messages) {
+          let mess = messages[mess1]
+          let lastMessage = mess['lastMessage']
+          let user = mess['user']
+          let listMessengers = this.state.listMessengers
+          if (user !== undefined) {
+            listMessengers = listMessengers.concat([{user, lastMessage}])
+            console.log('List Messengers:  ', listMessengers)
+            this.setState({listMessengers})
+          }
+        }
+      }.bind(this))
     })
   .catch((error) => console.log(error))
   }
 
+  onPress (item) {
+    console.log('Item:  ', item)
+    this.props.navigateToChatScreen(item)
+  }
+
   renderItem (item) {
     return (
-      <ChatCell />
+      <ChatCell item={item} onPress={this.onPress.bind(this)} />
     )
   }
   render () {
     return (
       <Content>
         <FlatList
-          data={[{key: 'a'},{key: 'b'}]}
+          data={this.state.listMessengers}
           renderItem={({item}) => this.renderItem(item)}
           />
       </Content>
@@ -58,6 +79,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    navigateToChatScreen: (user) => dispatch(NavigationActions.navigate({
+      routeName: 'ChatScreen',
+      params: {user: user}
+    }))
   }
 }
 

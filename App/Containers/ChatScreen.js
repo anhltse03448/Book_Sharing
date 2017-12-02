@@ -20,6 +20,8 @@ import {
 } from 'native-base'
 import Loading from '../Components/Loading'
 import config from '../Config/FirebaseConfig'
+import moment from 'moment'
+
 var firebase = require('firebase')
 // Get a reference to the database service
 class ChatScreen extends Component {
@@ -35,7 +37,7 @@ class ChatScreen extends Component {
       typingText: null,
       isLoadingEarlier: false
     }
-    
+    this.isLoading = true
     this._isMounted = false
     this.onSend = this.onSend.bind(this)
     this.onReceive = this.onReceive.bind(this)
@@ -49,16 +51,40 @@ class ChatScreen extends Component {
     AsyncStorage.getItem('@BookSharing:user')
       .then((res) => {
         this.mySelf = JSON.parse(res)
-        console.log('Myself: ', JSON.parse(res))
-        console.log('Ref:  ', 'message/' + this.mySelf.id + '/' + this.user.userid)
-        var starCountRef = firebase.database().ref('message/' + this.mySelf.id + '/' + this.user.userid)
-        starCountRef.on('child_added', function (snapshot) {
+        console.log('Ref:  ', 'message/' + this.mySelf.userid + '/' + this.user.userid)
+        /*
+        let loadFirst = firebase.database().ref('message/' + this.mySelf.userid + '/' + this.user.userid + '/')
+        loadFirst.once('value', function (snapshot) {
+          let messages = snapshot.val()
+          for (var mess in messages) {
+            let obj = messages[mess]
+            if (obj.message !== undefined) {
+              this.setState({
+                messages: [{...obj.message, createdAt: new Date(obj.createdAt)}].concat(this.state.messages)
+              })
+            }
+            this.isLoading = false
+          }
+        }.bind(this))
+        */
+        let loadFirst = firebase.database().ref('message/' + this.mySelf.userid + '/' + this.user.userid)
+        loadFirst.on('child_added', function (snapshot) {
           console.log('Receive: ', snapshot.val())
           let mess = snapshot.val()
-          if (mess.sentId === this.mySelf.id) {
-            this.onSend([mess.message])
+          console.log('SelfID:  ', this.mySelf.userid)
+          if (mess.sentId !== this.mySelf.userid) {
+            console.log('On Receivece:  ', mess)
+            if (mess.sentId !== undefined) {
+              this.onReceive(mess.message)
+            }
+          } else {
+            console.log('mess:  ', mess)
+            let obj = mess
+            let demo = {...obj.message, createdAt: new Date(obj.createdAt)}
+            this.setState({
+              messages: [demo].concat(this.state.messages)
+            })
           }
-          this.onReceive(mess.message)
         }.bind(this))
       })
     .catch((error) => console.log(error))
@@ -99,29 +125,39 @@ class ChatScreen extends Component {
   }
 
   sendData (sentId, receiveId, message) {
-    let refId = 'message/' + sentId + '/' + receiveId + '/' + message._id
-    console.log('RefID:  ', refId)
+    let createdAt1 = (Date.now())
+    let refId = 'message/' + sentId + '/' + receiveId + '/' + createdAt1
+
+    let createdAt = message.createdAt.toString()
     firebase.database().ref(refId).set({
       sentId,
+      message,
       receiveId,
-      message
+      createdAt
     })
-
-    let refId2 = 'message/' + receiveId + '/' + sentId + '/' + message._id
+    let refId3 = 'message/' + sentId + '/' + receiveId
+    firebase.database().ref(refId3).update({
+      lastMessage: message.text,
+      user: this.user
+    })
+    let refId2 = 'message/' + receiveId + '/' + sentId + '/' + createdAt1
     firebase.database().ref(refId2).set({
       sentId,
+      message,
       receiveId,
-      message
+      createdAt
+    })
+
+    let refId4 = 'message/' + receiveId + '/' + sentId
+    firebase.database().ref(refId4).update({
+      lastMessage: message.text,
+      user: this.mySelf
     })
   }
 
   onSend (messages = []) {
-    this.sendData(this.mySelf.id, this.user.userid, messages[0])
-    this.setState((previousState) => {
-      return {
-        messages: GiftedChat.append(previousState.messages, messages)
-      }
-    })
+    console.log('Messages:  ', messages[0])
+    this.sendData(this.mySelf.userid, this.user.userid, messages[0])
   }
 
   answerDemo (messages) {
@@ -257,10 +293,6 @@ class ChatScreen extends Component {
     let giftedChat = <GiftedChat
       messages={this.state.messages}
       onSend={this.onSend}
-      loadEarlier={this.state.loadEarlier}
-      onLoadEarlier={this.onLoadEarlier}
-      isLoadingEarlier={this.state.isLoadingEarlier}
-
       user={{
         _id: this.user.userid,
         info: this.user

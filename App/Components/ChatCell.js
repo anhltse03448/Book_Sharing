@@ -6,22 +6,13 @@ import {
   ListItem
 } from 'native-base'
 export default class ChatCell extends Component {
-  // // Prop type warnings
-  // static propTypes = {
-  //   someProperty: PropTypes.object,
-  //   someSetting: PropTypes.bool.isRequired,
-  // }
-  //
-  // // Defaults for props
-  // static defaultProps = {
-  //   someSetting: false
-  // }
-
   render () {
+    const item = this.props.item
     return (
-      <ListItem style={styles.container}>
+      <ListItem style={styles.container}
+        onPress={() => this.props.onPress(item.user)}>
         <Image
-          source={require('../Images/LoginBg.png')}
+          source={{uri: item.user.avatar}}
           style={styles.image}
         />
         <View
@@ -39,14 +30,14 @@ export default class ChatCell extends Component {
               paddingBottom: 4
             }}
           >
-            <Text style={styles.name}>Booksharing</Text>
+            <Text style={styles.name}>{item.user.username ? item.user.username : item.name}</Text>
             <Text
               style={styles.message}
             >3:53 am</Text>
           </View>
           <Text
             style={styles.message}
-          >Bạn: Bao giờ mới xong</Text>
+          >{item.lastMessage}</Text>
         </View>
       </ListItem>
     )
