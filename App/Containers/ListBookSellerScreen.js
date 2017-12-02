@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { FlatList, View } from 'react-native'
+import { FlatList, View, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -15,7 +15,14 @@ import SellerCell from '../Components/SellerCell'
 import Navigation from '../Components/Navigation'
 class ListBookSellerScreen extends Component {
   componentWillMount () {
-    this.props.fetchListSellerBook(this.props.navigation.state.params.bookId)
+    AsyncStorage.getItem('@BookSharing:token')
+    .then((res) => {
+      this.props.fetchListSellerBook({
+        token: res,
+        bookId: this.props.navigation.state.params.bookId
+      })
+    })
+    .catch((error) => console.log(error))
   }
 
   renderItem (item) {
@@ -60,8 +67,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchListSellerBook: (bookId) =>
-      dispatch(ListSellerBookActions.listSellerBookRequest(bookId))
+    fetchListSellerBook: ({token, bookId}) =>
+      dispatch(ListSellerBookActions.listSellerBookRequest({token, bookId}))
   }
 }
 

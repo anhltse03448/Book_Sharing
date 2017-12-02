@@ -41,7 +41,9 @@ const create = (baseURL = 'https://sheltered-ridge-83772.herokuapp.com') => {
   const getBook = (id) => api.get('/book/' + id)
   const authWithFacebook = (token) => api.post('/auth/facebook', {token: token})
 
-  const getListSellerOfABook = (bookId) => api.get('/posts/' + bookId)
+  const getListSellerOfABook = ({token, bookId}) => api.get('/posts/' + bookId, {}, {
+    headers: {'Authorization': 'Bearer ' + token}
+  })
   const getListCommentOfABook = (bookId) => api.get('/comments/' + bookId)
 
   // favorite book
