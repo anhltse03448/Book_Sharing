@@ -96,7 +96,7 @@ class UserSharedInfoScreen extends Component {
           </View>
           <View style={styles.bodyContainer}>
             <List>
-              <ListItem icon>
+              <ListItem icon last>
                 <Left>
                   <Icon name='ios-phone-portrait' />
                 </Left>

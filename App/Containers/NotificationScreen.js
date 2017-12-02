@@ -56,16 +56,16 @@ export default connect(mapStateToProps, mapDispatchToProps)(NotificationScreen)
               height: 2
             }}>
             <Tab heading='Sách theo dõi'
-              activeTabStyle={styles.tab}
-              tabStyle={styles.tab}
-              activeTextStyle={styles.text}
-              textStyle={styles.text}>
-              <NoticeScreen onPress={this.onPress} />
-            </Tab>
+                       activeTabStyle={styles.tabActive}
+                       tabStyle={styles.tab}
+                       activeTextStyle={styles.textActive}
+                       textStyle={styles.text}>
+            <NoticeScreen onPress={this.onPress} />
+          </Tab>
             <Tab heading='Tin Nhắn'
-              activeTabStyle={styles.tab}
+              activeTabStyle={styles.tabActive}
               tabStyle={styles.tab}
-              activeTextStyle={styles.text}
+              activeTextStyle={styles.textActive}
               textStyle={styles.text}
             >
             </Tab>

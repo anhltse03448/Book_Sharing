@@ -21,9 +21,12 @@ import ListMain from '../Components/ListMain'
 import HeaderDefault from '../Components/HeaderDefault'
 
 class NewfeedScreen extends Component {
-  // constructor (props) {
-  //   super(props)
-  // }
+  constructor (props) {
+    super(props)
+    this.state = {
+        isPress : false
+    }
+  }
 
   componentWillMount () {
     this.props.fetchBookList()

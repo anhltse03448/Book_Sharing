@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, Platform } from 'react-native'
 import styles from './Styles/BookContentStyle'
 import {
   Icon,
@@ -14,6 +14,7 @@ export default class BookContent extends Component {
   constructor (props) {
     super(props)
     this.state = {
+      isPress: false,
       isCheckedBookmark: this.props.listBookFavorite.filter(
         (item) => item.id === this.props.item.id).length > 0
     }
@@ -70,9 +71,12 @@ export default class BookContent extends Component {
           <View style={[styles.buttonSubBlock, {marginRight: 6}]}>
             <Button bordered small
               onPress={() => {
+                this.setState({ isPress : !this.state.isPress });
+                setTimeout(()=>{this.setState({isPress : !this.state.isPress})}, 2000);
                 navigation.navigate('ListBookSellerScreen', {bookId: item.id})
               }}
-              style={styles.buttonSub}>
+              style={styles.buttonSub}
+              disabled={this.state.isPress}>
               <View style={styles.icon}>
                 <Text style={{fontSize: 14, color: '#fff'}}>{item.count}</Text>
               </View>
@@ -84,11 +88,14 @@ export default class BookContent extends Component {
           <View style={[styles.buttonSubBlock, {marginLeft: 6}]}>
             <Button bordered small
               onPress={() => {
+                this.setState({ isPress : !this.state.isPress });
+                setTimeout(()=>{this.setState({isPress : !this.state.isPress})},2000);
                 this.props.onAddBookPress(item)
               }}
-              style={styles.buttonSub}>
+              style={styles.buttonSub} disabled={this.state.isPress}>
               <View style={styles.icon}>
-                <Icon style={{color: '#fff', fontSize: 18}} name='ios-add-circle-outline' />
+                <Icon style={{color: '#000', fontSize: 18}}
+                      ios='ios-add-circle-outline' android='md-bookmarks' />
               </View>
               <View style={{flex: 1, alignItems: 'center'}}>
                 <NBText>Thêm sách</NBText>
