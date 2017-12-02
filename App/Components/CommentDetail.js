@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
-import { View, Image } from 'react-native'
+import { View, Image, PixelRatio, Platform } from 'react-native'
 import styles from './Styles/CommentDetailStyle'
 import {
   ListItem,
@@ -26,7 +26,7 @@ export default class CommentDetail extends Component {
       >
         <Image
           source={require('../Images/LoginBg.png')}
-          style={styles.image}
+          style={(Platform.OS === 'ios') ? styles.imageIos : styles.imageAndroid}
         />
         <Text
           style={styles.nhanxet}
@@ -39,7 +39,7 @@ export default class CommentDetail extends Component {
         />
         <Button transparent
           onPress={() => {
-            console.log('Finish')
+            console.log('Finish', PixelRatio.get())
             let comment = this.state.comment
             this.props.onSendComment(comment)
             this.setState({

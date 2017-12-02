@@ -71,12 +71,20 @@ class UserSharedInfoScreen extends Component {
           </View>
           <View style={styles.bodyContainer}>
             <List>
-              <ListItem icon>
+              <ListItem icon last>
                 <Left>
                   <Icon name='ios-phone-portrait' />
                 </Left>
                 <Body>
                   <Text>0129178xxxx</Text>
+                </Body>
+              </ListItem>
+              <ListItem icon last>
+                <Left>
+                  <Icon name='ios-mail-outline' />
+                </Left>
+                <Body>
+                <Text>abc@gmail.com</Text>
                 </Body>
               </ListItem>
               <ListItem icon last>

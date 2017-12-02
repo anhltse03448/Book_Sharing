@@ -27,10 +27,10 @@ export default class HeaderDefault extends Component {
           backgroundColor: colors.mainColor
         }}
       >
-        <Body>
+        <Body style={{alignItems: 'center'}}>
           <Title
             style={{
-              color: 'white'
+              color: 'white',
             }}
           >{this.props.title}</Title>
         </Body>

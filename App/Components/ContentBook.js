@@ -55,7 +55,7 @@ export default class ContentBook extends Component {
           borderTopWidth: 0.5,
           borderTopColor: colors.seperatorColor,
           borderBottomWidth: 0.5,
-          borderBottomColor: colors.seperatorColor
+          borderBottomColor: colors.seperatorColor,
         }}
       >
         <Text style={styles.content}>

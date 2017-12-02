@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, Platform } from 'react-native'
 import styles from './Styles/BookContentStyle'
 import {
   Icon,
@@ -14,7 +14,8 @@ export default class BookContent extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      isCheckedBookmark: false
+      isCheckedBookmark: false,
+      isPress: false
     }
   }
 
@@ -68,9 +69,12 @@ export default class BookContent extends Component {
           <View style={[styles.buttonSubBlock, {marginRight: 6}]}>
             <Button bordered small
               onPress={() => {
+                this.setState({ isPress : !this.state.isPress });
+                setTimeout(()=>{this.setState({isPress : !this.state.isPress})},2000);
                 navigation.navigate('ListBookSellerScreen', {navigation: this.props.navigation})
               }}
-              style={styles.buttonSub}>
+              style={styles.buttonSub}
+              disabled={this.state.isPress}>
               <View style={styles.icon}>
                 <Text style={{fontSize: 14, color: '#fff'}}>41</Text>
               </View>
@@ -82,11 +86,14 @@ export default class BookContent extends Component {
           <View style={[styles.buttonSubBlock, {marginLeft: 6}]}>
             <Button bordered small
               onPress={() => {
+                this.setState({ isPress : !this.state.isPress });
+                setTimeout(()=>{this.setState({isPress : !this.state.isPress})},2000);
                 this.props.onAddBookPress(item)
               }}
-              style={styles.buttonSub}>
+              style={styles.buttonSub} disabled={this.state.isPress}>
               <View style={styles.icon}>
-                <Icon style={{color: '#fff', fontSize: 18}} name='ios-add-circle-outline' />
+                <Icon style={{color: '#fff', fontSize: 18}}
+                      name = {(Platform.OS === 'ios') ? 'ios-add-circle-outline' : 'md-add-circle'} />
               </View>
               <View style={{flex: 1, alignItems: 'center'}}>
                 <NBText>Thêm sách</NBText>

@@ -13,8 +13,8 @@ import {
 export default class LaunchScreen extends Component {
   render () {
     return (
-      //<Login />
-      <MainScreen navigation={this.props.navigation} />
+      <Login />
+      // <MainScreen navigation={this.props.navigation} />
     )
   }
 }

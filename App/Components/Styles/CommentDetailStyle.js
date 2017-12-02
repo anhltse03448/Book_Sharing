@@ -9,14 +9,21 @@ export default StyleSheet.create({
     paddingTop: 40,
     width: '100%'
   },
-  image: {
+  imageIos: {
     height: 60,
     width: 60,
     borderRadius: 30,
     position: 'absolute',
     top: -27
   },
+  imageAndroid: {
+    height: 60,
+    width: 60,
+    borderRadius: 30,
+    paddingTop: -5
+  },
   input: {
+    marginTop: 10,
     width: '90%',
     alignSelf: 'center',
     borderBottomWidth: 1,

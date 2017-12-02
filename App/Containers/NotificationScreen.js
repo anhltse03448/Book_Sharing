@@ -36,12 +36,12 @@ class NotificationScreen extends Component {
               height: 2
             }}>
             <Tab heading='Sách theo dõi'
-              activeTabStyle={styles.tab}
-              tabStyle={styles.tab}
-              activeTextStyle={styles.text}
-              textStyle={styles.text}>
-              <NoticeScreen onPress={this.onPress} />
-            </Tab>
+                       activeTabStyle={styles.tab}
+                       tabStyle={[styles.tab, backgroundColor : '#ffffff']}
+                       activeTextStyle={styles.text}
+                       textStyle={styles.text}>
+            <NoticeScreen onPress={this.onPress} />
+          </Tab>
             <Tab heading='Tin Nhắn'
               activeTabStyle={styles.tab}
               tabStyle={styles.tab}
