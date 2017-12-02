@@ -41,14 +41,12 @@ class LoginScreen extends Component {
   }
 
   componentDidMount () {
-    AsyncStorage.getItem('@BookSharing:user', (err, res) => {
-      if (err) {
-        console.log(err)
-      } else {
-        console.log(JSON.parse(res))
+    AsyncStorage.getItem('@BookSharing:user')
+      .then((res) => {
         this.setState({isLogged: true})
-      }
-    })
+        console.log(JSON.parse(res))
+      })
+      .catch((error) => console.log(error))
   }
 
   signInWithFacebook = () => {
