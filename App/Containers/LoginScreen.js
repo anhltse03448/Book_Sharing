@@ -55,7 +55,6 @@ class LoginScreen extends Component {
     LoginManager.logInWithReadPermissions(['public_profile']).then(
       function (result) {
         if (result.isCancelled) {
-          
         } else {
           console.log('result FB:  ', result)
           AccessToken.getCurrentAccessToken().then(

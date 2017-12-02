@@ -36,7 +36,7 @@ export default class SellerCell extends Component {
 
   handleShowMore = () => {
     this.setState({isShowMore: !this.state.isShowMore})
-    this.props.onPressMessage({a: 'User'})
+    this.props.onPressMessage({item: this.props.item})
   }
 
   render () {

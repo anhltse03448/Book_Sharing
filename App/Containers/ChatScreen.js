@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Platform,
   StyleSheet,
   Text,
-  View } from 'react-native'
+  View,
+AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -38,6 +39,12 @@ class ChatScreen extends Component {
       typingText: null,
       isLoadingEarlier: false
     }
+
+    this.user = this.props.user.userid
+    this.mySelf = AsyncStorage.setItem('@BookSharing:user')
+
+    console.log('MySelf:  ', this.mySelf)
+    console.log('User:  ', this.user)
 
     this._isMounted = false
     this.onSend = this.onSend.bind(this)
@@ -246,7 +253,7 @@ class ChatScreen extends Component {
     return (
       <Container>
         <Navigation onPressBack={() => this.props.navigation.goBack()}
-          title='Huy Trần' />
+          title={this.user.username} />
         <GiftedChat
           messages={this.state.messages}
           onSend={this.onSend}
