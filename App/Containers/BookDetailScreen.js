@@ -35,6 +35,9 @@ import Loading from '../Components/Loading'
 class BookDetailScreen extends Component {
   constructor (props) {
     super(props)
+    this.state = {
+      didCommented: false
+    }
     this.onAddBookPress = this.onAddBookPress.bind(this)
   }
 
@@ -45,6 +48,16 @@ class BookDetailScreen extends Component {
     })
     .catch((error) => console.log(error))
   }
+
+  componentWillUpdate (nextProps, nextState) {
+    if (this.state.didCommented) {
+      this.setState({didCommented: false})
+      nextProps.addCommentState &&
+        nextProps.fetchListCommentBook(
+          nextProps.navigation.state.params.book.id)
+    }
+  }
+
   componentDidMount () {
     this.props.fetchListCommentBook(
       this.props.navigation.state.params.book.id)
@@ -64,8 +77,7 @@ class BookDetailScreen extends Component {
           bookId,
           content
         })
-        this.props.fetchListCommentBook(
-          this.props.navigation.state.params.book.id)
+        this.setState({didCommented: true})
       }
     })
     .catch((error) => console.log(error))
@@ -86,7 +98,6 @@ class BookDetailScreen extends Component {
   render () {
     const { navigation, listCommentBook } = this.props
     const item = navigation.state.params.book
-    console.log(listCommentBook)
     return (
       <Container>
         <Navigation onPressBack={() => navigation.goBack()}
@@ -125,9 +136,11 @@ class BookDetailScreen extends Component {
 
 const mapStateToProps = (state) => {
   const { payload } = state.listBookFavovite
+  const addCommentState = state.addComment.payload
   const listCommentBook = state.listCommentBook.payload
   return {
     payload,
+    addCommentState,
     listCommentBook
   }
 }

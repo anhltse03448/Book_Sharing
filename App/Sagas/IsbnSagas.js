@@ -11,34 +11,19 @@
 *************************************************************/
 
 import { call, put } from 'redux-saga/effects'
-import ListBookActions from '../Redux/ListBookRedux'
+import IsbnActions from '../Redux/IsbnRedux'
 
-export function * getListBook (api, action) {
+export function * getBookByISBN (api, action) {
   const { data } = action
   // make the call to the api
-  const response = yield call(api.getListBook, data)
+  const response = yield call(api.getBookByISBN, data)
 
   // success?
   if (response.ok) {
     // You might need to change the response here - do this with a 'transform',
     // located in ../Transforms/. Otherwise, just pass the data back from the api.
-    yield put(ListBookActions.listBookSuccess(response.data))
+    yield put(IsbnActions.isbnSuccess(response.data))
   } else {
-    yield put(ListBookActions.listBookFailure())
-  }
-}
-
-export function * getListBookSoldByUser (api, action) {
-  const { data } = action
-  // make the call to the api
-  const response = yield call(api.getListBookSoldByUser, data)
-
-  // success?
-  if (response.ok) {
-    // You might need to change the response here - do this with a 'transform',
-    // located in ../Transforms/. Otherwise, just pass the data back from the api.
-    yield put(ListBookActions.listBookSuccess(response.data))
-  } else {
-    yield put(ListBookActions.listBookFailure())
+    yield put(IsbnActions.isbnFailure())
   }
 }

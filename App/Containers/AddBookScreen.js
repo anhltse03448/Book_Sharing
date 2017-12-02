@@ -11,7 +11,9 @@ import {
   Content,
   ListItem,
   Picker,
+  Label,
   Item,
+  Form,
   Input,
   Button,
   Icon,
@@ -112,7 +114,7 @@ class AddBookScreen extends Component {
           title={item.name} />
         <Content>
           <BookInfoAdd item={item} />
-          <View>
+          <Form>
             <ListItem
               style={[styles.listItem, {
                 alignItems: 'center'
@@ -127,22 +129,14 @@ class AddBookScreen extends Component {
                 {starView}
               </View>
             </ListItem>
-            <ListItem
-              style={styles.listItem}
-            >
-              <Text>Giá bán</Text>
+            <Item floatingLabel>
+              <Label>Giá bán</Label>
               <Input />
-            </ListItem>
-            <ListItem
-              style={styles.listItem}
-            >
-              <Input
-                style={{
-                  height: 100
-                }}
-                placeholder='Ghi chú'
-              />
-            </ListItem>
+            </Item>
+            <Item regular>
+              <Label>Ghi chú</Label>
+              <Input style={{maxHeight: 70}} multiline />
+            </Item>
             <View style={{flex: 1, padding: 12}}>
               <Button onPress={this.handleImagePicker}
                 iconLeft bordered transparent>
@@ -171,7 +165,7 @@ class AddBookScreen extends Component {
                 style={styles.done}
               >Xong</Text>
             </Button>
-          </View>
+          </Form>
         </Content>
       </Container>
     )

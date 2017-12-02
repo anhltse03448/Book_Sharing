@@ -19,6 +19,8 @@ import {
 import Navigation from '../Components/Navigation'
 import styles from './Styles/FullBookScreenStyle'
 import FullBookCell from '../Components/FullBookCell'
+import Loading from '../Components/Loading'
+
 class FullBookScreen extends Component {
   constructor (props) {
     super(props)
@@ -41,32 +43,21 @@ class FullBookScreen extends Component {
   }
 
   render () {
+    const { navigation } = this.props
+    const items = navigation.state.params.items || this.props.payload
     return (
       <Container>
         <Navigation onPressBack={() => this.props.navigation.goBack()}
           title={this.props.navigation.state.params.item.section} />
-        <Content>
-          <Header searchBar rounded>
-            <Item>
-              <Icon name='ios-search' />
-              <Input placeholder='Search'
-                onChangeText={(text) => {
-                  this.setState({
-                    inputValue: text
-                  })
-                }} />
-              <Icon name='ios-people' />
-            </Item>
-            <Button transparent>
-              <Text>Search</Text>
-            </Button>
-          </Header>
-          {this.props.payload && <FlatList
-            data={this.props.payload}
-            keyExtractor={(item) => item.id}
-            renderItem={({item}) => this.renderItem(item)}
-          />}
-        </Content>
+        {items
+          ? <Content>
+            <FlatList
+              data={items}
+              keyExtractor={(item) => item.id}
+              renderItem={({item}) => this.renderItem(item)}
+            />
+          </Content>
+          : <Loading style={{flex: 1, flexDirection: 'row'}} />}
       </Container>
     )
   }
