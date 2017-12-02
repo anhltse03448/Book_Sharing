@@ -40,11 +40,21 @@ class LoginScreen extends Component {
     this.signInWithFacebook = this.signInWithFacebook.bind(this)
   }
 
+  componentDidMount () {
+    AsyncStorage.getItem('@BookSharing:user')
+      .then((res) => {
+        if (res !== null) {
+          console.log('User: ', JSON.parse(res))
+          this.setState({isLogged: true})
+        }
+      })
+      .catch((error) => console.log(error))
+  }
+
   signInWithFacebook = () => {
     LoginManager.logInWithReadPermissions(['public_profile']).then(
       function (result) {
         if (result.isCancelled) {
-          
         } else {
           console.log('result FB:  ', result)
           AccessToken.getCurrentAccessToken().then(

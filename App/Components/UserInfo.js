@@ -1,20 +1,28 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
-import { View, Text, Image, TouchableHighlight } from 'react-native'
+import { View, Text, Image, TouchableHighlight, AsyncStorage } from 'react-native'
 import { Icon } from 'native-base'
 import styles from './Styles/UserInfoStyle'
 
 export default class UserInfo extends Component {
-  // // Prop type warnings
-  // static propTypes = {
-  //   someProperty: PropTypes.object,
-  //   someSetting: PropTypes.bool.isRequired,
-  // }
-  //
-  // // Defaults for props
-  // static defaultProps = {
-  //   someSetting: false
-  // }
+  constructor (props) {
+    super(props)
+    this.state = {
+      user: null
+    }
+  }
+  componentDidMount () {
+    AsyncStorage.getItem('@BookSharing:user')
+    .then((res) => {
+      if (res !== null) {
+        console.log('User: ', JSON.parse(res))
+        this.setState({
+          user: JSON.parse(res)
+        })
+      }
+    })
+    .catch((error) => console.log(error))
+  }
 
   render () {
     const { user } = this.props

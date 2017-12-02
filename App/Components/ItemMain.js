@@ -19,7 +19,7 @@ export default class ItemMain extends Component {
     if (name.length >= 20) {
       name = name.substring(0, 20) + '...'
     }
-    if (name.length < 17) {
+    if (name.length < 13) {
       name = name + '\n'
     }
     return (

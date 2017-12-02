@@ -36,7 +36,7 @@ export default class SellerCell extends Component {
 
   handleShowMore = () => {
     this.setState({isShowMore: !this.state.isShowMore})
-    this.props.onPressMessage({a: 'User'})
+    this.props.onPressMessage(this.props.item)
   }
 
   render () {
@@ -45,7 +45,6 @@ export default class SellerCell extends Component {
     ]
 
     const { item } = this.props
-
     return (
       <View style={styles.card}>
         <Card>
@@ -56,7 +55,7 @@ export default class SellerCell extends Component {
               style={{flexGrow: 2}}
               onPress={this.props.onPress}>
               <Left>
-                <Thumbnail source={require('../Images/LoginBg.png')} />
+                <Thumbnail source={{uri: item.avatar ? item.avatar : ''}} />
                 <Body>
                   <Text style={styles.title}>{item.username} - {item.uid}</Text>
                   <Text style={styles.price}>Giá bán: {item.price}</Text>
