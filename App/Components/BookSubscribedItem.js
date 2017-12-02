@@ -27,27 +27,21 @@ export default class BookSubscribedItem extends Component {
     const { item } = this.props
 
     return (
-      <TouchableHighlight
-        activeOpacity={1}
-        underlayColor='#fff'
-        onPress={() => this.props.navigate('BookDetailScreen', {book: item})} style={{paddingBottom: 4}}>
-        <Card>
+      <Card>
+        <TouchableHighlight
+          underlayColor='#fff'
+          onPress={() => this.props.navigate('BookDetailScreen', {book: item})} style={{paddingBottom: 4}}>
           <CardItem>
-            <Left style={{flexGrow: 3}}>
+            <Left style={{flex: 1, flexGrow: 3}}>
               <Thumbnail source={{uri: item.cover}} />
               <Body>
                 <Text>{item.name}</Text>
                 <Text note>J.K Rowling</Text>
               </Body>
             </Left>
-            <Right>
-              <Button style={{height: 20}} transparent>
-                <Icon name='md-heart' style={{fontSize: 25, color: '#cc0000'}} />
-              </Button>
-            </Right>
           </CardItem>
-        </Card>
-      </TouchableHighlight>
+        </TouchableHighlight>
+      </Card>
     )
   }
 }
