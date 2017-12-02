@@ -3,6 +3,7 @@ import { View, Image, Text, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
+import { NavigationActions } from 'react-navigation'
 import UserActions from '../Redux/UserRedux'
 import ListBookActions from '../Redux/BookRedux'
 
@@ -71,7 +72,10 @@ class UserSharedInfoScreen extends Component {
                 source={{uri: user.avatar}}
               />
               <View style={styles.buttonInfoContainer}>
-                <Button transparent>
+                <Button transparent onPress={() => {
+                  console.log('User:  ', user)
+                  this.props.navigateToChatScreen(user)
+                }}>
                   <Icon name='ios-chatboxes-outline' style={{color: colors.mainColor}} />
                 </Button>
                 <Button transparent>
@@ -155,6 +159,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    navigateToChatScreen: (user) => dispatch(NavigationActions.navigate({
+      routeName: 'ChatScreen',
+      params: {user: user}
+    })),
     fetchUser: (userId) => dispatch(UserActions.userRequest(userId)),
     fetchListBook: (token) =>
       dispatch(ListBookActions.listBookSoldByUserRequest(token))
