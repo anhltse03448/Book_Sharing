@@ -14,11 +14,12 @@ import { DeleteFavoriteBookTypes } from '../Redux/DeleteFavoriteBookRedux'
 import { UserTypes } from '../Redux/UserRedux'
 import { AddCommentTypes } from '../Redux/AddCommentRedux'
 import { ListTagTypes } from '../Redux/ListTagRedux'
-import { searchTypes, SearchTypes } from '../Redux/SearchRedux'
+import { SearchTypes } from '../Redux/SearchRedux'
+import { IsbnTypes } from '../Redux/IsbnRedux'
 
 /* ------------- Sagas ------------ */
 
-import { getListBook } from './ListBookSagas'
+import { getListBook, getListBookSoldByUser } from './ListBookSagas'
 import { getBook } from './BookSagas'
 import { authWithFacebook } from './AuthSagas'
 import { getListBookFavorite } from './ListBookFavoriteSagas'
@@ -30,6 +31,7 @@ import { getUser } from './UserSagas'
 import { addComment } from './AddCommentSagas'
 import { getListTag } from './ListTagSagas'
 import { searchByTag } from './SearchSagas'
+import { getBookByISBN } from './IsbnSagas'
 
 /* ------------- API ------------- */
 
@@ -42,6 +44,8 @@ const api = API.create()
 export default function * root () {
   yield all([
     takeEvery(ListBookTypes.LIST_BOOK_REQUEST, getListBook, api),
+
+    takeEvery(ListBookTypes.LIST_BOOK_SOLD_BY_USER_REQUEST, getListBookSoldByUser, api),
 
     takeEvery(ListBookFavoriteTypes.LIST_BOOK_FAVORITE_REQUEST, getListBookFavorite, api),
 
@@ -56,13 +60,15 @@ export default function * root () {
     takeEvery(ListSellerBookTypes.LIST_SELLER_BOOK_REQUEST, getListSellerBook, api),
 
     takeEvery(ListCommentBookTypes.LIST_COMMENT_BOOK_REQUEST, getListCommentBook, api),
-    
+
     takeLatest(AddCommentTypes.ADD_COMMENT_REQUEST, addComment, api),
 
     takeLatest(UserTypes.USER_REQUEST, getUser, api),
 
     takeEvery(ListTagTypes.LIST_TAG_REQUEST, getListTag, api),
 
-    takeEvery(SearchTypes.SEARCH_REQUEST, searchByTag, api)
+    takeEvery(SearchTypes.SEARCH_REQUEST, searchByTag, api),
+
+    takeLatest(IsbnTypes.ISBN_REQUEST, getBookByISBN, api)
   ])
 }

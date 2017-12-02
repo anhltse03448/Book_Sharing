@@ -3,6 +3,8 @@ import { View, Text } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
+import IsbnActions from '../Redux/IsbnRedux'
+import { NavigationActions } from 'react-navigation'
 
 // Styles
 import {
@@ -29,14 +31,25 @@ class SellScreen extends Component {
       .catch(err => console.error(err))
   }
 
+  // componentWillMount () {
+  //   this.props.fetchBookByISBN('9786042089005')
+  // }
+
+  handleBarCodeRead = (barcode) => {
+    this.setState({isFinding: false})
+    this.props.fetchBookByISBN(barcode.data)
+  }
+
   render () {
+    const { book } = this.props
+    if (book) {
+      // console.log(book)
+      this.props.navigateToBookDetail(book)
+    }
     let camera = <Camera
       barCodeTypes={['org.gs1.EAN-13']}
       flashMode={Camera.constants.FlashMode.auto}
-      onBarCodeRead={(barcode) => {        
-        this.setState({isFinding: false})
-        alert(barcode.data)
-      }}
+      onBarCodeRead={this.handleBarCodeRead}
       style={{
         flex: 1
       }}
@@ -56,12 +69,19 @@ class SellScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
+  const book = state.isbn.payload
   return {
+    book
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    navigateToBookDetail: (book) => dispatch(NavigationActions.navigate({
+      routeName: 'BookDetailScreen',
+      params: {book: book}
+    })),
+    fetchBookByISBN: (isbn) => dispatch(IsbnActions.isbnRequest(isbn))
   }
 }
 

@@ -1,5 +1,7 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
 import colors from '../../Themes/Colors'
+
+const window = Dimensions.get('window')
 
 export default StyleSheet.create({
   container: {
@@ -19,7 +21,8 @@ export default StyleSheet.create({
     right: 0
   },
   imageBackground: {
-    maxHeight: 150,
+    height: 150,
+    width: window.width,
     opacity: 0.8
   },
   imageContainer: {

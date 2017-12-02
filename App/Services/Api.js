@@ -38,15 +38,15 @@ const create = (baseURL = 'https://sheltered-ridge-83772.herokuapp.com') => {
   const getRoot = () => api.get('')
   const getListBook = () => api.get('/books')
   const getBook = (id) => api.get('/book/' + id)
-  const getUser = (id) => api.get('/user/' + id)
+  const getUser = (userId) => api.get('/user/' + userId)
   const authWithFacebook = (token) => api.post('/auth/facebook', {token: token})
 
   const getListSellerOfABook = ({token, bookId}) => api.get('/posts/' + bookId, {}, {
     headers: {'Authorization': 'Bearer ' + token}
   })
-  
+
   const getListCommentOfABook = (bookId) => api.get('/comments/' + bookId)
-  
+
   const addComment = ({token, bookId, content}) => api.post('/comments', {
     bookid: bookId,
     content: content
@@ -75,6 +75,12 @@ const create = (baseURL = 'https://sheltered-ridge-83772.herokuapp.com') => {
 
   const searchByTag = (keyword) => api.get('/tag-name/' + keyword)
 
+  const getBookByISBN = (isbn) => api.get('/isbn/' + isbn)
+
+  const getListBookSoldByUser = (token) => api.get('/profile/posts', {}, {
+    headers: {'Authorization': 'Bearer ' + token}
+  })
+
   // ------
   // STEP 3
   // ------
@@ -102,7 +108,9 @@ const create = (baseURL = 'https://sheltered-ridge-83772.herokuapp.com') => {
     deleteFavoriteBook,
     getListTag,
     searchByQuery,
-    searchByTag
+    searchByTag,
+    getBookByISBN,
+    getListBookSoldByUser
   }
 }
 

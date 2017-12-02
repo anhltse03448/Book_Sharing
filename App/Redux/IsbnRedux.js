@@ -4,13 +4,12 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  listBookRequest: ['data'],
-  listBookSoldByUserRequest: ['data'],
-  listBookSuccess: ['payload'],
-  listBookFailure: null
+  isbnRequest: ['data'],
+  isbnSuccess: ['payload'],
+  isbnFailure: null
 })
 
-export const ListBookTypes = Types
+export const IsbnTypes = Types
 export default Creators
 
 /* ------------- Initial State ------------- */
@@ -41,8 +40,7 @@ export const failure = state =>
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
-  [Types.LIST_BOOK_REQUEST]: request,
-  [Types.LIST_BOOK_SOLD_BY_USER_REQUEST]: request,
-  [Types.LIST_BOOK_SUCCESS]: success,
-  [Types.LIST_BOOK_FAILURE]: failure
+  [Types.ISBN_REQUEST]: request,
+  [Types.ISBN_SUCCESS]: success,
+  [Types.ISBN_FAILURE]: failure
 })

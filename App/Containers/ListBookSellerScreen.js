@@ -29,7 +29,11 @@ class ListBookSellerScreen extends Component {
     return (
       <SellerCell
         item={item}
-        onPress={() => this.props.navigation.navigate('UserSharedInfoScreen')}
+        onPress={() => this.props.navigation.navigate(
+          'UserSharedInfoScreen', {
+            userId: item.uid,
+            username: item.username
+          })}
         onPressMessage={this.onPressMessage.bind(this)} />
     )
   }
@@ -40,6 +44,7 @@ class ListBookSellerScreen extends Component {
   }
 
   render () {
+    console.log(this.props.payload)
     return (
       <Container>
         <Navigation onPressBack={() => this.props.navigation.goBack()}
