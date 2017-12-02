@@ -31,6 +31,14 @@ export default class CommentDetail extends Component {
     .catch((error) => console.log(error))
   }
 
+  handleOnPress = () => {
+    let comment = this.state.comment
+    this.props.onSendComment(this.props.bookId, comment)
+    this.setState({
+      comment: ''
+    })
+  }
+
   render () {
     return (
       <View
@@ -50,13 +58,7 @@ export default class CommentDetail extends Component {
           placeholder='Viết bình luận'
         />
         <Button transparent
-          onPress={() => {
-            let comment = this.state.comment
-            this.props.onSendComment(this.props.bookId, comment)
-            this.setState({
-              comment: ''
-            })
-          }}
+          onPress={this.handleOnPress}
           style={{
             paddingRight: 12
           }}

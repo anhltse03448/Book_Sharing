@@ -39,7 +39,7 @@ export default class BookContent extends Component {
               <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 8}}>
                 <Icon name='md-person' style={{color: colors.mainColor, fontSize: 22}} />
                 <Text style={styles.author}>
-                  &nbsp;&nbsp;Tô Hoài
+                  &nbsp;&nbsp;Nguyễn Nhật Ánh
                 </Text>
               </View>
             </View>
