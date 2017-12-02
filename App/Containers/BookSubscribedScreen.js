@@ -8,6 +8,7 @@ import {
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 import ListBookFavoriteActions from '../Redux/ListBookFavoriteRedux'
+import { NavigationActions } from 'react-navigation'
 
 // Styles
 // import styles from './Styles/BookSubscribedScreenStyle'
@@ -48,7 +49,11 @@ class BookSubscribedScreen extends Component {
             ? <FlatList
               data={this.props.payload}
               keyExtractor={(item) => item.id}
-              renderItem={(item) => <BookSubscribedItem item={item} />}
+              renderItem={(item) =>
+                <BookSubscribedItem
+                  navigate={this.props.navigate}
+                  item={item.item} />
+              }
             /> : <Loading />}
         </Content>
       </Container>
@@ -65,6 +70,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    navigate: (routeName, params) => dispatch(NavigationActions.navigate({
+      routeName: routeName,
+      params: params
+    })),
     fetchListBookFavorite: (token) =>
       dispatch(ListBookFavoriteActions.listBookFavoriteRequest(token))
   }
