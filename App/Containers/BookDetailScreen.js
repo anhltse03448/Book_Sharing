@@ -29,9 +29,6 @@ import ListMain from '../Components/ListMain'
 class BookDetailScreen extends Component {
   constructor (props) {
     super(props)
-    this.state = {
-      dataComment: [{key: 'a'}, {key: 'b'}, {key: 'c'}]
-    }
     this.onAddBookPress = this.onAddBookPress.bind(this)
   }
 
@@ -51,11 +48,11 @@ class BookDetailScreen extends Component {
   }
   onSendComment (comment) {
     console.log('Comment:  ', comment)
-    let data = this.state.dataComment
-    data.shift()
-    this.setState({
-      dataComment: data.concat([{key: 'a'}])
-    })
+    // let data = this.state.dataComment
+    // data.shift()
+    // this.setState({
+    //   dataComment: data.concat([{key: 'a'}])
+    // })
   }
   render () {
     const { navigation } = this.props
@@ -68,8 +65,8 @@ class BookDetailScreen extends Component {
           <BookContent navigation={navigation} item={item} onAddBookPress={this.onAddBookPress} />
           <ContentBook />
           <CommentDetail onSendComment={this.onSendComment.bind(this)} />
-          <BookCommentScreen data={this.state.dataComment} />
-          <ListMain items={[]} />
+          <BookCommentScreen bookId={item.id} />
+          {/* <ListMain items={[]} /> */}
         </Content>
       </Container>
     )

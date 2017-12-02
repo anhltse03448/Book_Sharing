@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, KeyboardAvoidingView, FlatList } from 'react-native'
+import { FlatList, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -10,7 +10,30 @@ import ChatCell from '../Components/ChatCell'
 import {
   Content
 } from 'native-base'
+import config from '../Config/FirebaseConfig'
+var firebase = require('firebase')
+
 class ChatHistoryScreen extends Component {
+  constructor (props) {
+    super(props)
+    if (!firebase.apps.length) {
+      firebase.initializeApp(config)
+    }
+    this.getUser()
+  }
+
+  getUser () {
+    AsyncStorage.getItem('@BookSharing:user')
+    .then((res) => {
+      this.mySelf = JSON.parse(res)
+      let starCountRef = firebase.database().ref('message/' + this.mySelf.id+'/')
+      starCountRef.on('child_added', function (snapshot) {
+        console.log('Receive: ', snapshot.val())
+      })
+    })
+  .catch((error) => console.log(error))
+  }
+
   renderItem (item) {
     return (
       <ChatCell />

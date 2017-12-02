@@ -61,7 +61,6 @@ class LoginScreen extends Component {
             async function (data) {
               try {
                 this.setState({loggingIn: true})
-                await AsyncStorage.setItem('@BookSharing:token', data.accessToken)
                 this.props.authWithFacebook(data.accessToken)
               } catch (error) {
                 console.log('Error Login FB: ', error)
@@ -78,8 +77,10 @@ class LoginScreen extends Component {
   }
   render () {
     const { payload } = this.props
+    console.log(payload)
     if (payload) {
       try {
+        AsyncStorage.setItem('@BookSharing:token', payload.token)
         AsyncStorage.setItem('@BookSharing:user',
           JSON.stringify(this.props.payload.user))
       } catch (error) {

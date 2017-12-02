@@ -1,5 +1,6 @@
 // a library to wrap and simplify api calls
 import apisauce from 'apisauce'
+import { AsyncStorage } from 'react-native'
 
 // our "constructor"
 const create = (baseURL = 'https://sheltered-ridge-83772.herokuapp.com') => {
@@ -34,12 +35,16 @@ const create = (baseURL = 'https://sheltered-ridge-83772.herokuapp.com') => {
   // Since we can't hide from that, we embrace it by getting out of the
   // way at this level.
   //
+
   const getRoot = () => api.get('')
   const getListBook = () => api.get('/books')
   const getBook = (id) => api.get('/book/' + id)
   const authWithFacebook = (token) => api.post('/auth/facebook', {token: token})
-  const getFavoriteBook = () => api.get('/books')
+  const getListBookFavorite = (token) => api.get('/favorites', {}, {
+    headers: {'Authorization': 'Bearer ' + token}
+  })
   const getListSellerOfABook = (bookId) => api.get('/posts/' + bookId)
+  const getListCommentOfABook = (bookId) => api.get('/comments/' + bookId)
 
   // ------
   // STEP 3
@@ -59,8 +64,9 @@ const create = (baseURL = 'https://sheltered-ridge-83772.herokuapp.com') => {
     getListBook,
     getBook,
     authWithFacebook,
-    getFavoriteBook,
-    getListSellerOfABook
+    getListBookFavorite,
+    getListSellerOfABook,
+    getListCommentOfABook
   }
 }
 

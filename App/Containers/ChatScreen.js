@@ -19,12 +19,7 @@ import {
   Content
 } from 'native-base'
 import Loading from '../Components/Loading'
-var config = {
-  apiKey: 'AIzaSyDqDgXPnwY941ky7zdZ4U_PRHVGfU015r4',
-  authDomain: 'book-sharing-c8c09.firebaseapp.com',
-  databaseURL: 'https://book-sharing-c8c09.firebaseio.com',
-  storageBucket: 'book-sharing-c8c09.appspot.com'
-}
+import config from '../Config/FirebaseConfig'
 var firebase = require('firebase')
 // Get a reference to the database service
 class ChatScreen extends Component {
@@ -172,6 +167,19 @@ class ChatScreen extends Component {
     })
   }
 
+  /*
+{
+          _id: Math.round(Math.random() * 1000000),
+          text: text,
+          createdAt: new Date(),
+          user: {
+            _id: this.user.userid,
+            name: this.user.username
+            // avatar: 'https://facebook.github.io/react/img/logo_og.png',
+          }
+        }
+  */
+
   renderCustomActions (props) {
     if (Platform.OS === 'ios') {
       return (
@@ -254,7 +262,8 @@ class ChatScreen extends Component {
       isLoadingEarlier={this.state.isLoadingEarlier}
 
       user={{
-        _id: this.user.userid // sent messages should have same user._id
+        _id: this.user.userid,
+        info: this.user
       }}
 
       renderActions={this.renderCustomActions}
