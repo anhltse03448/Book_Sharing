@@ -18,6 +18,7 @@ import {
   Container,
   Content
 } from 'native-base'
+import Loading from '../Components/Loading'
 var config = {
   apiKey: 'AIzaSyDqDgXPnwY941ky7zdZ4U_PRHVGfU015r4',
   authDomain: 'book-sharing-c8c09.firebaseapp.com',
@@ -39,13 +40,7 @@ class ChatScreen extends Component {
       typingText: null,
       isLoadingEarlier: false
     }
-
-    this.user = this.props.user.userid
-    this.mySelf = AsyncStorage.setItem('@BookSharing:user')
-
-    console.log('MySelf:  ', this.mySelf)
-    console.log('User:  ', this.user)
-
+    
     this._isMounted = false
     this.onSend = this.onSend.bind(this)
     this.onReceive = this.onReceive.bind(this)
@@ -55,6 +50,23 @@ class ChatScreen extends Component {
     this.renderFooter = this.renderFooter.bind(this)
     this.onLoadEarlier = this.onLoadEarlier.bind(this)
 
+    this.user = this.props.navigation.state.params.user
+    AsyncStorage.getItem('@BookSharing:user')
+      .then((res) => {
+        this.mySelf = JSON.parse(res)
+        console.log('Myself: ', JSON.parse(res))
+        console.log('Ref:  ', 'message/' + this.mySelf.id + '/' + this.user.userid)
+        var starCountRef = firebase.database().ref('message/' + this.mySelf.id + '/' + this.user.userid)
+        starCountRef.on('child_added', function (snapshot) {
+          console.log('Receive: ', snapshot.val())
+          let mess = snapshot.val()
+          if (mess.sentId === this.mySelf.id) {
+            this.onSend([mess.message])
+          }
+          this.onReceive(mess.message)
+        }.bind(this))
+      })
+    .catch((error) => console.log(error))
     this._isAlright = null
   }
 
@@ -62,7 +74,7 @@ class ChatScreen extends Component {
     this._isMounted = true
     this.setState(() => {
       return {
-        messages: require('./messages.js')
+        messages: []
       }
     })
   }
@@ -82,7 +94,7 @@ class ChatScreen extends Component {
       if (this._isMounted === true) {
         this.setState((previousState) => {
           return {
-            messages: GiftedChat.prepend(previousState.messages, require('./old_messages.js')),
+            messages: GiftedChat.prepend(previousState.messages),
             loadEarlier: false,
             isLoadingEarlier: false
           }
@@ -91,15 +103,8 @@ class ChatScreen extends Component {
     }, 1000) // simulating network
   }
 
-  onReceiveData (sentId, receiveId) {
-    var starCountRef = firebase.database().ref('message/' + sentId + '/' + receiveId)
-    starCountRef.on('value', function (snapshot) {
-      console.log('Receive: ', snapshot.val())
-    })
-  }
-
   sendData (sentId, receiveId, message) {
-    let refId = 'message/' + sentId + '/' + receiveId
+    let refId = 'message/' + sentId + '/' + receiveId + '/' + message._id
     console.log('RefID:  ', refId)
     firebase.database().ref(refId).set({
       sentId,
@@ -107,7 +112,7 @@ class ChatScreen extends Component {
       message
     })
 
-    let refId2 = 'message/' + receiveId + '/' + sentId
+    let refId2 = 'message/' + receiveId + '/' + sentId + '/' + message._id
     firebase.database().ref(refId2).set({
       sentId,
       receiveId,
@@ -116,7 +121,7 @@ class ChatScreen extends Component {
   }
 
   onSend (messages = []) {
-    this.sendData('1', '2', messages.text)
+    this.sendData(this.mySelf.id, this.user.userid, messages[0])
     this.setState((previousState) => {
       return {
         messages: GiftedChat.append(previousState.messages, messages)
@@ -159,19 +164,10 @@ class ChatScreen extends Component {
     }, 1000)
   }
 
-  onReceive (text) {
+  onReceive (message) {
     this.setState((previousState) => {
       return {
-        messages: GiftedChat.append(previousState.messages, {
-          _id: Math.round(Math.random() * 1000000),
-          text: text,
-          createdAt: new Date(),
-          user: {
-            _id: 2,
-            name: 'React Native'
-            // avatar: 'https://facebook.github.io/react/img/logo_og.png',
-          }
-        })
+        messages: GiftedChat.append(previousState.messages, message)
       }
     })
   }
@@ -207,7 +203,7 @@ class ChatScreen extends Component {
         {...props}
         wrapperStyle={{
           left: {
-            backgroundColor: '#f0f0f0',
+            backgroundColor: '#f0f0f0'
           }
         }}
       />
@@ -250,27 +246,29 @@ class ChatScreen extends Component {
   }
 
   render () {
+    let giftedChat = <GiftedChat
+      messages={this.state.messages}
+      onSend={this.onSend}
+      loadEarlier={this.state.loadEarlier}
+      onLoadEarlier={this.onLoadEarlier}
+      isLoadingEarlier={this.state.isLoadingEarlier}
+
+      user={{
+        _id: this.user.userid // sent messages should have same user._id
+      }}
+
+      renderActions={this.renderCustomActions}
+      renderBubble={this.renderBubble}
+      renderSystemMessage={this.renderSystemMessage}
+      renderCustomView={this.renderCustomView}
+      renderFooter={this.renderFooter}
+    />
+    let content = this.mySelf === null ? Loading : giftedChat
     return (
       <Container>
         <Navigation onPressBack={() => this.props.navigation.goBack()}
           title={this.user.username} />
-        <GiftedChat
-          messages={this.state.messages}
-          onSend={this.onSend}
-          loadEarlier={this.state.loadEarlier}
-          onLoadEarlier={this.onLoadEarlier}
-          isLoadingEarlier={this.state.isLoadingEarlier}
-
-          user={{
-            _id: 1, // sent messages should have same user._id
-          }}
-
-          renderActions={this.renderCustomActions}
-          renderBubble={this.renderBubble}
-          renderSystemMessage={this.renderSystemMessage}
-          renderCustomView={this.renderCustomView}
-          renderFooter={this.renderFooter}
-        />
+        {content}
       </Container>
     )
   }

@@ -43,8 +43,10 @@ class LoginScreen extends Component {
   componentDidMount () {
     AsyncStorage.getItem('@BookSharing:user')
       .then((res) => {
-        this.setState({isLogged: true})
-        console.log(JSON.parse(res))
+        if (res !== null) {
+          console.log('User: ', JSON.parse(res))
+          this.setState({isLogged: true})
+        }
       })
       .catch((error) => console.log(error))
   }

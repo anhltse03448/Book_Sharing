@@ -7,4 +7,6 @@ target 'BookSharing' do
 
   # Pods for BookSharing
 pod 'Firebase/Core'
+  pod 'react-native-maps', :path => '../node_modules/react-native-maps'
+
 end
