@@ -16,12 +16,17 @@ import CustomView from '../Components/CustomView'
 import Navigation from '../Components/Navigation'
 import {
   Container,
-  Content
+  Content,
+  ActionSheet
 } from 'native-base'
 import Loading from '../Components/Loading'
 import config from '../Config/FirebaseConfig'
 import moment from 'moment'
 var firebase = require('firebase')
+
+
+var BUTTONS = ['Hủy bỏ', 'Xóa tin nhắn']
+var CANCEL_INDEX = 0
 // Get a reference to the database service
 class ChatScreen extends Component {
   constructor (props) {
@@ -113,7 +118,7 @@ class ChatScreen extends Component {
 
   sendData (sentId, receiveId, message) {
     console.log('message:  ', message)
-    let createdAt1 = (Date.now())
+    let createdAt1 = (new Date(message.createdAt)).getTime()
     let refId = 'message/' + sentId + '/' + receiveId + '/' + createdAt1
 
     let createdAt = message.createdAt.toString()
@@ -279,6 +284,40 @@ class ChatScreen extends Component {
     return null
   }
 
+  onLongPress (context, message) {
+    console.log('Content:  ', context)
+    console.log('MEssage:  ', message)
+
+    ActionSheet.show(
+      {
+        options: BUTTONS,
+        cancelButtonIndex: CANCEL_INDEX,
+        title: ''
+      },
+      buttonIndex => {
+        if (buttonIndex === 1) {
+          console.log('Message:  ', message)
+          let refId = 'message/' + this.mySelf.userid + '/' + message.user.info.userid + '/' + ((new Date(message['createdAt'])).getTime() / 100)
+          console.log('RefID:  ', refId)
+          firebase.database().ref(refId).remove()
+
+          for (item in this.state.messages) {
+            console.log('Item:  ', item)
+          }
+      /*
+          let createdAt = message.createdAt.toString()
+          firebase.database().ref(refId).set({
+            sentId,
+            message,
+            receiveId,
+            createdAt
+          })
+          */
+        }
+      }
+    )
+  }
+
   render () {
     let giftedChat = <GiftedChat
       messages={this.state.messages}
@@ -287,7 +326,7 @@ class ChatScreen extends Component {
         _id: this.user.userid,
         info: this.user
       }}
-
+      onLongPress={this.onLongPress.bind(this)}
       renderActions={this.renderCustomActions}
       renderBubble={this.renderBubble}
       renderSystemMessage={this.renderSystemMessage}

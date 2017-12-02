@@ -125,11 +125,11 @@ export default class CustomActions extends Component {
           <NavButtonText style={{
             color: '#000'
           }}>
-            {'Send'}
+            {'Gửi'}
           </NavButtonText>
         </NavButton>
       </NavBar>
-    );
+    )
   }
 
   renderIcon() {
