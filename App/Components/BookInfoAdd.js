@@ -40,7 +40,7 @@ export default class BookInfoAdd extends Component {
             >{item.name}</Text>
             <Text
               style={styles.author}
-            >Hary Kane</Text>
+            > {item.author}</Text>
           </View>
         </CardItem>
       </View>
