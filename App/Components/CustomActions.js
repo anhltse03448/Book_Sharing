@@ -11,7 +11,17 @@ import { Modal,
 import CameraRollPicker from 'react-native-camera-roll-picker'
 import NavBar, { NavButton, NavButtonText, NavTitle } from 'react-native-nav'
 import config from '../Config/FirebaseConfig'
+import RNFetchBlob from 'react-native-fetch-blob'
+import ImagePicker from 'react-native-image-picker'
+
 var firebase = require('firebase')
+
+// Prepare Blob support
+const Blob = RNFetchBlob.polyfill.Blob
+const fs = RNFetchBlob.fs
+window.XMLHttpRequest = RNFetchBlob.polyfill.XMLHttpRequest
+window.Blob = Blob
+
 export default class CustomActions extends Component {
   constructor (props) {
     super(props)
@@ -60,31 +70,41 @@ export default class CustomActions extends Component {
     this.setImages(images);
   }
 
-  uploadImage (uri, mime = 'image/jpeg', name) {    
+  uploadImage = (uri, mime = 'image/jpeg', name) => {    
     return new Promise((resolve, reject) => {
-      let imgUri = uri; let uploadBlob = null;
-      const uploadUri = Platform.OS === 'ios' ? imgUri.replace('file://', '') : imgUri;
-      const { currentUser } = firebase.auth();
-      const imageRef = firebase.storage().ref(`/jobs/${currentUser.uid}`)
+      const uploadUri = Platform.OS === 'ios' ? uri.replace('file://', '') : uri
+      const sessionId = new Date().getTime()
+      let uploadBlob = null
+      const imageRef = firebase.storage().ref('images').child(`${sessionId}`)
   
       fs.readFile(uploadUri, 'base64')
-        .then(data => {
-          return Blob.build(data, { type: `${mime};BASE64` });
+        .then((data) => {
+          return Blob.build(data, { type: `${mime};BASE64` })
         })
-        .then(blob => {
-          uploadBlob = blob;
-          return imageRef.put(blob, { contentType: mime, name: name });
+        .then((blob) => {
+          uploadBlob = blob
+          return imageRef.put(blob, { contentType: mime })
         })
         .then(() => {
           uploadBlob.close()
-          return imageRef.getDownloadURL();
+          return imageRef.getDownloadURL()
         })
-        .then(url => {
-          resolve(url);
+        .then((url) => {
+          resolve(url)
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error)
       })
+    })
+  }
+
+  _pickImage = () => {
+    this.setState({ uploadURL: '' })
+
+    ImagePicker.launchImageLibrary({}, (response) => {
+      this.uploadImage(response.uri)
+        .then(url => console.log(url))
+        .catch(error => console.log(error))
     })
   }
 
@@ -153,9 +173,9 @@ export default class CustomActions extends Component {
     return (
       <TouchableOpacity
         style={[styles.container, this.props.containerStyle]}
-        onPress={this.onActionsPress}
+        onPress={() => this._pickImage()}
       >
-        <Modal
+        {/* <Modal
           animationType={'slide'}
           transparent={false}
           visible={this.state.modalVisible}
@@ -170,7 +190,7 @@ export default class CustomActions extends Component {
             callback={this.selectImages}
             selected={[]}
           />
-        </Modal>
+        </Modal> */}
         {this.renderIcon()}
       </TouchableOpacity>
     );
