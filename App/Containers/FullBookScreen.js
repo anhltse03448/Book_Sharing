@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 import ListBookActions from '../Redux/ListBookRedux'
+import { NavigationActions } from 'react-navigation'
 
 // Styles
 import {
@@ -31,14 +32,19 @@ class FullBookScreen extends Component {
   }
 
   renderItem (item) {
-    return <FullBookCell item={item} onPressItemSearch={this.props.navigation.state.params.onPressItemSearch} />
+    return (
+      <FullBookCell
+        item={item}
+        onPressItemSearch={(item) => this.props.navigateToBookDetail(item)}
+      />
+    )
   }
 
   render () {
     return (
       <Container>
         <Navigation onPressBack={() => this.props.navigation.goBack()}
-          title={this.props.navigation.state.params.book.section} />
+          title={this.props.navigation.state.params.item.section} />
         <Content>
           <Header searchBar rounded>
             <Item>
@@ -75,6 +81,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    navigateToBookDetail: (book) => dispatch(NavigationActions.navigate({
+      routeName: 'BookDetailScreen',
+      params: {book: book}
+    })),
     fetchBookList: () => dispatch(ListBookActions.listBookRequest())
   }
 }

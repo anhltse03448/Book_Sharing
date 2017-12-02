@@ -28,7 +28,7 @@ class NotificationScreen extends Component {
   render () {
     return (
       <Container>
-        <HeaderDefault title='Thông báo' />
+        <HeaderDefault title='Thông báo' styles={styles.header}/>
         <Content>
           <Tabs
             tabBarUnderlineStyle={{
@@ -36,16 +36,16 @@ class NotificationScreen extends Component {
               height: 2
             }}>
             <Tab heading='Sách theo dõi'
-                       activeTabStyle={styles.tab}
-                       tabStyle={[styles.tab, backgroundColor : '#ffffff']}
-                       activeTextStyle={styles.text}
+                       activeTabStyle={styles.tabActive}
+                       tabStyle={styles.tab}
+                       activeTextStyle={styles.textActive}
                        textStyle={styles.text}>
             <NoticeScreen onPress={this.onPress} />
           </Tab>
             <Tab heading='Tin Nhắn'
-              activeTabStyle={styles.tab}
+              activeTabStyle={styles.tabActive}
               tabStyle={styles.tab}
-              activeTextStyle={styles.text}
+              activeTextStyle={styles.textActive}
               textStyle={styles.text}
             >
               <ChatHistoryScreen onPress={this.onPress} />

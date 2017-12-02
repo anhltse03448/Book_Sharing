@@ -24,7 +24,7 @@ export default class HeaderDefault extends Component {
     return (
       <Header
         style={{
-          backgroundColor: colors.mainColor
+          backgroundColor: colors.mainColor,
         }}
       >
         <Body style={{alignItems: 'center'}}>

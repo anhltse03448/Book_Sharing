@@ -44,6 +44,8 @@ export default class SellerCell extends Component {
       {key: 'a'}, {key: 'b'}, {key: 'c'}, {key: 'd'}, {key: 'e'}
     ]
 
+    const { item } = this.props
+
     return (
       <View style={styles.card}>
         <Card>
@@ -56,8 +58,8 @@ export default class SellerCell extends Component {
               <Left>
                 <Thumbnail source={require('../Images/LoginBg.png')} />
                 <Body>
-                  <Text style={styles.title}>Huy Trần</Text>
-                  <Text style={styles.price}>Giá bán: 100k</Text>
+                  <Text style={styles.title}>{item.username} - {item.uid}</Text>
+                  <Text style={styles.price}>Giá bán: {item.price}</Text>
                   <Text style={styles.address}>FPT University - 1km</Text>
                 </Body>
               </Left>

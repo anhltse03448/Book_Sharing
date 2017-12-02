@@ -81,10 +81,10 @@ class UserSharedInfoScreen extends Component {
               </ListItem>
               <ListItem icon last>
                 <Left>
-                  <Icon name='ios-mail-outline' />
+                  <Icon name='ios-mail' />
                 </Left>
                 <Body>
-                <Text>abc@gmail.com</Text>
+                  <Text>abc</Text>
                 </Body>
               </ListItem>
               <ListItem icon last>

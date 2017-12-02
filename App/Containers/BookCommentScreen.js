@@ -3,6 +3,7 @@ import { View, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
+import ListCommentBookActions from '../Redux/ListCommentBookRedux'
 
 // Styles
 import {
@@ -16,23 +17,29 @@ import styles from './Styles/BookCommentScreenStyle'
 import CommentCell from '../Components/CommentCell'
 
 class BookCommentScreen extends Component {
-  constructor (props) {
-    super(props)
+  // constructor (props) {
+  //   super(props)
+  // }
+
+  componentWillMount () {
+    this.props.fetchListCommentBook(this.props.bookId)
   }
+
   renderItem (item) {
     return (
       <CommentCell item={item} />
     )
   }
   render () {
-    const data = this.props.data
+    const { payload } = this.props
     return (
       <View
         style={{
           
         }}>
         <FlatList
-          data={data}
+          data={payload}
+          keyExtractor={(item) => item.id}
           renderItem={({item}) => this.renderItem(item)}
       />
       </View>
@@ -41,12 +48,16 @@ class BookCommentScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
+  const { payload } = state.listCommentBook
   return {
+    payload
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    fetchListCommentBook: (bookId) =>
+      dispatch(ListCommentBookActions.listCommentBookRequest(bookId))
   }
 }
 

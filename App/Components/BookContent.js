@@ -14,12 +14,14 @@ export default class BookContent extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      isCheckedBookmark: false,
-      isPress: false
+      isPress: false,
+      isCheckedBookmark: this.props.listBookFavorite.filter(
+        (item) => item.id === this.props.item.id).length > 0
     }
   }
 
   handleCheckBookmark = () => {
+    this.props.onPressFavorite(!this.state.isCheckedBookmark)
     this.setState({isCheckedBookmark: !this.state.isCheckedBookmark})
   }
 
@@ -51,7 +53,7 @@ export default class BookContent extends Component {
               </Badge>
             </View>
           </View>
-          <View style={{marginTop: 4}}>
+          <View style={{marginTop: 0}}>
             <Icon
               onPress={this.handleCheckBookmark}
               name={this.state.isCheckedBookmark ? 'ios-bookmark' : 'ios-bookmark-outline'}
@@ -70,8 +72,8 @@ export default class BookContent extends Component {
             <Button bordered small
               onPress={() => {
                 this.setState({ isPress : !this.state.isPress });
-                setTimeout(()=>{this.setState({isPress : !this.state.isPress})},2000);
-                navigation.navigate('ListBookSellerScreen', {navigation: this.props.navigation})
+                setTimeout(()=>{this.setState({isPress : !this.state.isPress})}, 2000);
+                navigation.navigate('ListBookSellerScreen', {bookId: item.id})
               }}
               style={styles.buttonSub}
               disabled={this.state.isPress}>
@@ -92,8 +94,8 @@ export default class BookContent extends Component {
               }}
               style={styles.buttonSub} disabled={this.state.isPress}>
               <View style={styles.icon}>
-                <Icon style={{color: '#fff', fontSize: 18}}
-                      name = {(Platform.OS === 'ios') ? 'ios-add-circle-outline' : 'md-add-circle'} />
+                <Icon style={{color: '#000', fontSize: 18}}
+                      ios='ios-add-circle-outline' android='md-bookmarks' />
               </View>
               <View style={{flex: 1, alignItems: 'center'}}>
                 <NBText>Thêm sách</NBText>

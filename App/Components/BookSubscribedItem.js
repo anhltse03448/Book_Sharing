@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
-import { View, Image, FlatList } from 'react-native'
+import { View, Image, TouchableHighlight } from 'react-native'
 import styles from './Styles/BookSubscribedItemStyle'
 import {
   Card,
@@ -24,33 +24,23 @@ export default class BookSubscribedItem extends Component {
   }
 
   render () {
-    const featureImageData = [
-      {key: 'a'}, {key: 'b'}, {key: 'c'}, {key: 'd'}, {key: 'e'}
-    ]
+    const { item } = this.props
 
     return (
-      <Card style={{paddingBottom: 4}}>
-        <CardItem>
-          <Left>
-            <Thumbnail source={require('../Images/LoginBg.png')} />
-            <Body>
-              <Text>Harry Potter</Text>
-              <Text note>J.K Rowling</Text>
-            </Body>
-          </Left>
-          <Right>
-            <Button style={{height: 20}} transparent>
-              <Icon name='md-heart' style={{fontSize: 25, color: '#cc0000'}} />
-            </Button>
-          </Right>
-        </CardItem>
-        <CardItem cardBody>
-          <FlatList horizontal
-            showsHorizontalScrollIndicator={false}
-            data={featureImageData}
-            renderItem={({item}) => this.renderItem(item)}
-          />
-        </CardItem>
+      <Card>
+        <TouchableHighlight
+          underlayColor='#fff'
+          onPress={() => this.props.navigate('BookDetailScreen', {book: item})} style={{paddingBottom: 4}}>
+          <CardItem>
+            <Left style={{flex: 1, flexGrow: 3}}>
+              <Thumbnail source={{uri: item.cover}} />
+              <Body>
+                <Text>{item.name}</Text>
+                <Text note>J.K Rowling</Text>
+              </Body>
+            </Left>
+          </CardItem>
+        </TouchableHighlight>
       </Card>
     )
   }

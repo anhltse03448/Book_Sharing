@@ -7,13 +7,13 @@ import colors from '../Themes/Colors'
 export default class Loading extends Component {
   render () {
     return (
-      <View style={{
-        flex: 1,
+      <View style={[{
+        justifyContent: 'center',
         backgroundColor: '#fff',
         alignItems: 'center',
         paddingTop: 16,
         paddingBottom: 16
-      }}>
+      }, this.props.style]}>
         <Spinner
           color={colors.mainColor}
         />
