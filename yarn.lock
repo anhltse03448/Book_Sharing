@@ -6949,6 +6949,12 @@ react-native-nav@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/react-native-nav/-/react-native-nav-2.0.2.tgz#280be2c9b2ecb5c10e57f8b1833aa1ac9c5c1101"
 
+react-native-onesignal@^3.0.7:
+  version "3.0.7"
+  resolved "https://registry.yarnpkg.com/react-native-onesignal/-/react-native-onesignal-3.0.7.tgz#d4fd7cb8297aada7e1a11abef311fb577d3f8428"
+  dependencies:
+    invariant "^2.2.2"
+
 react-native-parsed-text@^0.0.19:
   version "0.0.19"
   resolved "https://registry.yarnpkg.com/react-native-parsed-text/-/react-native-parsed-text-0.0.19.tgz#1aacca6f9ee82f939f60ef985df90c97bd55c45a"

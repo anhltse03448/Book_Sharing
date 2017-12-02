@@ -48,6 +48,7 @@
     "react-native-linear-gradient": "^2.3.0",
     "react-native-maps": "^0.18.3",
     "react-native-nav": "^2.0.2",
+    "react-native-onesignal": "^3.0.7",
     "react-navigation": "^1.0.0-beta.7",
     "react-redux": "^5.0.2",
     "redux": "^3.6.0",
