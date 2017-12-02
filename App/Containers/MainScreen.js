@@ -107,7 +107,7 @@ class MainScreen extends Component {
                 style={this.getStyleIcon('NOTIFICATION')} />
               <Text
                 style={this.getStyleText('NOTIFICATION')}
-              > Thông báo </Text>
+              > Tin nhắn </Text>
             </Button>
             <Button vertical
               onPress={() => this.onPress('PERSON')}>
