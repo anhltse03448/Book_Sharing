@@ -5,6 +5,7 @@ import styles from './Styles/ChatCellStyle'
 import {
   ListItem
 } from 'native-base'
+import moment from 'moment'
 export default class ChatCell extends Component {
   render () {
     const item = this.props.item
@@ -33,7 +34,7 @@ export default class ChatCell extends Component {
             <Text style={styles.name}>{item.user.username ? item.user.username : item.name}</Text>
             <Text
               style={styles.message}
-            >3:53 am</Text>
+            >{moment(new Date(item.createdAt)).fromNow()}</Text>
           </View>
           <Text
             style={styles.message}

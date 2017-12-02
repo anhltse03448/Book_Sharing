@@ -6,9 +6,12 @@ import { Modal,
   TouchableOpacity,
   View,
   ViewPropTypes,
+  Platform,
   Text } from 'react-native'
 import CameraRollPicker from 'react-native-camera-roll-picker'
 import NavBar, { NavButton, NavButtonText, NavTitle } from 'react-native-nav'
+import config from '../Config/FirebaseConfig'
+var firebase = require('firebase')
 export default class CustomActions extends Component {
   constructor (props) {
     super(props)
@@ -16,6 +19,10 @@ export default class CustomActions extends Component {
     this.state = {
       modalVisible: false
     }
+    if (!firebase.apps.length) {
+      firebase.initializeApp(config)
+    }
+
     this.onActionsPress = this.onActionsPress.bind(this)
     this.selectImages = this.selectImages.bind(this)
   }
@@ -53,6 +60,34 @@ export default class CustomActions extends Component {
     this.setImages(images);
   }
 
+  uploadImage (uri, mime = 'image/jpeg', name) {    
+    return new Promise((resolve, reject) => {
+      let imgUri = uri; let uploadBlob = null;
+      const uploadUri = Platform.OS === 'ios' ? imgUri.replace('file://', '') : imgUri;
+      const { currentUser } = firebase.auth();
+      const imageRef = firebase.storage().ref(`/jobs/${currentUser.uid}`)
+  
+      fs.readFile(uploadUri, 'base64')
+        .then(data => {
+          return Blob.build(data, { type: `${mime};BASE64` });
+        })
+        .then(blob => {
+          uploadBlob = blob;
+          return imageRef.put(blob, { contentType: mime, name: name });
+        })
+        .then(() => {
+          uploadBlob.close()
+          return imageRef.getDownloadURL();
+        })
+        .then(url => {
+          resolve(url);
+        })
+        .catch(error => {
+          reject(error)
+      })
+    })
+  }
+
   renderNavBar() {
     return (
       <NavBar style={{
@@ -78,18 +113,17 @@ export default class CustomActions extends Component {
           {'Camera Roll'}
         </NavTitle>
         <NavButton onPress={() => {
-          this.setModalVisible(false);
-
+          this.setModalVisible(false)
           const images = this.getImages().map((image) => {
             return {
-              image: image.uri,
-            };
-          });
-          this.props.onSend(images);
-          this.setImages([]);
+              image: image.uri
+            }
+          })
+          this.props.onSend(images)
+          this.setImages([])
         }}>
           <NavButtonText style={{
-            color: '#000',
+            color: '#000'
           }}>
             {'Send'}
           </NavButtonText>

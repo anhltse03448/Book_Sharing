@@ -9,4 +9,6 @@ target 'BookSharing' do
 pod 'Firebase/Core'
   pod 'react-native-maps', :path => '../node_modules/react-native-maps'
 
+  pod 'react-native-fetch-blob', :path => '../node_modules/react-native-fetch-blob'
+
 end

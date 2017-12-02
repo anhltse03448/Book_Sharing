@@ -12,18 +12,22 @@ import {
 } from 'native-base'
 import config from '../Config/FirebaseConfig'
 import { NavigationActions } from 'react-navigation'
-
+import Loading from '../Components/Loading'
 var firebase = require('firebase')
 
 class ChatHistoryScreen extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      listMessengers: []
+      listMessengers: [],
+      isLoading: true
     }
     if (!firebase.apps.length) {
       firebase.initializeApp(config)
     }
+  }
+
+  componentDidMount () {
     this.getUser()
   }
 
@@ -34,13 +38,17 @@ class ChatHistoryScreen extends Component {
       let starCountRef = firebase.database().ref('message/' + this.mySelf.userid)
       starCountRef.once('value', function (snapshot) {
         let messages = snapshot.val()
+        this.setState({
+          isLoading: false
+        })
         for (var mess1 in messages) {
           let mess = messages[mess1]
           let lastMessage = mess['lastMessage']
+          let createdAt = mess['createdAt']
           let user = mess['user']
           let listMessengers = this.state.listMessengers
           if (user !== undefined) {
-            listMessengers = listMessengers.concat([{user, lastMessage}])
+            listMessengers = listMessengers.concat([{user, lastMessage, createdAt}])
             console.log('List Messengers:  ', listMessengers)
             this.setState({listMessengers})
           }
@@ -63,10 +71,10 @@ class ChatHistoryScreen extends Component {
   render () {
     return (
       <Content>
-        <FlatList
+        {!this.state.isLoading ? <FlatList
           data={this.state.listMessengers}
           renderItem={({item}) => this.renderItem(item)}
-          />
+          /> : <Loading />}
       </Content>
     )
   }

@@ -21,7 +21,6 @@ import {
 import Loading from '../Components/Loading'
 import config from '../Config/FirebaseConfig'
 import moment from 'moment'
-
 var firebase = require('firebase')
 // Get a reference to the database service
 class ChatScreen extends Component {
@@ -35,7 +34,8 @@ class ChatScreen extends Component {
       messages: [],
       loadEarlier: true,
       typingText: null,
-      isLoadingEarlier: false
+      isLoadingEarlier: false,
+      isLoading: true
     }
     this.isLoading = true
     this._isMounted = false
@@ -51,25 +51,12 @@ class ChatScreen extends Component {
     AsyncStorage.getItem('@BookSharing:user')
       .then((res) => {
         this.mySelf = JSON.parse(res)
-        console.log('Ref:  ', 'message/' + this.mySelf.userid + '/' + this.user.userid)
-        /*
-        let loadFirst = firebase.database().ref('message/' + this.mySelf.userid + '/' + this.user.userid + '/')
-        loadFirst.once('value', function (snapshot) {
-          let messages = snapshot.val()
-          for (var mess in messages) {
-            let obj = messages[mess]
-            if (obj.message !== undefined) {
-              this.setState({
-                messages: [{...obj.message, createdAt: new Date(obj.createdAt)}].concat(this.state.messages)
-              })
-            }
-            this.isLoading = false
-          }
-        }.bind(this))
-        */
         let loadFirst = firebase.database().ref('message/' + this.mySelf.userid + '/' + this.user.userid)
         loadFirst.on('child_added', function (snapshot) {
           console.log('Receive: ', snapshot.val())
+          this.setState({
+            isLoading: false
+          })
           let mess = snapshot.val()
           console.log('SelfID:  ', this.mySelf.userid)
           if (mess.sentId !== this.mySelf.userid) {
@@ -125,6 +112,7 @@ class ChatScreen extends Component {
   }
 
   sendData (sentId, receiveId, message) {
+    console.log('message:  ', message)
     let createdAt1 = (Date.now())
     let refId = 'message/' + sentId + '/' + receiveId + '/' + createdAt1
 
@@ -137,7 +125,8 @@ class ChatScreen extends Component {
     })
     let refId3 = 'message/' + sentId + '/' + receiveId
     firebase.database().ref(refId3).update({
-      lastMessage: message.text,
+      lastMessage: 'Đã gửi ảnh',
+      createdAt,
       user: this.user
     })
     let refId2 = 'message/' + receiveId + '/' + sentId + '/' + createdAt1
@@ -150,8 +139,9 @@ class ChatScreen extends Component {
 
     let refId4 = 'message/' + receiveId + '/' + sentId
     firebase.database().ref(refId4).update({
-      lastMessage: message.text,
-      user: this.mySelf
+      lastMessage: 'Đã gửi ảnh',
+      user: this.mySelf,
+      createdAt
     })
   }
 
@@ -309,7 +299,7 @@ class ChatScreen extends Component {
       <Container>
         <Navigation onPressBack={() => this.props.navigation.goBack()}
           title={this.user.username} />
-        {content}
+        {this.state.isLoading ? <Loading /> : content}
       </Container>
     )
   }
