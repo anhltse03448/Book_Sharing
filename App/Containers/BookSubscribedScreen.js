@@ -34,7 +34,8 @@ class BookSubscribedScreen extends Component {
         <Navigation onPressBack={() => this.props.navigation.goBack()}
           title='Sách đang theo dõi' />
         <Content>
-          {this.props.payload.length === 0 &&
+          {this.props.payload !== null &&
+            this.props.payload.length === 0 &&
             <Text style={{
               alignSelf: 'center',
               paddingTop: 16,

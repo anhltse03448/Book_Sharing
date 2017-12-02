@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
-import { 
-  Image,
-  Text,  
-  FlatList
+import {
+  AsyncStorage
 } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
-import BookActions from '../Redux/BookRedux'
+import AddFavoriteBookActions from '../Redux/AddFavoriteBookRedux'
 
 // Styles
 import {
@@ -54,6 +52,15 @@ class BookDetailScreen extends Component {
     //   dataComment: data.concat([{key: 'a'}])
     // })
   }
+
+  onPressFavorite = (bookId) => {
+    AsyncStorage.getItem('@BookSharing:token')
+    .then((res) => {
+      this.props.addFavoriteBook({token: res, bookId})
+    })
+    .catch((error) => console.log(error))
+  }
+
   render () {
     const { navigation } = this.props
     const item = navigation.state.params.book
@@ -62,7 +69,11 @@ class BookDetailScreen extends Component {
         <Navigation onPressBack={() => navigation.goBack()}
           title={item.name} />
         <Content>
-          <BookContent navigation={navigation} item={item} onAddBookPress={this.onAddBookPress} />
+          <BookContent
+            onPressFavorite={() => this.onPressFavorite(item.id)}
+            navigation={navigation}
+            item={item}
+            onAddBookPress={this.onAddBookPress} />
           <ContentBook />
           <CommentDetail onSendComment={this.onSendComment.bind(this)} />
           <BookCommentScreen bookId={item.id} />
@@ -74,21 +85,17 @@ class BookDetailScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
-  // const { payload } = state.book
+  const { payload } = state.addFavoriteBook
   return {
-    // payload
+    payload
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // fetchBook: (id) => dispatch(BookActions.bookRequest(id))
+    addFavoriteBook: ({token, bookId}) =>
+      dispatch(AddFavoriteBookActions.addFavoriteBookRequest({token, bookId}))
   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookDetailScreen)
-/*
-<CommentBox
-            onSendPress={this.onSendPress.bind(this)}
-          />
-*/
