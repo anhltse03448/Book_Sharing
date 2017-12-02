@@ -10,6 +10,7 @@ import { ListBookFavoriteTypes } from '../Redux/ListBookFavoriteRedux'
 import { ListSellerBookTypes } from '../Redux/ListSellerBookRedux'
 import { ListCommentBookTypes } from '../Redux/ListCommentBookRedux'
 import { AddFavoriteBookTypes } from '../Redux/AddFavoriteBookRedux'
+import { DeleteFavoriteBookTypes } from '../Redux/DeleteFavoriteBookRedux'
 
 /* ------------- Sagas ------------ */
 
@@ -20,6 +21,7 @@ import { getListBookFavorite } from './ListBookFavoriteSagas'
 import { getListSellerBook } from './ListSellerBookSagas'
 import { getListCommentBook } from './ListCommentBookSagas'
 import { addFavoriteBook } from './AddFavoriteBookSagas'
+import { deleteFavoriteBook } from './DeleteFavoriteBookSagas'
 
 /* ------------- API ------------- */
 
@@ -32,11 +34,19 @@ const api = API.create()
 export default function * root () {
   yield all([
     takeEvery(ListBookTypes.LIST_BOOK_REQUEST, getListBook, api),
+
     takeEvery(ListBookFavoriteTypes.LIST_BOOK_FAVORITE_REQUEST, getListBookFavorite, api),
+
     takeLatest(AddFavoriteBookTypes.ADD_FAVORITE_BOOK_REQUEST, addFavoriteBook, api),
+
+    takeLatest(DeleteFavoriteBookTypes.DELETE_FAVORITE_BOOK_REQUEST, deleteFavoriteBook, api),
+
     takeLatest(BookTypes.BOOK_REQUEST, getBook, api),
+
     takeLatest(AuthTypes.AUTH_REQUEST, authWithFacebook, api),
+
     takeEvery(ListSellerBookTypes.LIST_SELLER_BOOK_REQUEST, getListSellerBook, api),
+
     takeEvery(ListCommentBookTypes.LIST_COMMENT_BOOK_REQUEST, getListCommentBook, api)
   ])
 }

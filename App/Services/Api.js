@@ -55,6 +55,9 @@ const create = (baseURL = 'https://sheltered-ridge-83772.herokuapp.com') => {
   }, {
     headers: {'Authorization': 'Bearer ' + token}
   })
+  const deleteFavoriteBook = ({token, bookId}) => api.delete('/favorites/' + bookId, {}, {
+    headers: {'Authorization': 'Bearer ' + token}
+  })
 
   // ------
   // STEP 3
@@ -77,7 +80,8 @@ const create = (baseURL = 'https://sheltered-ridge-83772.herokuapp.com') => {
     getListSellerOfABook,
     getListCommentOfABook,
     getListBookFavorite,
-    addFavoriteBook
+    addFavoriteBook,
+    deleteFavoriteBook
   }
 }
 

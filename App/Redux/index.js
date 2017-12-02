@@ -10,6 +10,7 @@ export const reducers = combineReducers({
   auth: require('./AuthRedux').reducer,
   listBookFavovite: require('./ListBookFavoriteRedux').reducer,
   addFavoriteBook: require('./AddFavoriteBookRedux').reducer,
+  deleteFavoriteBook: require('./DeleteFavoriteBookRedux').reducer,
   listSellerBook: require('./ListSellerBookRedux').reducer,
   listCommentBook: require('./ListCommentBookRedux').reducer
 })

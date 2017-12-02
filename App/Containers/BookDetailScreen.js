@@ -6,6 +6,8 @@ import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 import AddFavoriteBookActions from '../Redux/AddFavoriteBookRedux'
+import DeleteFavoriteBookActions from '../Redux/DeleteFavoriteBookRedux'
+import ListBookFavoriteActions from '../Redux/ListBookFavoriteRedux'
 
 // Styles
 import {
@@ -24,6 +26,8 @@ import Navigation from '../Components/Navigation'
 import ContentBook from '../Components/ContentBook'
 import CommentDetail from '../Components/CommentDetail'
 import ListMain from '../Components/ListMain'
+import Loading from '../Components/Loading'
+
 class BookDetailScreen extends Component {
   constructor (props) {
     super(props)
@@ -31,6 +35,11 @@ class BookDetailScreen extends Component {
   }
 
   componentWillMount () {
+    AsyncStorage.getItem('@BookSharing:token')
+    .then((res) => {
+      this.props.fetchListBookFavorite(res)
+    })
+    .catch((error) => console.log(error))
   }
   componentDidMount () {
     // this.props.fetchBook(this.props.navigation.state.params.bookId)
@@ -53,10 +62,14 @@ class BookDetailScreen extends Component {
     // })
   }
 
-  onPressFavorite = (bookId) => {
+  onPressFavorite = (checked, bookId) => {
     AsyncStorage.getItem('@BookSharing:token')
     .then((res) => {
-      this.props.addFavoriteBook({token: res, bookId})
+      if (checked) {
+        this.props.addFavoriteBook({token: res, bookId})
+      } else {
+        this.props.deleteFavoriteBook({token: res, bookId})
+      }
     })
     .catch((error) => console.log(error))
   }
@@ -65,27 +78,29 @@ class BookDetailScreen extends Component {
     const { navigation } = this.props
     const item = navigation.state.params.book
     return (
-      item && <Container>
+      <Container>
         <Navigation onPressBack={() => navigation.goBack()}
           title={item.name} />
-        <Content>
-          <BookContent
-            onPressFavorite={() => this.onPressFavorite(item.id)}
-            navigation={navigation}
-            item={item}
-            onAddBookPress={this.onAddBookPress} />
-          <ContentBook />
-          <CommentDetail onSendComment={this.onSendComment.bind(this)} />
-          <BookCommentScreen bookId={item.id} />
-          {/* <ListMain items={[]} /> */}
-        </Content>
+        {this.props.payload
+          ? <Content>
+            <BookContent
+              listBookFavorite={this.props.payload}
+              onPressFavorite={(checked) => this.onPressFavorite(checked, item.id)}
+              navigation={navigation}
+              item={item}
+              onAddBookPress={this.onAddBookPress} />
+            <ContentBook />
+            <CommentDetail onSendComment={this.onSendComment.bind(this)} />
+            <BookCommentScreen bookId={item.id} />
+            {/* <ListMain items={[]} /> */}
+          </Content> : <Loading />}
       </Container>
     )
   }
 }
 
 const mapStateToProps = (state) => {
-  const { payload } = state.addFavoriteBook
+  const { payload } = state.listBookFavovite
   return {
     payload
   }
@@ -94,7 +109,11 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addFavoriteBook: ({token, bookId}) =>
-      dispatch(AddFavoriteBookActions.addFavoriteBookRequest({token, bookId}))
+      dispatch(AddFavoriteBookActions.addFavoriteBookRequest({token, bookId})),
+    deleteFavoriteBook: ({token, bookId}) =>
+      dispatch(DeleteFavoriteBookActions.deleteFavoriteBookRequest({token, bookId})),
+    fetchListBookFavorite: (token) =>
+      dispatch(ListBookFavoriteActions.listBookFavoriteRequest(token))
   }
 }
 

@@ -32,7 +32,6 @@ class BookCommentScreen extends Component {
   }
   render () {
     const { payload } = this.props
-    console.log(payload)
     return (
       <View
         style={{

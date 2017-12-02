@@ -14,12 +14,13 @@ export default class BookContent extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      isCheckedBookmark: false
+      isCheckedBookmark: this.props.listBookFavorite.filter(
+        (item) => item.id === this.props.item.id).length > 0
     }
   }
 
   handleCheckBookmark = () => {
-    this.props.onPressFavorite()
+    this.props.onPressFavorite(!this.state.isCheckedBookmark)
     this.setState({isCheckedBookmark: !this.state.isCheckedBookmark})
   }
 
