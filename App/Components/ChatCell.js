@@ -9,7 +9,6 @@ import moment from 'moment'
 export default class ChatCell extends Component {
   constructor (props) {
     super(props)
-    moment.locale('vn')
   }
   render () {
     const item = this.props.item

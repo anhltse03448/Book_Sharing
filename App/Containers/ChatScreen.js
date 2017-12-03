@@ -22,8 +22,8 @@ import {
 import Loading from '../Components/Loading'
 import config from '../Config/FirebaseConfig'
 import moment from 'moment'
-var firebase = require('firebase')
 
+var firebase = require('firebase')
 
 var BUTTONS = ['Hủy bỏ', 'Xóa tin nhắn']
 var CANCEL_INDEX = 0
@@ -51,6 +51,11 @@ class ChatScreen extends Component {
     this.renderSystemMessage = this.renderSystemMessage.bind(this)
     this.renderFooter = this.renderFooter.bind(this)
     this.onLoadEarlier = this.onLoadEarlier.bind(this)
+
+    let refUser = firebase.database().ref('user/' + this.user.userid)
+    refUser.once('value', function (snapshot) {
+      console.log('Notification Id: ', snapshot.val())
+    })
 
     this.user = this.props.navigation.state.params.user
     AsyncStorage.getItem('@BookSharing:user')
@@ -118,7 +123,6 @@ class ChatScreen extends Component {
   }
 
   sendData (sentId, receiveId, message) {
-    console.log('message:  ', message)
     let createdAt1 = (new Date(message.createdAt)).getTime()
     let refId = 'message/' + sentId + '/' + receiveId + '/' + createdAt1
 
