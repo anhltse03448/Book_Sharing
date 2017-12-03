@@ -31,6 +31,7 @@ export default class CountBook extends Component {
           style={{
             flexDirection: 'row',
             alignItems: 'center',
+            justifyContent: 'center',
             paddingTop: 4
           }}
         >
@@ -44,7 +45,7 @@ export default class CountBook extends Component {
             }}>
             <Text
               style={styles.priceMax}
-            >{count + ' '}</Text>
+            >{count}</Text>
           </Button>
           <Text
             style={{
