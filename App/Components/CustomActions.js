@@ -103,7 +103,11 @@ export default class CustomActions extends Component {
 
     ImagePicker.launchImageLibrary({}, (response) => {
       this.uploadImage(response.uri)
-        .then(url => console.log(url))
+        .then(url => {
+          this.props.onSend([{
+            image: url
+          }])
+        })
         .catch(error => console.log(error))
     })
   }
@@ -134,13 +138,30 @@ export default class CustomActions extends Component {
         </NavTitle>
         <NavButton onPress={() => {
           this.setModalVisible(false)
+
+          this.setState({ uploadURL: '' })
+          /*
+          ImagePicker.launchImageLibrary({}, (response) => {
+            this.uploadImage(response.uri)
+              .then(url => {
+                this.props.onSend([{
+                  image: url
+                }])
+              })
+              .catch(error => console.log(error))
+          })
+
+          console.log('Images Upload:  ', images) */
+/*
           const images = this.getImages().map((image) => {
             return {
               image: image.uri
             }
-          })
+          }) */
+          /*
           this.props.onSend(images)
           this.setImages([])
+          */
         }}>
           <NavButtonText style={{
             color: '#000'

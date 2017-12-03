@@ -247,7 +247,7 @@ class ChatScreen extends Component {
           }
         }}
       />
-    );
+    )
   }
 
   renderSystemMessage (props) {

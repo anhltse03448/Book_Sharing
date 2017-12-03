@@ -45,6 +45,7 @@ export default class SellerCell extends Component {
     ]
 
     const { item } = this.props
+    console.log('ItemIn Seller Cell:  ', item)
     return (
       <View style={styles.card}>
         <Card>
@@ -57,9 +58,9 @@ export default class SellerCell extends Component {
               <Left>
                 <Thumbnail source={{uri: item.avatar ? item.avatar : ''}} />
                 <Body>
-                  <Text style={styles.title}>{item.username} - {item.uid}</Text>
+                  <Text style={styles.title}>{item.username}</Text>
                   <Text style={styles.price}>Giá bán: {item.price}</Text>
-                  <Text style={styles.address}>FPT University - 1km</Text>
+                  <Text style={styles.address}>{item.location}</Text>
                 </Body>
               </Left>
             </TouchableHighlight>
@@ -73,7 +74,7 @@ export default class SellerCell extends Component {
           <CardItem style={{flexDirection: 'column'}} cardBody>
             <View style={{marginBottom: 8}}>
               <Text>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                {item.content}
               </Text>
             </View>
             <FlatList horizontal

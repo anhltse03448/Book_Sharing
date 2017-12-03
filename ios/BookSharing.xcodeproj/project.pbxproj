@@ -1405,6 +1405,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = anhtuan.example.BookSharing;
 				PRODUCT_NAME = BookSharing;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1447,6 +1448,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = anhtuan.example.BookSharing;
 				PRODUCT_NAME = BookSharing;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

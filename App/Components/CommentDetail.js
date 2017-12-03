@@ -21,7 +21,7 @@ export default class CommentDetail extends Component {
     }
   }
 
-  componentWillMount () {
+  componentDidMount () {
     AsyncStorage.getItem('@BookSharing:user')
     .then((res) => {
       this.setState({
@@ -45,7 +45,7 @@ export default class CommentDetail extends Component {
       <View
         style={styles.container}
       >
-        {this.state.user && <Image
+        {this.state.user ? <Image
           source={{uri: this.state.user.avatar}}
           style={(Platform.OS === 'ios') ? styles.imageIos : styles.imageAndroid}
         />}
