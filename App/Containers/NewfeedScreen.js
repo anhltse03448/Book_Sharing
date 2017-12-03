@@ -29,7 +29,7 @@ class NewfeedScreen extends Component {
   }
 
   componentWillMount () {
-    this.props.fetchBookList()
+    // this.props.fetchBookList()
   }
 
   onPressItem = (item) => {
@@ -59,7 +59,7 @@ class NewfeedScreen extends Component {
             </Text>
           </Button>
         </View>
-        <ListMain items={this.props.payload} onPressItem={this.onPressItem} />
+        <ListMain items={this.props.items} onPressItem={this.onPressItem} />
       </View>
     )
   }

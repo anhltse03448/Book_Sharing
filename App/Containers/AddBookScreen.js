@@ -281,7 +281,7 @@ const mapDispatchToProps = (dispatch) => {
       NavigationActions.reset({
         index: 0,
         actions: [
-          NavigationActions.navigate({ routeName: 'NewfeedScreen' })
+          NavigationActions.navigate({ routeName: 'MainScreen' })
         ]
       })
     ),

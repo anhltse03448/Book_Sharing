@@ -3,6 +3,7 @@ import { ScrollView, Text, KeyboardAvoidingView } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
+import ListBookActions from '../Redux/ListBookRedux'
 
 // Styles
 import {
@@ -29,6 +30,11 @@ class MainScreen extends Component {
       selectedTab: 'HOME'
     }
   }
+  
+  componentWillMount () {
+    this.props.fetchBookList()    
+  }
+
   onPress (type) {
     console.log('TYPE PRESS: ', type)
     this.setState({ selectedTab: type })
@@ -57,7 +63,7 @@ class MainScreen extends Component {
   getContent (type) {
     switch (type) {
       case 'HOME':
-        return <NewfeedScreen navigation={this.props.navigation} />
+        return <NewfeedScreen items={this.props.listBook} navigation={this.props.navigation} />
       case 'SEARCH':
         return <SearchScreen navigation={this.props.navigation} />
       case 'SELL':
@@ -125,12 +131,15 @@ class MainScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
+  const listBook = state.listBook.payload
   return {
+    listBook
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    fetchBookList: () => dispatch(ListBookActions.listBookRequest())
   }
 }
 
