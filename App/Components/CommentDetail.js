@@ -40,14 +40,15 @@ export default class CommentDetail extends Component {
   }
 
   render () {
+    console.log(this.state.user)
     return (
       <View
         style={styles.container}
       >
         {this.state.user ? <Image
           source={{uri: this.state.user.avatar}}
-          style={styles.image}
-        /> : null}
+          style={(Platform.OS === 'ios') ? styles.imageIos : styles.imageAndroid}
+        />}
         <Text
           style={styles.nhanxet}
         >Nhận xét</Text>

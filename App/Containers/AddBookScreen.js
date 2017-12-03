@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList, Image, AsyncStorage } from 'react-native'
+import { View, Text, FlatList, Image, AsyncStorage, Platform } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 import AddSellerActions from '../Redux/AddSellerRedux'
 import ImagePicker from 'react-native-image-crop-picker'
+import config from '../Config/FirebaseConfig'
+import RNFetchBlob from 'react-native-fetch-blob'
 
 // Styles
 import {
@@ -25,6 +27,13 @@ import Navigation from '../Components/Navigation'
 import BookInfoAdd from '../Components/BookInfoAdd'
 import ImageCell from '../Components/ImageCell'
 import Loading from '../Components/Loading'
+import firebase from 'firebase'
+
+// Prepare Blob support
+const Blob = RNFetchBlob.polyfill.Blob
+const fs = RNFetchBlob.fs
+window.XMLHttpRequest = RNFetchBlob.polyfill.XMLHttpRequest
+window.Blob = Blob
 
 class AddBookScreen extends Component {
   constructor (props) {
@@ -32,23 +41,42 @@ class AddBookScreen extends Component {
     this.state = {
       selected2: undefined,
       starCount: 0,
-      images: null,
+      images: [],
+      uploadedImages: [],
       isChoosingImage: false,
       price: null,
       note: null,
       submitted: false
+    }
+
+    if (!firebase.apps.length) {
+      firebase.initializeApp(config)
     }
   }
 
   handleOnSubmit = () => {
     AsyncStorage.getItem('@BookSharing:token')
     .then((res) => {
-      this.props.addSeller({
-        token: res,
-        bookid: this.props.navigation.state.params.item.id,
-        price: this.state.price,
-        content: this.state.note,
-        photos: []
+      this.state.images.map((image) => {
+        this.uploadImage(image.sourceURL)
+        .then((url) => {
+          let uploadedImages = this.state.uploadedImages
+          uploadedImages.push(url)
+          this.setState({ uploadedImages })
+        })
+        .catch((error) => console.log(error))
+        .done(() => {
+          let { uploadedImages, images } = this.state
+          if (uploadedImages.length === images.length) {
+            this.props.addSeller({
+              token: res,
+              bookid: this.props.navigation.state.params.item.id,
+              price: this.state.price,
+              content: this.state.note,
+              images: uploadedImages
+            })
+          }
+        })
       })
       this.setState({ submitted: true })
     })
@@ -79,6 +107,35 @@ class AddBookScreen extends Component {
         onError={() => console.log('error')}
         source={{uri: `data:image/png;base64,${item.data}`}} />
     )
+  }
+
+  uploadImage = (uri, mime = 'image/jpeg', name) => {
+    return new Promise((resolve, reject) => {
+      const uploadUri = Platform.OS === 'ios' ? uri.replace('file://', '') : uri
+      const sessionId = new Date().getTime()
+      let uploadBlob = null
+      const bookId = this.props.navigation.state.params.item.id
+      const imageRef = firebase.storage().ref(`book_images/${bookId}`).child(`${sessionId}`)
+
+      fs.readFile(uploadUri, 'base64')
+      .then((data) => {
+        return Blob.build(data, { type: `${mime};BASE64` })
+      })
+      .then((blob) => {
+        uploadBlob = blob
+        return imageRef.put(blob, { contentType: mime })
+      })
+      .then(() => {
+        uploadBlob.close()
+        return imageRef.getDownloadURL()
+      })
+      .then((url) => {
+        resolve(url)
+      })
+      .catch((error) => {
+        reject(error)
+      })
+    })
   }
 
   handleImagePicker = () => {
@@ -131,8 +188,7 @@ class AddBookScreen extends Component {
         }}>
         <Navigation onPressBack={() => this.props.navigation.goBack()}
           title={item.name} />
-        {(this.state.submitted &&
-          this.props.addSellerState)
+        {(this.state.submitted || this.props.addSellerState)
             ? <Loading style={{flex: 1, flexDirection: 'row'}} />
             : <Content>
               <BookInfoAdd item={item} />
@@ -216,8 +272,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addSeller: ({token, bookid, price, content, photos}) =>
-      dispatch(AddSellerActions.addSellerRequest({token, bookid, price, content, photos}))
+    addSeller: ({token, bookid, price, content, images}) =>
+      dispatch(AddSellerActions.addSellerRequest({token, bookid, price, content, images}))
   }
 }
 
