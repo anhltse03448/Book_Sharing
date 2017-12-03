@@ -49,13 +49,17 @@ class ChatHistoryScreen extends Component {
           let user = mess['user']
           if (user !== undefined) {
             listMessengers = listMessengers.concat([{user, lastMessage, createdAt}])
-            console.log('List Messengers:  ', listMessengers)
           }
-          listMessengers.sort(function (a, b) {
-            return ((new Date(a.createdAt)).getTime() < (new Date(b.createdAt)).getTime())
-          })
-          console.log('List Messengers:  ', listMessengers)
         }
+        listMessengers.map(e => {
+          console.log('Time:  ', (new Date(e.createdAt)).getTime())
+        })
+        listMessengers.sort(function (a, b) {
+          return ((new Date(a.createdAt)).getTime() < (new Date(b.createdAt)).getTime())
+        })
+        listMessengers.map(e => {
+          console.log('Time:  ', (new Date(e.createdAt)).getTime())
+        })
         this.setState({listMessengers})
       }.bind(this))
     })
