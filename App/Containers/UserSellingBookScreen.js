@@ -8,6 +8,7 @@ import {
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 import ListBookSoldByUserActions from '../Redux/ListBookSoldByUserRedux'
+import DeleteSellingBookActions from '../Redux/DeleteSellingBookRedux'
 import { NavigationActions } from 'react-navigation'
 
 // Styles
@@ -23,6 +24,14 @@ class UserSellingBookScreen extends Component {
       this.props.fetchListBook(res)
     })
     .catch((error) => console.log(error))
+  }
+
+  componentWillUpdate (nextProps, nextState) {
+    
+  }
+
+  onDeleteRow = (id) => {
+    this.props.deleteSellingBook(id)
   }
 
   render () {
@@ -47,8 +56,9 @@ class UserSellingBookScreen extends Component {
               keyExtractor={(item) => item.id}
               renderItem={(item) =>
                 <BookSubscribedItem
+                  onDeleteRow={() => this.onDeleteRow(item.item.id)}
                   navigate={this.props.navigate}
-                  item={item.item} />
+                  item={item.item.book} />
               }
             /> : <Loading />}
         </Content>
@@ -71,7 +81,9 @@ const mapDispatchToProps = (dispatch) => {
       params: params
     })),
     fetchListBook: (token) =>
-      dispatch(ListBookSoldByUserActions.listBookSoldByUserRequest(token))
+      dispatch(ListBookSoldByUserActions.listBookSoldByUserRequest(token)),
+    deleteSellingBook: (id) =>
+      dispatch(DeleteSellingBookActions.deleteSellingBookRequest(id))
   }
 }
 

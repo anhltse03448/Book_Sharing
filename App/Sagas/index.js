@@ -18,6 +18,7 @@ import { ListTagTypes } from '../Redux/ListTagRedux'
 import { SearchTypes } from '../Redux/SearchRedux'
 import { IsbnTypes } from '../Redux/IsbnRedux'
 import { AddSellerTypes } from '../Redux/AddSellerRedux'
+import { DeleteSellingBookTypes } from '../Redux/DeleteSellingBookRedux'
 
 /* ------------- Sagas ------------ */
 
@@ -36,6 +37,7 @@ import { getListTag } from './ListTagSagas'
 import { searchByTag } from './SearchSagas'
 import { getBookByISBN } from './IsbnSagas'
 import { addSeller } from './AddSellerSagas'
+import { deleteSellingBook } from './DeleteSellingBookSagas' 
 
 /* ------------- API ------------- */
 
@@ -75,6 +77,8 @@ export default function * root () {
 
     takeLatest(IsbnTypes.ISBN_REQUEST, getBookByISBN, api),
 
-    takeLatest(AddSellerTypes.ADD_SELLER_REQUEST, addSeller, api)
+    takeLatest(AddSellerTypes.ADD_SELLER_REQUEST, addSeller, api),
+
+    takeLatest(DeleteSellingBookTypes.DELETE_SELLING_BOOK_REQUEST, deleteSellingBook, api)
   ])
 }
