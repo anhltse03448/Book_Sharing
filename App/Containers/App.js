@@ -7,6 +7,12 @@ import createStore from '../Redux'
 import { Root, StyleProvider } from 'native-base'
 import getTheme from '../../native-base-theme/components'
 import OneSignal from 'react-native-onesignal'
+import config from '../Config/FirebaseConfig'
+import {
+  AsyncStorage
+} from 'react-native'
+var firebase = require('firebase')
+
 // create our store
 const store = createStore()
 
@@ -20,7 +26,14 @@ const store = createStore()
  * We separate like this to play nice with React Native's hot reloading.
  */
 class App extends Component {
-
+  constructor (props) {
+    super(props)
+    
+    if (!firebase.apps.length) {
+      firebase.initializeApp(config)
+    }
+  }
+ 
   componentWillMount () {
     OneSignal.addEventListener('received', this.onReceived)
     OneSignal.addEventListener('opened', this.onOpened)
@@ -47,12 +60,25 @@ class App extends Component {
   }
 
   onRegistered (notifData) {
-      console.log("Device had been registered for push notifications!", notifData);
+      console.log("Device had been registered for push notifications!", notifData)
   }
 
   onIds (device) {
-    console.log('Device info: ', device)
+    AsyncStorage.getItem('@BookSharing:user')
+    .then((res) => {
+      if (res !== null) {
+        let user = JSON.parse(res)
+        console.log('User: ', JSON.parse(res))
+        console.log('Device info: ', device)
+        let refId = 'user/' + user.userid
+        firebase.database().ref(refId).set({
+          userid: device.userId
+        })
+      }
+    })
+    .catch((error) => console.log(error))
   }
+  
   render () {
     return (
       <Provider store={store}>
