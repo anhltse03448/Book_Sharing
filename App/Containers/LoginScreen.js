@@ -99,7 +99,8 @@ class LoginScreen extends Component {
             source={require('../Images/LoginBg.png')}
             style={{
               position: 'absolute',
-              marginTop: -400
+              top: -400,
+              left: 0
             }}
           />
           <Image
