@@ -73,8 +73,10 @@ class AddBookScreen extends Component {
               bookid: this.props.navigation.state.params.item.id,
               price: this.state.price,
               content: this.state.note,
-              images: uploadedImages
+              images: uploadedImages,
+              status: this.state.starCount
             })
+            this.props.navigation.goBack()
           }
         })
       })

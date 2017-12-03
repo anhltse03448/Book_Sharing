@@ -45,8 +45,8 @@ const create = (baseURL = 'https://sheltered-ridge-83772.herokuapp.com') => {
     headers: {'Authorization': 'Bearer ' + token}
   })
 
-  const addSeller = ({token, bookid, price, content, images}) => api.post('/posts', {
-    bookid, content, price, images
+  const addSeller = ({token, bookid, price, content, images, status}) => api.post('/posts', {
+    bookid, content, price, images, status
   }, {
     headers: {'Authorization': 'Bearer ' + token}
   })
@@ -79,7 +79,7 @@ const create = (baseURL = 'https://sheltered-ridge-83772.herokuapp.com') => {
 
   const searchByQuery = (keyword) => api.get('/search?q' + keyword)
 
-  const searchByTag = (keyword) => api.get('/tag-name/' + keyword)
+  const searchByTag = (keyword) => api.get('/tag-name/', {tag: keyword})
 
   const getBookByISBN = (isbn) => api.get('/isbn/' + isbn)
 
