@@ -40,6 +40,7 @@ class SellScreen extends Component {
     //this.setState({isFinding: false})
     this.isDoneDetect = true
     if (this.isDoneDetect) {
+      console.log(barcode.data)
       this.props.fetchBookByISBN(barcode.data)
       this.isDoneDetect = false
     }

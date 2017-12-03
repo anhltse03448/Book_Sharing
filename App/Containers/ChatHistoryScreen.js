@@ -41,18 +41,22 @@ class ChatHistoryScreen extends Component {
         this.setState({
           isLoading: false
         })
+        let listMessengers = this.state.listMessengers
         for (var mess1 in messages) {
           let mess = messages[mess1]
           let lastMessage = mess['lastMessage']
           let createdAt = mess['createdAt']
           let user = mess['user']
-          let listMessengers = this.state.listMessengers
           if (user !== undefined) {
             listMessengers = listMessengers.concat([{user, lastMessage, createdAt}])
             console.log('List Messengers:  ', listMessengers)
-            this.setState({listMessengers})
           }
+          listMessengers.sort(function (a, b) {
+            return ((new Date(a.createdAt)).getTime() < (new Date(b.createdAt)).getTime())
+          })
+          console.log('List Messengers:  ', listMessengers)
         }
+        this.setState({listMessengers})
       }.bind(this))
     })
   .catch((error) => console.log(error))

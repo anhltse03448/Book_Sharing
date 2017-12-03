@@ -131,9 +131,7 @@ class ChatScreen extends Component {
   sendData (sentId, receiveId, message) {
     console.log('UserID: ', this.playerId)
     let data = {}
-    
     let messageContent = this.mySelf.username + ': ' + message.text
-    
     let contents = {
       'en': messageContent
     }
@@ -149,9 +147,10 @@ class ChatScreen extends Component {
       receiveId,
       createdAt
     })
+    let contentMess = message.text ? message.text : 'Đã gửi ảnh'
     let refId3 = 'message/' + sentId + '/' + receiveId
     firebase.database().ref(refId3).update({
-      lastMessage: 'Đã gửi ảnh',
+      lastMessage: contentMess,
       createdAt,
       user: this.user
     })
@@ -165,7 +164,7 @@ class ChatScreen extends Component {
 
     let refId4 = 'message/' + receiveId + '/' + sentId
     firebase.database().ref(refId4).update({
-      lastMessage: 'Đã gửi ảnh',
+      lastMessage: contentMess,
       user: this.mySelf,
       createdAt
     })

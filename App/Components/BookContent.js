@@ -94,7 +94,7 @@ export default class BookContent extends Component {
               }}
               style={styles.buttonSub} disabled={this.state.isPress}>
               <View style={styles.icon}>
-                <Icon style={{color: '#000', fontSize: 18}}
+                <Icon style={{color: '#fff', fontSize: 18}}
                       ios='ios-add-circle-outline' android='md-bookmarks' />
               </View>
               <View style={{flex: 1, alignItems: 'center'}}>

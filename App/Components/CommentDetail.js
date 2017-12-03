@@ -45,10 +45,11 @@ export default class CommentDetail extends Component {
       <View
         style={styles.container}
       >
-        {this.state.user ? <Image
-          source={{uri: this.state.user.avatar}}
-          style={(Platform.OS === 'ios') ? styles.imageIos : styles.imageAndroid}
-        /> : null}
+        {
+          this.state.user && <Image
+            source={{uri: this.state.user.avatar}}
+            style={(Platform.OS === 'ios') ? styles.imageIos : styles.imageAndroid}/>
+        }
         <Text
           style={styles.nhanxet}
         >Nhận xét</Text>

@@ -11,7 +11,6 @@ export default StyleSheet.create({
     fontSize: 17
   },
   list: {
-    marginTop: 12
   },
   cancelSearch: {
     margin: 0,

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, FlatList, TouchableOpacity } from 'react-native'
+import { Text, FlatList, TouchableOpacity, View } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -22,6 +22,7 @@ import {
 import Trend from '../Components/Trend'
 import SearchResult from '../Components/SearchResult'
 import Loading from '../Components/Loading'
+import colors from '../Themes/Colors'
 
 class SearchScreen extends Component {
   constructor (props) {
@@ -67,6 +68,7 @@ class SearchScreen extends Component {
 
   handlePressKeyword = (keyword) => {
     // this.props.fetchBookList()
+    this.handleSearch(keyword)
     this.props.search(keyword)
     this.setState({
       showResult: true
@@ -82,7 +84,7 @@ class SearchScreen extends Component {
     const { listTag } = this.state
     return (
       <Container>
-        <Header searchBar rounded>
+        <Header style={{backgroundColor: colors.mainColor}} searchBar rounded>
           <Item>
             <Icon name='ios-search' />
             <Input
@@ -131,10 +133,17 @@ class SearchScreen extends Component {
           }
           {this.state.showResult &&
             (this.props.listBook
-              ? <SearchResult
-                items={this.props.listBook.books}
-                onPressItemSearch={this.onPressItemSearch.bind(this)}
-                /> : <Loading />)}
+              ? this.props.listBook.books.length > 0
+                ? <SearchResult
+                  items={this.props.listBook.books}
+                  onPressItemSearch={this.onPressItemSearch.bind(this)}
+                  />
+                  : <View style={{flex: 1, backgroundColor: '#fff', padding: 16}}>
+                      <Text>Không thấy kết quả nào</Text>
+                    </View>
+              : <Loading style={{backgroundColor: 'transparent'}} />
+            )
+          }
         </Content>
       </Container>
     )

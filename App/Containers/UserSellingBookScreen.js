@@ -66,6 +66,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    navigate: (routeName, params) => dispatch(NavigationActions.navigate({
+      routeName: routeName,
+      params: params
+    })),
     fetchListBook: (token) =>
       dispatch(ListBookSoldByUserActions.listBookSoldByUserRequest(token))
   }
