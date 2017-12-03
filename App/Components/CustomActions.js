@@ -102,6 +102,7 @@ export default class CustomActions extends Component {
     this.setState({ uploadURL: '' })
 
     ImagePicker.launchImageLibrary({}, (response) => {
+      console.log(response.uri)
       this.uploadImage(response.uri)
         .then(url => {
           this.props.onSend([{
