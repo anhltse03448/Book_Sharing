@@ -57,21 +57,10 @@ class UserSettingScreen extends Component {
               style={{
                 textColor: colors.mainColor
               }}
-              onPress={() => navigation.navigate('BookSubscribedScreen')}
+              onPress={() => navigation.navigate('UserSellingBookScreen')}
               ios='ios-albums-outline'
               android='md-albums'
               text='Sách đang bán'
-              subText='10'
-              hasSubPage
-            />
-            <ListItem
-              style={{
-                textColor: colors.mainColor
-              }}
-              onPress={() => navigation.navigate('BookSubscribedScreen')}
-              ios='ios-albums-outline'
-              android='md-albums'
-              text='Sách đã mua'
               subText='10'
               hasSubPage
             />

@@ -17,7 +17,7 @@ export function * addSeller (api, action) {
   const { data } = action
   // make the call to the api
   const response = yield call(api.addSeller, data)
-  console.tron.log(response)
+  console.log(response)
 
   // success?
   if (response.ok) {

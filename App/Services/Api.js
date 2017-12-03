@@ -45,8 +45,8 @@ const create = (baseURL = 'https://sheltered-ridge-83772.herokuapp.com') => {
     headers: {'Authorization': 'Bearer ' + token}
   })
 
-  const addSeller = ({token, bookid, price, content, photos}) => api.post('/posts', {
-    bookid, content, price, photos
+  const addSeller = ({token, bookid, price, content, images}) => api.post('/posts', {
+    bookid, content, price, images
   }, {
     headers: {'Authorization': 'Bearer ' + token}
   })
