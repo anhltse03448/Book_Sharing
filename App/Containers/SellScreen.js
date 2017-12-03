@@ -24,6 +24,10 @@ class SellScreen extends Component {
     this.isDoneDetect = false
   }
 
+  componentWillUnmount () {
+    this.isDoneDetect = false
+  }
+
   takePicture () {
     const options = {}
     //options.location = ...
