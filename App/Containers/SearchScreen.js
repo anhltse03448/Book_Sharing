@@ -22,6 +22,7 @@ import {
 import Trend from '../Components/Trend'
 import SearchResult from '../Components/SearchResult'
 import Loading from '../Components/Loading'
+import colors from '../Themes/Colors'
 
 class SearchScreen extends Component {
   constructor (props) {
@@ -67,6 +68,7 @@ class SearchScreen extends Component {
 
   handlePressKeyword = (keyword) => {
     // this.props.fetchBookList()
+    this.handleSearch(keyword)
     this.props.search(keyword)
     this.setState({
       showResult: true
@@ -82,7 +84,7 @@ class SearchScreen extends Component {
     const { listTag } = this.state
     return (
       <Container>
-        <Header searchBar rounded>
+        <Header style={{backgroundColor: colors.mainColor}} searchBar rounded>
           <Item>
             <Icon name='ios-search' />
             <Input
