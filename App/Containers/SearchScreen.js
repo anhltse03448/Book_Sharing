@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, FlatList, TouchableOpacity } from 'react-native'
+import { Text, FlatList, TouchableOpacity, View } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -133,10 +133,17 @@ class SearchScreen extends Component {
           }
           {this.state.showResult &&
             (this.props.listBook
-              ? <SearchResult
-                items={this.props.listBook.books}
-                onPressItemSearch={this.onPressItemSearch.bind(this)}
-                /> : <Loading />)}
+              ? this.props.listBook.books.length > 0
+                ? <SearchResult
+                  items={this.props.listBook.books}
+                  onPressItemSearch={this.onPressItemSearch.bind(this)}
+                  />
+                  : <View style={{flex: 1, backgroundColor: '#fff', padding: 16}}>
+                      <Text>Không thấy kết quả nào</Text>
+                    </View>
+              : <Loading style={{backgroundColor: 'transparent'}} />
+            )
+          }
         </Content>
       </Container>
     )
