@@ -15,6 +15,7 @@ export default class ItemMain extends Component {
   }
   render () {
     const { item } = this.props
+    // console.log(item)
     let name = item.name
     if (name.length >= 20) {
       name = name.substring(0, 20) + '...'

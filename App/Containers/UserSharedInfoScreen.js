@@ -53,7 +53,11 @@ class UserSharedInfoScreen extends Component {
 
   render () {
     const { user, listBook, navigation } = this.props
-    console.tron.log(user)
+    let books = []
+    if (listBook) {
+      listBook.map((item) => books.push(item.book))
+      // books.filter((book, index, self) => self.indexOf(book) === index)
+    }
     return (
       user ? <Container style={styles.container}>
         <Navigation onPressBack={() => this.props.navigation.goBack()}
@@ -141,7 +145,7 @@ class UserSharedInfoScreen extends Component {
                 </Text>
               </Button>
             </View>
-            <ListMain items={listBook} onPressItem={this.onPressItem} />
+            <ListMain items={books} onPressItem={this.onPressItem} />
           </View>
         </Content>
       </Container> : <Loading style={{flex: 1, flexDirection: 'row'}} />
