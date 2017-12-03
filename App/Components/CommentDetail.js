@@ -48,7 +48,7 @@ export default class CommentDetail extends Component {
         {this.state.user ? <Image
           source={{uri: this.state.user.avatar}}
           style={(Platform.OS === 'ios') ? styles.imageIos : styles.imageAndroid}
-        />}
+        /> : null}
         <Text
           style={styles.nhanxet}
         >Nhận xét</Text>
