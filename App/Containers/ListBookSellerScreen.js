@@ -13,6 +13,8 @@ import {
 import styles from './Styles/ListBookSellerScreenStyle'
 import SellerCell from '../Components/SellerCell'
 import Navigation from '../Components/Navigation'
+import Loading from '../Components/Loading'
+
 class ListBookSellerScreen extends Component {
   componentWillMount () {
     AsyncStorage.getItem('@BookSharing:token')
@@ -48,15 +50,18 @@ class ListBookSellerScreen extends Component {
       <Container>
         <Navigation onPressBack={() => this.props.navigation.goBack()}
           title='Người chia sẻ' />
-        <Content>
-          <View style={styles.container}>
-            <FlatList
-              data={this.props.payload}
-              keyExtractor={(item) => item.timestamp}
-              renderItem={({item}) => this.renderItem(item)}
-            />
-          </View>
-        </Content>
+        {this.props.payload
+          ? <Content>
+            <View style={styles.container}>
+              <FlatList
+                data={this.props.payload}
+                keyExtractor={(item) => item.timestamp}
+                renderItem={({item}) => this.renderItem(item)}
+              />
+            </View>
+          </Content>
+          : <Loading style={{flex: 1, flexDirection: 'row'}} />}
+        
       </Container>
     )
   }
