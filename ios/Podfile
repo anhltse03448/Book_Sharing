@@ -11,4 +11,6 @@ pod 'Firebase/Core'
 
   pod 'react-native-fetch-blob', :path => '../node_modules/react-native-fetch-blob'
 
+  pod 'react-native-onesignal', :path => '../node_modules/react-native-onesignal'
+
 end
