@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
-import { View, Image, PixelRatio, Platform } from 'react-native'
+import { View, Image, PixelRatio, Platform, AsyncStorage } from 'react-native'
 import styles from './Styles/CommentDetailStyle'
 import {
   ListItem,
@@ -21,7 +21,7 @@ export default class CommentDetail extends Component {
     }
   }
 
-  componentWillMount () {
+  componentDidMount () {
     AsyncStorage.getItem('@BookSharing:user')
     .then((res) => {
       this.setState({
@@ -44,10 +44,10 @@ export default class CommentDetail extends Component {
       <View
         style={styles.container}
       >
-        {this.state.user && <Image
+        {this.state.user ? <Image
           source={{uri: this.state.user.avatar}}
           style={styles.image}
-        />}
+        /> : null}
         <Text
           style={styles.nhanxet}
         >Nhận xét</Text>
