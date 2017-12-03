@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
 import { View, Image, TouchableHighlight } from 'react-native'
 import styles from './Styles/BookSubscribedItemStyle'
+import colors from '../Themes/Colors'
 import {
   Card,
   CardItem,
@@ -25,22 +26,28 @@ export default class BookSubscribedItem extends Component {
 
   render () {
     const { item } = this.props
-
     return (
       <Card>
-        <TouchableHighlight
-          underlayColor='#fff'
-          onPress={() => this.props.navigate('BookDetailScreen', {book: item})} style={{paddingBottom: 4}}>
-          <CardItem>
-            <Left style={{flex: 1, flexGrow: 3}}>
-              <Thumbnail source={{uri: item.cover}} />
+        <CardItem>
+          <Left style={{flex: 1, flexGrow: 3}}>
+            <Thumbnail source={{uri: item.cover}} />
+            <TouchableHighlight
+              underlayColor='#fff'
+              onPress={() => this.props.navigate('BookDetailScreen', {book: item})} style={{paddingBottom: 4}}>
               <Body>
                 <Text>{item.name}</Text>
-                <Text note>J.K Rowling</Text>
+                <Text note>{item.author}</Text>
               </Body>
-            </Left>
-          </CardItem>
-        </TouchableHighlight>
+            </TouchableHighlight>
+          </Left>
+          <Right>
+            <Button
+              onPress={this.props.onDeleteRow}
+              transparent>
+              <Icon name='ios-close-outline' style={{color: colors.mainColor}} />
+            </Button>
+          </Right>
+        </CardItem>
       </Card>
     )
   }

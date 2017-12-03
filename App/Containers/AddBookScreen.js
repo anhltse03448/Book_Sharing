@@ -78,8 +78,10 @@ class AddBookScreen extends Component {
               images: uploadedImages,
               status: this.state.starCount
             })
-            alert('Đăng ký bán thành công')
-            this.props.goBackToNewFeed()
+            setTimeout(() => {
+              alert('Đăng ký bán thành công')
+              this.props.goBackToNewFeed()
+            }, 2000)
           }
         })
       })

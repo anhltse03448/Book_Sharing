@@ -87,6 +87,8 @@ const create = (baseURL = 'https://sheltered-ridge-83772.herokuapp.com') => {
     headers: {'Authorization': 'Bearer ' + token}
   })
 
+  const deleteSellingBook = (id) => api.delete('/post/' + id)
+
   // ------
   // STEP 3
   // ------
@@ -117,7 +119,8 @@ const create = (baseURL = 'https://sheltered-ridge-83772.herokuapp.com') => {
     searchByTag,
     getBookByISBN,
     getListBookSoldByUser,
-    addSeller
+    addSeller,
+    deleteSellingBook
   }
 }
 

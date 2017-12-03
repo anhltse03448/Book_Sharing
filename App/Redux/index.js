@@ -19,7 +19,8 @@ export const reducers = combineReducers({
   listTag: require('./ListTagRedux').reducer,
   search: require('./SearchRedux').reducer,
   isbn: require('./IsbnRedux').reducer,
-  addSeller: require('./AddSellerRedux').reducer
+  addSeller: require('./AddSellerRedux').reducer,
+  deleteSellingBook: require('./DeleteSellingBookRedux').reducer
 })
 
 export default () => {

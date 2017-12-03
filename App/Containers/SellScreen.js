@@ -53,7 +53,7 @@ class SellScreen extends Component {
   render () {
     const { book } = this.props
     if (book) {
-      // console.log(book)
+      console.log(book)
       this.props.navigateToBookDetail(book)
     }
     let camera = <Camera
