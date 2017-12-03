@@ -52,7 +52,7 @@ class LoginScreen extends Component {
   }
 
   signInWithFacebook = () => {
-    LoginManager.logInWithReadPermissions(['public_profile', 'email']).then(
+    LoginManager.logInWithReadPermissions(['public_profile', 'email', 'user_location']).then(
       function (result) {
         if (result.isCancelled) {
         } else {
