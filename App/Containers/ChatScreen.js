@@ -131,7 +131,8 @@ class ChatScreen extends Component {
   sendData (sentId, receiveId, message) {
     console.log('UserID: ', this.playerId)
     let data = {}
-    let messageContent = this.mySelf.username + ': ' + message.text
+    let content = message.text ? message.text : 'đã gửi ảnh'
+    let messageContent = this.mySelf.username + ': ' + content
     let contents = {
       'en': messageContent
     }
