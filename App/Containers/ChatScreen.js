@@ -131,8 +131,11 @@ class ChatScreen extends Component {
   sendData (sentId, receiveId, message) {
     console.log('UserID: ', this.playerId)
     let data = {}
+    
+    let messageContent = this.mySelf.username + ': ' + message.text
+    
     let contents = {
-      'en': 'You got notification from user'
+      'en': messageContent
     }
     OneSignal.postNotification(contents, data, this.playerId)
 
