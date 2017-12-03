@@ -60,7 +60,8 @@ class AddBookScreen extends Component {
     AsyncStorage.getItem('@BookSharing:token')
     .then((res) => {
       this.state.images.map((image) => {
-        this.uploadImage(image.sourceURL)
+        console.log(image.path)
+        this.uploadImage(image.path)
         .then((url) => {
           let uploadedImages = this.state.uploadedImages
           uploadedImages.push(url)
@@ -69,6 +70,7 @@ class AddBookScreen extends Component {
         .catch((error) => console.log(error))
         .done(() => {
           let { uploadedImages, images } = this.state
+          // console.log(uploadedImages)
           if (uploadedImages.length === images.length) {
             this.props.addSeller({
               token: res,
@@ -118,7 +120,7 @@ class AddBookScreen extends Component {
 
   uploadImage = (uri, mime = 'image/jpeg', name) => {
     return new Promise((resolve, reject) => {
-      const uploadUri = Platform.OS === 'ios' ? uri.replace('file://', '') : uri
+      const uploadUri = Platform.OS === 'ios' ? uri.replace('/private', '') : uri
       const sessionId = new Date().getTime()
       let uploadBlob = null
       const bookId = this.props.navigation.state.params.item.id
