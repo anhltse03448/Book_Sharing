@@ -12,7 +12,6 @@ import {
   AsyncStorage
 } from 'react-native'
 var firebase = require('firebase')
-
 // create our store
 const store = createStore()
 
@@ -78,7 +77,7 @@ class App extends Component {
     })
     .catch((error) => console.log(error))
   }
-  
+
   render () {
     return (
       <Provider store={store}>
