@@ -31,15 +31,15 @@ class ListBookSellerScreen extends Component {
         item={item}
         onPress={() => this.props.navigation.navigate(
           'UserSharedInfoScreen', {
-            userId: item.uid,
-            username: item.username
+            userId: item.user.userid,
+            username: item.user.username
           })}
         onPressMessage={this.onPressMessage.bind(this)} />
     )
   }
 
-  onPressMessage (user) {
-    this.props.navigation.navigate('ChatScreen', {user: user})
+  onPressMessage (item) {
+    this.props.navigation.navigate('ChatScreen', {user: item.user})
   }
 
   render () {
@@ -52,7 +52,7 @@ class ListBookSellerScreen extends Component {
           <View style={styles.container}>
             <FlatList
               data={this.props.payload}
-              keyExtractor={(item) => item.id}
+              keyExtractor={(item) => item.timestamp}
               renderItem={({item}) => this.renderItem(item)}
             />
           </View>

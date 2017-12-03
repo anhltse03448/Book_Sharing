@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
-import { View, Text, Image, FlatList, TouchableOpacity, TouchableHighlight } from 'react-native'
+import { View, Text, Image, FlatList, Dimensions, TouchableHighlight } from 'react-native'
 import {
   Button,
   Card,
@@ -30,7 +30,7 @@ export default class SellerCell extends Component {
           width: 100,
           margin: 4
         }}
-        source={require('../Images/cogai.png')} />
+        source={{uri: item}} />
     )
   }
 
@@ -45,7 +45,6 @@ export default class SellerCell extends Component {
     ]
 
     const { item } = this.props
-    console.log('ItemIn Seller Cell:  ', item)
     return (
       <View style={styles.card}>
         <Card>
@@ -56,11 +55,11 @@ export default class SellerCell extends Component {
               style={{flexGrow: 2}}
               onPress={this.props.onPress}>
               <Left>
-                <Thumbnail source={{uri: item.avatar ? item.avatar : ''}} />
+                <Thumbnail source={{uri: item.user.avatar ? item.user.avatar : ''}} />
                 <Body>
-                  <Text style={styles.title}>{item.username}</Text>
+                  <Text style={styles.title}>{item.user.username}</Text>
                   <Text style={styles.price}>Giá bán: {item.price}</Text>
-                  <Text style={styles.address}>{item.location}</Text>
+                  <Text style={styles.address}>{item.user.location}</Text>
                 </Body>
               </Left>
             </TouchableHighlight>
@@ -71,17 +70,25 @@ export default class SellerCell extends Component {
                 style={{color: colors.mainColor, fontSize: 30}} />
             </Right>
           </CardItem>
-          <CardItem style={{flexDirection: 'column'}} cardBody>
+          <CardItem style={{
+            flex: 1,
+            flexDirection: 'column',
+            alignItems: 'flex-start'
+          }}>
             <View style={{marginBottom: 8}}>
               <Text>
                 {item.content}
               </Text>
             </View>
-            <FlatList horizontal
-              showsHorizontalScrollIndicator={false}
-              data={featureImageData}
-              renderItem={({item}) => this.renderItem(item)}
-            />
+            <View style={{flex: 1}}>
+              <FlatList horizontal
+                style={{width: Dimensions.get('window').width}}
+                showsHorizontalScrollIndicator={false}
+                data={item.images}
+                keyExtractor={(item, index) => index}
+                renderItem={({item}) => this.renderItem(item)}
+              />
+            </View>
           </CardItem>
         </Card>
       </View>

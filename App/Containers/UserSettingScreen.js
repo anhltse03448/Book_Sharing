@@ -5,6 +5,8 @@ import {
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
+import { NavigationActions } from 'react-navigation'
+
 // Styles
 import {
   Container,
@@ -38,8 +40,11 @@ class UserSettingScreen extends Component {
   }
 
   handleLogout = async () => {
-    await AsyncStorage.removeItem('@BookSharing:user')
-    await AsyncStorage.removeItem('@BookSharing:token')
+    AsyncStorage.removeItem('@BookSharing:user').done(() => {
+      AsyncStorage.removeItem('@BookSharing:token').done(() => {
+        this.props.resetApp()
+      })
+    })
   }
 
   render () {
@@ -82,13 +87,6 @@ class UserSettingScreen extends Component {
           </List>
           <List style={styles.listWrapper}>
             <ListItem
-              onPress={() => navigation.navigate('RatingSettingScreen')}
-              ios='ios-star-outline'
-              android='md-star'
-              text='Đánh giá'
-              hasSubPage
-            />
-            <ListItem
               onPress={() => navigation.navigate('PersonalSettingScreen')}
               ios='ios-settings-outline'
               android='md-settings'
@@ -116,6 +114,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    resetApp: () => dispatch(
+      NavigationActions.reset({
+        index: 0,
+        actions: [
+          NavigationActions.navigate({ routeName: 'LaunchScreen' })
+        ]
+      })
+    )
   }
 }
 
