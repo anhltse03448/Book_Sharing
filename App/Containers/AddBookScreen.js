@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 import AddSellerActions from '../Redux/AddSellerRedux'
+import { NavigationActions } from 'react-navigation'
+
 import ImagePicker from 'react-native-image-crop-picker'
 import config from '../Config/FirebaseConfig'
 import RNFetchBlob from 'react-native-fetch-blob'
@@ -76,7 +78,8 @@ class AddBookScreen extends Component {
               images: uploadedImages,
               status: this.state.starCount
             })
-            this.props.navigation.goBack()
+            alert('Đăng ký bán thành công')
+            this.props.goBackToNewFeed()
           }
         })
       })
@@ -190,7 +193,7 @@ class AddBookScreen extends Component {
         }}>
         <Navigation onPressBack={() => this.props.navigation.goBack()}
           title={item.name} />
-        {(this.state.submitted || this.props.addSellerState)
+        {this.state.submitted
             ? <Loading style={{flex: 1, flexDirection: 'row'}} />
             : <Content>
               <BookInfoAdd item={item} />
@@ -274,6 +277,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    goBackToNewFeed: () => dispatch(
+      NavigationActions.reset({
+        index: 0,
+        actions: [
+          NavigationActions.navigate({ routeName: 'NewfeedScreen' })
+        ]
+      })
+    ),
     addSeller: ({token, bookid, price, content, images}) =>
       dispatch(AddSellerActions.addSellerRequest({token, bookid, price, content, images}))
   }

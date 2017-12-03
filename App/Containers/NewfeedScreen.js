@@ -24,7 +24,7 @@ class NewfeedScreen extends Component {
   constructor (props) {
     super(props)
     this.state = {
-        isPress : false
+      isPress : false
     }
   }
 

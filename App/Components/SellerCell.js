@@ -40,10 +40,6 @@ export default class SellerCell extends Component {
   }
 
   render () {
-    const featureImageData = [
-      {key: 'a'}, {key: 'b'}, {key: 'c'}, {key: 'd'}, {key: 'e'}
-    ]
-
     const { item } = this.props
     return (
       <View style={styles.card}>
@@ -64,10 +60,10 @@ export default class SellerCell extends Component {
               </Left>
             </TouchableHighlight>
             <Right>
-              <Icon
+              {!item.isOwner && <Icon
                 onPress={this.handleShowMore}
                 name='ios-chatboxes'
-                style={{color: colors.mainColor, fontSize: 30}} />
+                style={{color: colors.mainColor, fontSize: 30}} />}
             </Right>
           </CardItem>
           <CardItem style={{
