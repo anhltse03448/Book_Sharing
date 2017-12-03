@@ -10,8 +10,8 @@ export default StyleSheet.create({
     fontSize: 15,
     fontWeight: '500',
     color: colors.textMainColor,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.seperatorColor
+    // borderBottomWidth: 1,
+    // borderBottomColor: colors.seperatorColor
   },
   seeMore: {
     alignSelf: 'flex-end',

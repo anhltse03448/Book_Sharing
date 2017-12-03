@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
-import { View, Image, AsyncStorage } from 'react-native'
+import { View, Image, PixelRatio, Platform, AsyncStorage } from 'react-native'
 import styles from './Styles/CommentDetailStyle'
 import {
   ListItem,

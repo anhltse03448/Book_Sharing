@@ -67,7 +67,7 @@ class MainScreen extends Component {
       default:
         return <UserSettingScreen navigation={this.props.navigation} />
     }
-  }  
+  }
   render () {
     let content = this.getContent(this.state.selectedTab)
     return (
@@ -107,7 +107,7 @@ class MainScreen extends Component {
                 style={this.getStyleIcon('NOTIFICATION')} />
               <Text
                 style={this.getStyleText('NOTIFICATION')}
-              > Thông báo </Text>
+              > Tin nhắn </Text>
             </Button>
             <Button vertical
               onPress={() => this.onPress('PERSON')}>

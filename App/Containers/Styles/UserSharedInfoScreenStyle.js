@@ -18,7 +18,8 @@ export default StyleSheet.create({
     position: 'absolute',
     top: 0,
     left: 0,
-    right: 0
+    right: 0,
+    alignItems : 'center'
   },
   imageBackground: {
     height: 150,
