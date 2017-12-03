@@ -19,6 +19,7 @@ import {
   Content,
   ActionSheet
 } from 'native-base'
+import OneSignal from 'react-native-onesignal'
 import Loading from '../Components/Loading'
 import config from '../Config/FirebaseConfig'
 import moment from 'moment'
@@ -51,13 +52,18 @@ class ChatScreen extends Component {
     this.renderSystemMessage = this.renderSystemMessage.bind(this)
     this.renderFooter = this.renderFooter.bind(this)
     this.onLoadEarlier = this.onLoadEarlier.bind(this)
+    this.playerId = ''
+
+    this.user = this.props.navigation.state.params.user
 
     let refUser = firebase.database().ref('user/' + this.user.userid)
     refUser.once('value', function (snapshot) {
-      console.log('Notification Id: ', snapshot.val())
-    })
-
-    this.user = this.props.navigation.state.params.user
+      if (snapshot.val() !== null) {
+        if (snapshot.val().userid !== undefined) {
+          this.playerId = snapshot.val().userid
+        }
+      }
+    }.bind(this))
     AsyncStorage.getItem('@BookSharing:user')
       .then((res) => {
         this.mySelf = JSON.parse(res)
@@ -123,6 +129,13 @@ class ChatScreen extends Component {
   }
 
   sendData (sentId, receiveId, message) {
+    console.log('UserID: ', this.playerId)
+    let data = {}
+    let contents = {
+      'en': 'You got notification from user'
+    }
+    OneSignal.postNotification(contents, data, this.playerId)
+
     let createdAt1 = (new Date(message.createdAt)).getTime()
     let refId = 'message/' + sentId + '/' + receiveId + '/' + createdAt1
 
@@ -265,7 +278,7 @@ class ChatScreen extends Component {
           fontSize: 14
         }}
       />
-    );
+    )
   }
 
   renderCustomView (props) {
@@ -273,7 +286,7 @@ class ChatScreen extends Component {
       <CustomView
         {...props}
       />
-    );
+    )
   }
 
   renderFooter (props) {
