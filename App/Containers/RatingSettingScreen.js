@@ -21,7 +21,7 @@ class RatingSettingScreen extends Component {
   render () {
     return (
       <Container>
-        <Navigation onPressBack={() => this.props.navigation.goBack()}
+        <Navigation
           title='Đánh giá' />
       </Container>
     )

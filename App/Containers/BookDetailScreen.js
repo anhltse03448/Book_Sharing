@@ -17,11 +17,6 @@ import ListCommentBookActions from '../Redux/ListCommentBookRedux'
 import {
   Container,
   Content,
-  Card,
-  ListItem,
-  Button,
-  CardItem,
-  Badge
 } from 'native-base'
 import styles from './Styles/BookDetailScreenStyle'
 import BookContent from '../Components/BookContent'
@@ -98,9 +93,10 @@ class BookDetailScreen extends Component {
   render () {
     const { navigation, listCommentBook } = this.props
     const item = navigation.state.params.book
+    console.log('Item In Book Detail:  ', item)
     return (
       <Container>
-        <Navigation onPressBack={() => navigation.goBack()}
+        <Navigation
           title={item.name} />
         {this.props.payload
           ? <Content>

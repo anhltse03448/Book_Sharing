@@ -12,7 +12,9 @@ import {
   Right
 } from 'native-base'
 import colors from '../Themes/Colors'
-export default class Navigation extends Component {
+import { connect } from 'react-redux'
+import { NavigationActions } from 'react-navigation'
+class Navigation extends Component {
   // // Prop type warnings
   // static propTypes = {
   //   someProperty: PropTypes.object,
@@ -33,7 +35,7 @@ export default class Navigation extends Component {
           style={{
             flexGrow: 1
           }}>
-          <Button transparent onPress={this.props.onPressBack}>
+          <Button transparent onPress={this.props.onPressBack ? this.props.onPressBack : this.props.goBack}>
             <Icon name='arrow-back'
               style={{
                 color: 'white'
@@ -59,3 +61,19 @@ export default class Navigation extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    goBack: () => dispatch(
+      NavigationActions.back({
+      })
+    )
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation)

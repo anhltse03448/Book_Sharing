@@ -47,7 +47,7 @@ class FullBookScreen extends Component {
     const items = navigation.state.params.items || this.props.payload
     return (
       <Container>
-        <Navigation onPressBack={() => this.props.navigation.goBack()}
+        <Navigation
           title={this.props.navigation.state.params.item.section} />
         {items
           ? <Content>

@@ -33,7 +33,7 @@ class BookSubscribedScreen extends Component {
     console.log(this.props.payload)
     return (
       <Container>
-        <Navigation onPressBack={() => this.props.navigation.goBack()}
+        <Navigation
           title='Sách đang theo dõi' />
         <Content>
           {this.props.payload !== null &&

@@ -25,7 +25,7 @@ class AroundScreen extends Component {
   render () {
     return (
       <Container>
-        <Navigation onPressBack={() => this.props.navigation.goBack()}
+        <Navigation
           title='Tìm kiếm quanh đây' />
         <Content>
           <FlatList

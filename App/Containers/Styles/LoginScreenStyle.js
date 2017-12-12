@@ -74,5 +74,15 @@ export default StyleSheet.create({
   styleNotice: {
     fontWeight: '400',
     fontSize: 30
+  },
+  containerStyle: {
+    marginTop: 64,
+    flex: 1,
+    alignItems: 'center'
+  },
+  bgStyle: {
+    position: 'absolute',
+    top: -400,
+    left: 0
   }
 })

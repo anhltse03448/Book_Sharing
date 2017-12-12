@@ -167,19 +167,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchScreen)
-/*
-
-<ListItem
-                  onPress={() => {
-                    navigation.navigate('AroundScreen', {navigation: this.props.navigation})
-                  }}
-                >
-                  <Icon
-                    style={styles.icon}
-                    name='ios-navigate-outline'
-                  />
-                  <Text
-                    style={styles.text}
-                  >Tìm kiếm quanh đây</Text>
-                </ListItem>
-*/

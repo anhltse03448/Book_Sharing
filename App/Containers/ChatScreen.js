@@ -352,7 +352,7 @@ class ChatScreen extends Component {
     let content = this.mySelf === null ? Loading : giftedChat
     return (
       <Container>
-        <Navigation onPressBack={() => this.props.navigation.goBack()}
+        <Navigation
           title={this.user.username} />
         {this.state.isLoading ? <Loading /> : content}
       </Container>

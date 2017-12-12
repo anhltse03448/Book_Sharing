@@ -22,7 +22,7 @@ class InterestedCategoryScreen extends Component {
     // console.log('Pay Load:  ', this.props.payload)
     return (
       <Container>
-        <Navigation onPressBack={() => this.props.navigation.goBack()}
+        <Navigation
           title='Danh mục quan tâm' />
         <Content>
           <View style={styles.container}>

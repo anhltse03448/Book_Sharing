@@ -13,7 +13,6 @@ import {
   FooterTab,
   Button,
   Icon,
-  Header
 } from 'native-base'
 import colors from '../Themes/Colors'
 import styles from './Styles/MainScreenStyle'
@@ -30,9 +29,8 @@ class MainScreen extends Component {
       selectedTab: 'HOME'
     }
   }
-  
   componentWillMount () {
-    this.props.fetchBookList()    
+    this.props.fetchBookList()
   }
 
   onPress (type) {
@@ -63,15 +61,15 @@ class MainScreen extends Component {
   getContent (type) {
     switch (type) {
       case 'HOME':
-        return <NewfeedScreen items={this.props.listBook} navigation={this.props.navigation} />
+        return <NewfeedScreen items={this.props.listBook} />
       case 'SEARCH':
-        return <SearchScreen navigation={this.props.navigation} />
+        return <SearchScreen />
       case 'SELL':
-        return <SellScreen navigation={this.props.navigation} />
+        return <SellScreen />
       case 'NOTIFICATION':
-        return <NotificationScreen navigation={this.props.navigation} />
+        return <NotificationScreen />
       default:
-        return <UserSettingScreen navigation={this.props.navigation} />
+        return <UserSettingScreen />
     }
   }
   render () {

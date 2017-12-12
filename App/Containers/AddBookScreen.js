@@ -195,7 +195,7 @@ class AddBookScreen extends Component {
         style={{
           backgroundColor: 'white'
         }}>
-        <Navigation onPressBack={() => this.props.navigation.goBack()}
+        <Navigation
           title={item.name} />
         {this.state.submitted
             ? <Loading style={{flex: 1, flexDirection: 'row'}} />

@@ -60,7 +60,7 @@ class UserSharedInfoScreen extends Component {
     }
     return (
       user ? <Container style={styles.container}>
-        <Navigation onPressBack={() => this.props.navigation.goBack()}
+        <Navigation
           title={navigation.state.params.username} />
         <Content>
           <View style={styles.headerContainer}>

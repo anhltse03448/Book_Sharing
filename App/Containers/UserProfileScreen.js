@@ -22,7 +22,7 @@ class UserProfileScreen extends Component {
   render () {
     return (
       <Container>
-        <Navigation onPressBack={() => this.props.navigation.goBack()}
+        <Navigation
           title='Thông tin cá nhân' />
         <Content style={styles.container}>
           <Form>

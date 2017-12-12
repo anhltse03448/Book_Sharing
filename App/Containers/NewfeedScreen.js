@@ -21,23 +21,12 @@ import ListMain from '../Components/ListMain'
 import HeaderDefault from '../Components/HeaderDefault'
 
 class NewfeedScreen extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      isPress : false
-    }
-  }
-
-  componentWillMount () {
-    // this.props.fetchBookList()
-  }
-
   onPressItem = (item) => {
-    this.props.navigation.navigate('BookDetailScreen', {book: item})
+    this.props.navigateToBookDetail(item)
   }
 
   onPressFull (item) {
-    this.props.navigation.navigate('FullBookScreen', {item: item})
+    this.props.navigateToFullBook(item)
   }
 
   renderItem (item) {
@@ -97,6 +86,10 @@ const mapDispatchToProps = (dispatch) => {
     navigateToBookDetail: (book) => dispatch(NavigationActions.navigate({
       routeName: 'BookDetailScreen',
       params: {book: book}
+    })),
+    navigateToFullBook: (item) => dispatch(NavigationActions.navigate({
+      routeName: 'FullBookScreen',
+      params: {item: item}
     })),
     fetchBookList: () => dispatch(ListBookActions.listBookRequest())
   }

@@ -38,7 +38,7 @@ class UserSellingBookScreen extends Component {
     console.log(this.props.listBook)
     return (
       <Container>
-        <Navigation onPressBack={() => this.props.navigation.goBack()}
+        <Navigation
           title='Sách đang bán' />
         <Content>
           {this.props.listBook !== null &&

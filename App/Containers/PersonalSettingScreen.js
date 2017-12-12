@@ -25,7 +25,7 @@ class PersonalSettingScreen extends Component {
   render () {
     return (
       <Container>
-        <Navigation onPressBack={() => this.props.navigation.goBack()}
+        <Navigation
           title='Thiết lập cá nhân' />
         <Content>
           <List style={styles.listContainer}>

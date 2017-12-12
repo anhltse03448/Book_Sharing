@@ -45,7 +45,7 @@ export default class LaunchScreen extends Component {
         : (
           !this.state.isLogged
           ? <LoginScreen />
-          : <MainScreen navigation={this.props.navigation} />
+          : <MainScreen />
         )
     )
   }

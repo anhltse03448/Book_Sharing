@@ -90,18 +90,10 @@ class LoginScreen extends Component {
     }
     return (
       <Container>
-        <Content contentContainerStyle={{
-          marginTop: 64,
-          flex: 1,
-          alignItems: 'center'
-        }}>
+        <Content contentContainerStyle={styles.containerStyle}>
           <Image
             source={require('../Images/LoginBg.png')}
-            style={{
-              position: 'absolute',
-              top: -400,
-              left: 0
-            }}
+            style={styles.bgStyle}
           />
           <Image
             resizeMode='contain'
