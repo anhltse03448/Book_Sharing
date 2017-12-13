@@ -20,7 +20,8 @@ export const reducers = combineReducers({
   search: require('./SearchRedux').reducer,
   isbn: require('./IsbnRedux').reducer,
   addSeller: require('./AddSellerRedux').reducer,
-  deleteSellingBook: require('./DeleteSellingBookRedux').reducer
+  deleteSellingBook: require('./DeleteSellingBookRedux').reducer,
+  demo: require('./DemoRedux').reducer
 })
 
 export default () => {

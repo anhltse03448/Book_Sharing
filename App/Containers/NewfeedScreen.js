@@ -48,7 +48,7 @@ class NewfeedScreen extends Component {
             </Text>
           </Button>
         </View>
-        <ListMain items={this.props.items} onPressItem={this.onPressItem} />
+        <ListMain items={this.props.payload} onPressItem={this.onPressItem} />
       </View>
     )
   }
@@ -83,15 +83,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    navigateToBookDetail: (book) => dispatch(NavigationActions.navigate({
-      routeName: 'BookDetailScreen',
-      params: {book: book}
-    })),
     navigateToFullBook: (item) => dispatch(NavigationActions.navigate({
       routeName: 'FullBookScreen',
       params: {item: item}
-    })),
-    fetchBookList: () => dispatch(ListBookActions.listBookRequest())
+    }))
   }
 }
 

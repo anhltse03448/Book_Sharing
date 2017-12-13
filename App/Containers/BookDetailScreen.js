@@ -24,7 +24,6 @@ import BookCommentScreen from './BookCommentScreen'
 import Navigation from '../Components/Navigation'
 import ContentBook from '../Components/ContentBook'
 import CommentDetail from '../Components/CommentDetail'
-import ListMain from '../Components/ListMain'
 import Loading from '../Components/Loading'
 
 class BookDetailScreen extends Component {

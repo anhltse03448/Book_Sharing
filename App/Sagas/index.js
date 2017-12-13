@@ -37,7 +37,7 @@ import { getListTag } from './ListTagSagas'
 import { searchByTag } from './SearchSagas'
 import { getBookByISBN } from './IsbnSagas'
 import { addSeller } from './AddSellerSagas'
-import { deleteSellingBook } from './DeleteSellingBookSagas' 
+import { deleteSellingBook } from './DeleteSellingBookSagas'
 
 /* ------------- API ------------- */
 

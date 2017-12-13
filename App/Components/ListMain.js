@@ -5,12 +5,14 @@ import ItemMain from './ItemMain'
 import {
   FlatList
 } from 'react-native'
+import { connect } from 'react-redux'
 import Loading from '../Components/Loading'
+import { NavigationActions } from 'react-navigation'
 
-export default class ListMain extends Component {
+class ListMain extends Component {
   renderItem (item) {
     return (
-      <ItemMain item={item} onPressItem={() => this.props.onPressItem(item)} />
+      <ItemMain item={item} onPressItem={() => this.props.navigateToBookDetail(item)} />
     )
   }
 
@@ -26,3 +28,20 @@ export default class ListMain extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    navigateToBookDetail: (book) => dispatch(NavigationActions.navigate({
+      routeName: 'BookDetailScreen',
+      params: {book: book}
+    }))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListMain)

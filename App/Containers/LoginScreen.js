@@ -17,16 +17,15 @@ import { connect } from 'react-redux'
 import AuthActions from '../Redux/AuthRedux'
 import { NavigationActions } from 'react-navigation'
 import Loading from '../Components/Loading'
-
+import LinearGradient from 'react-native-linear-gradient'
+import styles from './Styles/LoginScreenStyle'
+import MainScreen from './MainScreen'
 // Styles
 const FBSDK = require('react-native-fbsdk')
 const {
   LoginManager,
   AccessToken
 } = FBSDK
-import LinearGradient from 'react-native-linear-gradient'
-import styles from './Styles/LoginScreenStyle'
-import MainScreen from './MainScreen'
 
 class LoginScreen extends Component {
   constructor (props) {
@@ -44,7 +43,6 @@ class LoginScreen extends Component {
     AsyncStorage.getItem('@BookSharing:user')
       .then((res) => {
         if (res !== null) {
-          console.log('User: ', JSON.parse(res))
           this.setState({isLogged: true})
         }
       })

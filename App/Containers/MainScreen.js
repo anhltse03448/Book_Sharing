@@ -8,11 +8,10 @@ import ListBookActions from '../Redux/ListBookRedux'
 // Styles
 import {
   Container,
-  Content,
   Footer,
   FooterTab,
   Button,
-  Icon,
+  Icon
 } from 'native-base'
 import colors from '../Themes/Colors'
 import styles from './Styles/MainScreenStyle'
@@ -61,7 +60,7 @@ class MainScreen extends Component {
   getContent (type) {
     switch (type) {
       case 'HOME':
-        return <NewfeedScreen items={this.props.listBook} />
+        return <NewfeedScreen />
       case 'SEARCH':
         return <SearchScreen />
       case 'SELL':

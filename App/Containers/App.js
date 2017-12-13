@@ -27,12 +27,12 @@ const store = createStore()
 class App extends Component {
   constructor (props) {
     super(props)
-    
+
     if (!firebase.apps.length) {
       firebase.initializeApp(config)
     }
   }
- 
+
   componentWillMount () {
     OneSignal.addEventListener('received', this.onReceived)
     OneSignal.addEventListener('opened', this.onOpened)
@@ -48,7 +48,7 @@ class App extends Component {
   }
 
   onReceived (notification) {
-      console.log("Notification received: ", notification)
+    console.log('Notification received: ', notification)
   }
 
   onOpened (openResult) {
@@ -59,7 +59,7 @@ class App extends Component {
   }
 
   onRegistered (notifData) {
-      console.log("Device had been registered for push notifications!", notifData)
+    console.log('Device had been registered for push notifications!', notifData)
   }
 
   onIds (device) {
@@ -67,8 +67,6 @@ class App extends Component {
     .then((res) => {
       if (res !== null) {
         let user = JSON.parse(res)
-        console.log('User: ', JSON.parse(res))
-        console.log('Device info: ', device)
         let refId = 'user/' + user.userid
         firebase.database().ref(refId).set({
           userid: device.userId
